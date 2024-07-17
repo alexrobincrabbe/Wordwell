@@ -6,4 +6,6 @@ def Instructions(request):
     '''
     Display home page
     '''
-    return HttpResponse(render(request, 'instructions/index.html'))
+    context = {
+    }
+    return render(request, 'instructions/index.html',context)
