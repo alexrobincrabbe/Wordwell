@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<h1>Post</h1>
+author:{{ post.author}}<br>
+title:{{ post.title}}<br>
+message:{{post.text}}
+
+{% endblock %}

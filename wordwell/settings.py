@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'instructions',
     'profile_page.apps.ProfilePageConfig',
+    'message_board',
 ]
 
 SITE_ID = 1
