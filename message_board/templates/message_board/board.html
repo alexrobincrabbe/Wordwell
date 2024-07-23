@@ -9,6 +9,7 @@
   <li><a href="{% url 'view_post' post.slug %}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
+<a href="{% url 'new_post' %}">make a new post</a>
 {% endblock %}
 
 
