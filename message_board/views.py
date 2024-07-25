@@ -24,11 +24,14 @@ def new_post(request):
     if request.method == 'POST':
         new_post= PostForm(data=request.POST)
         if new_post.is_valid:
-            post= new_post.save(commit=False)
-            post.author = request.user
-            post.save()
-            messages.success(request,f'New post created')
-            return HttpResponseRedirect(reverse('view_post', args=[post.slug]))
+            try:
+                post= new_post.save(commit=False)
+                post.author = request.user
+                post.save()
+                messages.success(request,f'New post created')
+                return HttpResponseRedirect(reverse('view_post', args=[post.slug]))
+            except ValueError as e: 
+                pass
     else:
         new_post = PostForm()
     return render (
@@ -44,12 +47,15 @@ def edit_post(request, slug):
         post= get_object_or_404(Post.objects, slug=slug)
         edit_post_form = PostForm(data=request.POST, instance=post)
         if edit_post_form.is_valid:
-            edit_post = edit_post_form.save(commit=False)
-            edit_post.author = request.user
-            edit_post.save()
-            messages.success(request,f'Post updated')
-            slug=post.slug
-            return HttpResponseRedirect(reverse('view_post', args=[slug]))
+            try:
+                edit_post = edit_post_form.save(commit=False)
+                edit_post.author = request.user
+                edit_post.save()
+                messages.success(request,f'Post updated')
+                slug=post.slug
+                return HttpResponseRedirect(reverse('view_post', args=[slug]))
+            except ValueError as e: 
+                pass
     else:
         post= get_object_or_404(Post.objects, slug=slug)
         edit_post_form = PostForm(instance=post)
