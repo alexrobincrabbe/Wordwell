@@ -8,4 +8,10 @@ author:{{ post.author }}<br>
 title:{{ post.title }}<br>
 message:{{ post.text }}
 <a href="{% url 'edit_post' post.slug %}">edit post</a>
+<a href="{% url 'new_reply' post.slug %}">reply</a>
+
+{% for reply in post.replies.all %}
+<hr>
+{{ reply.text }}
+{% endfor %}
 {% endblock %}
