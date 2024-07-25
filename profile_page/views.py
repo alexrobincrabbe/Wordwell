@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from dotenv import load_dotenv
 load_dotenv()
 import cloudinary
@@ -8,6 +8,7 @@ from .models import UserProfile
 from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -38,3 +39,15 @@ def display_user_profile(request):
         "profile_page/profile.html",
         context,
     )
+
+def view_user_profile(request, profile_view):
+    user_view = get_object_or_404(UserProfile.objects, profile_url=profile_view)
+    return render(
+        request,
+        "profile_page/view_profile.html",
+        {
+            "user_view":user_view,
+        }
+    )
+
+        

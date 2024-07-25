@@ -6,7 +6,7 @@
 <h1>Message board homepage</h1>
 <ul>
   {% for post in all_posts_list %}
-  <li><a href="{% url 'view_post' post.slug %}">{{ post.title }}</a></li>
+  <li><a href="{% url 'view_post' post.slug %}">{{ post.title }}</a></li> posted by <a href="{% url 'view_user_profile' post.author.profile.profile_url %}">{{ post.author }}</a>
   {% endfor %}
 </ul>
 <a href="{% url 'new_post' %}">make a new post</a>

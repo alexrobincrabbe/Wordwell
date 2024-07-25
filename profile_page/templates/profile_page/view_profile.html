@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!-- profile.html content starts here -->
+ 
+ <h1>Display Name: {{ user_view.display_name }}</h1>
+ <h1>Profile picture:</h1>
+
+ {% if "placeholder" in user_view.profile_picture.url %}
+ <img class="rounded-circle account-img" src="{% static 'images/default.png' %}">
+ {% else %}
+ <img img class="rounded-circle account-img" src ="{{ user_view.profile_picture.url }}">
+ {% endif %}
+<br>
+ about me: {{ user_view.about_me }}
+ {% endblock %}
