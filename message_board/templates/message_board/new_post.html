@@ -4,6 +4,7 @@
 
 {% block content %}
 <h1>Post</h1>
+{% if user.is_authenticated and post.author == user %}
 <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
@@ -14,5 +15,9 @@
         <button class="btn btn-outline-info" type="submit">Sumbit</button>
     </div>
  </form>
+ {% else %}
+ you do not have permission to view this page
+ {% endif %}
+
 
 {% endblock %}

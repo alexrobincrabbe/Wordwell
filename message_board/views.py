@@ -38,7 +38,8 @@ def new_post(request):
         request,
         'message_board/new_post.html',
         {
-            'new_post': new_post
+            'new_post': new_post,   
+            'post':post,
         },
     )
 
@@ -63,7 +64,8 @@ def edit_post(request, slug):
         request,
         'message_board/new_post.html',
         {
-        'new_post': edit_post_form
+        'new_post': edit_post_form,
+        'post': post,
         },
     )
 
