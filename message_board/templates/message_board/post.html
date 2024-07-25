@@ -7,5 +7,5 @@
 author:{{ post.author }}<br>
 title:{{ post.title }}<br>
 message:{{ post.text }}
-
+<a href="{% url 'edit_post' post.slug %}">edit post</a>
 {% endblock %}

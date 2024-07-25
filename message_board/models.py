@@ -6,7 +6,7 @@ from django.utils import text
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="board_posts")
     title = models.CharField(max_length=200, unique=True)
-    text = models.TextField(max_length=200, unique=True)
+    text = models.TextField(max_length=200)
     slug = models.SlugField()
     created_on = models.DateTimeField (auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

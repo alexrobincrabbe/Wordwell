@@ -38,3 +38,25 @@ def new_post(request):
             'new_post': new_post
         },
     )
+
+def edit_post(request, slug):
+    if request.method == 'POST':
+        post= get_object_or_404(Post.objects, slug=slug)
+        edit_post_form = PostForm(data=request.POST, instance=post)
+        if edit_post_form.is_valid:
+            edit_post = edit_post_form.save(commit=False)
+            edit_post.author = request.user
+            edit_post.save()
+            messages.success(request,f'Post updated')
+            slug=post.slug
+            return HttpResponseRedirect(reverse('view_post', args=[slug]))
+    else:
+        post= get_object_or_404(Post.objects, slug=slug)
+        edit_post_form = PostForm(instance=post)
+    return render (
+        request,
+        'message_board/new_post.html',
+        {
+        'new_post': edit_post_form
+        },
+    )
