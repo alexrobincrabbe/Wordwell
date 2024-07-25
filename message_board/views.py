@@ -39,7 +39,6 @@ def new_post(request):
         'message_board/new_post.html',
         {
             'new_post': new_post,   
-            'post':post,
         },
     )
 
@@ -62,7 +61,7 @@ def edit_post(request, slug):
         edit_post_form = PostForm(instance=post)
     return render (
         request,
-        'message_board/new_post.html',
+        'message_board/edit_post.html',
         {
         'new_post': edit_post_form,
         'post': post,
