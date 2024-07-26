@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'instructions',
     'profile_page.apps.ProfilePageConfig',
     'message_board',
+    'game',
 ]
 
 SITE_ID = 1
