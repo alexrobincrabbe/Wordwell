@@ -2,12 +2,13 @@
 {% load static %}
 
 {% block content %}
-guess:
+
 <br>
-<div id="guess"></div>
-match:
+<div><strong>Guess:</strong><span id="guess"></span></div>
+<div><strong>Match:</strong><span id="match"></span></div>
 <br>
-<div id="match"></div>
+<div><strong>Wordlist:</strong><br><span id ="word-list"></span></div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script src="{% static 'game/js/game.js' %}"></script>
