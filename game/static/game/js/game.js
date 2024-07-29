@@ -1,30 +1,41 @@
 const match = document.getElementById("match");
 const guess = document.getElementById("guess");
 const wordList = document.getElementById("word-list")
+const timer = document.getElementById("timer")
+const startButton = document.getElementById("start-button")
 let word = "";
 let matched = false;
 
-// Load the dictionary then start the game
+
+// Load the dictionary then ready startGame
 getDictionary().then(dictionary => {
   guess.innerHTML = "dictionary loaded"
-  runGame(dictionary)
+  startGame(dictionary)
 })
 
 
-// Main game function
-function runGame(dictionary) {
+// Start game function
+function startGame(dictionary) {
   if (dictionary) {
-    let word = "";
-    word = guessWord(word, dictionary);
-    // Sample code to display a match
-    for (let [key, value] of Object.entries(dictionary)) {
-      if (word === key.toUpperCase()) {
-        match.innerHTML += `${key}: ${value}<br>`;
-      }
-    }
+    startButton.onclick=function(){ runGame(dictionary) }
   }
 }
 
+function runGame(dictionary) {
+  startButton.innerText = "save score"
+  let score = 0;
+  startButton.onclick=function(){ saveScore(score)}
+  let time = 60;
+  runTimer = setInterval( () => time = countDown(time), 1000)
+  let word = "";
+  word = guessWord(word, dictionary);
+  // Sample code to display a match
+  for (let [key, value] of Object.entries(dictionary)) {
+    if (word === key.toUpperCase()) {
+      match.innerHTML += `${key}: ${value}<br>`;
+    }
+  }
+}
 
 /**
  * Loads a json dictionary of words as a javascript object
@@ -47,6 +58,15 @@ async function getDictionary() {
   }
 }
 
+function countDown(time) {
+  if (time == 0) {
+    clearInterval(runTimer)
+  }
+  time -= 1
+  timer.innerHTML = `${time}`
+  return(time)
+}
+
 function guessWord(word, dictionary) {
   document.addEventListener('keydown', event => {
     if (event.key == "Backspace" && word.length > 0) {
@@ -58,7 +78,6 @@ function guessWord(word, dictionary) {
     guess.innerHTML = word
     matched = false;
     if (dictionary) {
-      // Sample code to display a match
       for (let [key, value] of Object.entries(dictionary)) {
         if (word === key.toUpperCase()) {
           match.innerHTML = `${key}: ${value}<br>`;
@@ -69,18 +88,20 @@ function guessWord(word, dictionary) {
         match.innerHTML = "";
       }
     }
-    if (event.key == "Enter"){
+    if (event.key == "Enter") {
       checkWord(word, matched);
     }
   })
 }
 
-function checkWord(word){
-  if (matched){
+function checkWord(word) {
+  if (matched) {
     wordList.innerHTML += `${word} <br>`;
-    guess.innerHTML="";
-  }else{
-    match.innerHTML="invalid word";
+    guess.innerHTML = "";
+  } else {
+    match.innerHTML = "invalid word";
   }
-  
+}
+
+function saveScore(score){
 }
