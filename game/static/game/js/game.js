@@ -33,6 +33,7 @@ for (let [key, value] of Object.values(dictionary)){
 //   }
 
 async function getDictionary() {
+  guess.innerHTML="loading dictionary..."
   const dictionaryUrl = "dictionary"
   try {
     const response = await fetch(dictionaryUrl);
@@ -68,10 +69,12 @@ document.addEventListener('keydown', event => {
 })
 */
 getDictionary().then(dictionary => {
+  guess.innerHTML="dictionary loaded"
   runGame(dictionary)
 })
 
 function runGame(dictionary) {
+
   if (dictionary) {
     let word = "";
     word = guessWord(word, dictionary);
