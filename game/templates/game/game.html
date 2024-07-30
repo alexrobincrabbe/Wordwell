@@ -3,14 +3,17 @@
 
 {% block content %}
 
+<div id="board" tabindex="1"></div>
+
+</div>
 <br>
 <div><strong>Guess:</strong><span id="guess"></span></div>
 <div><strong>Match:</strong><span id="match"></span></div>
 <br>
-<div><strong>Wordlist:</strong><br><span id ="word-list"></span></div>
-<div><strong>timer:</strong><br><span id ="timer"></span></div>
+<div><strong>Wordlist:</strong><br><span id="word-list"></span></div>
+<div><strong>timer:</strong><br><span id="timer"></span></div>
 
-<button id="start-button" type="button" class ="btn btn-primary">Start</button>
+<button id="start-button" type="button" class="btn btn-primary">Start</button>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script src="{% static 'game/js/game.js' %}"></script>

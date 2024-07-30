@@ -3,14 +3,44 @@ const guess = document.getElementById("guess");
 const wordList = document.getElementById("word-list")
 const timer = document.getElementById("timer")
 const startButton = document.getElementById("start-button")
+const board = document.getElementById('board')
+const letters = document.getElementsByClassName('letter')
+const letterValues = document.getElementsByClassName('letterValue')
+let boardLetters = []
 let runTimer
+// Defines the dice used to generate the letters on the board
+let dice = [
+  ["R", "I", "F", "O", "B", "X"],
+  ["I", "F", "E", "H", "E", "Y"],
+  ["D", "E", "N", "O", "W", "S"],
+  ["U", "T", "O", "K", "N", "D"],
+  ["H", "M", "S", "R", "A", "O"],
+  ["L", "U", "P", "E", "T", "S"],
+  ["A", "C", "I", "T", "A", "O"],
+  ["Y", "L", "G", "K", "U", "E"],
+  ["Qu", "B", "M", "J", "O", "A"],
+  ["E", "H", "I", "S", "P", "N"],
+  ["V", "E", "T", "I", "G", "N"],
+  ["B", "A", "L", "I", "Y", "T"],
+  ["E", "Z", "A", "V", "N", "D"],
+  ["R", "A", "L", "E", "S", "C"],
+  ["U", "W", "I", "L", "R", "G"],
+  ["P", "A", "C", "E", "M", "D"]
+]
+
+// Generate the board tile html elements
+for (let i = 0; i < 16; ++i){
+  board.innerHTML += `<div class="letter"><div class="letterValue"></div></div>`
+}
+
+// randomly generate board letters
+boardLetters = shuffleBoard(dice);
 
 // Load the dictionary then ready startGame
 getDictionary().then(dictionary => {
   guess.innerHTML = "dictionary loaded"
   startGame(dictionary)
 })
-
 
 // Start game function
 function startGame(dictionary) {
@@ -36,7 +66,7 @@ function runGame(dictionary) {
   clearInterval(runTimer);
   runTimer = setInterval(() => time = countDown(time), 1000);
   // update/guess the word
-  [word, score, matched, wordArray] = guessWord(word, score, matched, dictionary, wordArray);
+  [word, score, matched, wordArray] = guessWord(word, score, matched, dictionary, wordArray)
 }
 
 /**
@@ -139,4 +169,37 @@ async function saveScore(score) {
   } catch (e) {
     console.error(e);
   }
+}
+
+/**
+ * Randomly generates the letters on the board
+ * @param {*} dice an array of 16 six-sided dice that are rolled and then randomly distributed on the board
+ * @returns an 2-D array containing the letters on the board
+ */
+function shuffleBoard(dice) {
+  let shuffledDice = shuffleArray(dice)
+  let boardLetters = new Array(4).fill("").map(() => new Array(4).fill(""));
+  for (i = 0; i < 4; i++)
+    for (j = 0; j < 4; j++) {
+      boardLetters[i][j] = shuffledDice[i + j * 4][Math.floor(Math.random() * 6)]
+      letterValues[j + i * 4].innerText = boardLetters[i][j]
+    }
+  return boardLetters
+}
+
+// function to shuffle array
+function shuffleArray(array) {
+  let currentIndex = array.length,
+    randomIndex;
+  // While there remain elements to shuffle.
+  while (currentIndex > 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]
+    ];
+  }
+  return array;
 }
