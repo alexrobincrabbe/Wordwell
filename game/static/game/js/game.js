@@ -3,9 +3,7 @@ const guess = document.getElementById("guess");
 const wordList = document.getElementById("word-list")
 const timer = document.getElementById("timer")
 const startButton = document.getElementById("start-button")
-let word = "";
-let matched = false;
-
+let runTimer
 
 // Load the dictionary then ready startGame
 getDictionary().then(dictionary => {
@@ -17,24 +15,28 @@ getDictionary().then(dictionary => {
 // Start game function
 function startGame(dictionary) {
   if (dictionary) {
-    startButton.onclick=function(){ runGame(dictionary) }
+    startButton.onclick = function () {
+      runGame(dictionary)
+    }
   }
 }
 
+// run game function
 function runGame(dictionary) {
   startButton.innerText = "save score"
-  let score = 0;
-  startButton.onclick=function(){ saveScore(score)}
-  let time = 60;
-  runTimer = setInterval( () => time = countDown(time), 1000)
-  let word = "";
-  word = guessWord(word, dictionary);
-  // Sample code to display a match
-  for (let [key, value] of Object.entries(dictionary)) {
-    if (word === key.toUpperCase()) {
-      match.innerHTML += `${key}: ${value}<br>`;
-    }
+  startButton.onclick = function () {
+    saveScore(score)
   }
+  let word = "";
+  let matched = false;
+  let score = 0;
+  let time = 60;
+  let wordArray = [];
+  // start the game timer
+  clearInterval(runTimer);
+  runTimer = setInterval(() => time = countDown(time), 1000);
+  // update/guess the word
+  [word, score, matched, wordArray] = guessWord(word, score, matched, dictionary, wordArray);
 }
 
 /**
@@ -59,49 +61,82 @@ async function getDictionary() {
 }
 
 function countDown(time) {
-  if (time == 0) {
-    clearInterval(runTimer)
+  if (time > 0) {
+    time -= 1
+    timer.innerHTML = `${time}`
+    return (time)
   }
-  time -= 1
-  timer.innerHTML = `${time}`
-  return(time)
 }
 
-function guessWord(word, dictionary) {
+function guessWord(word, score, matched, dictionary, wordArray) {
   document.addEventListener('keydown', event => {
-    if (event.key == "Backspace" && word.length > 0) {
-      word = word.substring(0, word.length - 1)
-    }
-    if (event.keyCode >= 65 && event.keyCode <= 90) {
-      if (word.length < 17) word += event.key.toUpperCase()
+    switch (true) {
+      // delete a letter
+      case (event.key == "Backspace" && word.length > 0):
+        word = word.substring(0, word.length - 1);
+        matched = checkDictionary(word, dictionary)
+        break;
+        // add a letter
+      case (event.keyCode >= 65 && event.keyCode <= 90):
+        if (word.length < 17) {
+          word += event.key.toUpperCase()
+        }
+        matched = checkDictionary(word, dictionary)
+        break;
+        // guess a word
+      case (event.key == "Enter"):
+        [word, score, matched, wordArray] = checkWord(word, score, matched, wordArray);
+        console.log(wordArray)
     }
     guess.innerHTML = word
-    matched = false;
-    if (dictionary) {
-      for (let [key, value] of Object.entries(dictionary)) {
-        if (word === key.toUpperCase()) {
-          match.innerHTML = `${key}: ${value}<br>`;
-          matched = true;
-        }
-      }
-      if (matched == false) {
-        match.innerHTML = "";
-      }
-    }
-    if (event.key == "Enter") {
-      checkWord(word, matched);
-    }
+    return [word, score, matched, wordArray]
   })
 }
 
-function checkWord(word) {
-  if (matched) {
-    wordList.innerHTML += `${word} <br>`;
-    guess.innerHTML = "";
+function checkDictionary(word, dictionary) {
+  let match_found = false
+  if (dictionary) {
+    for (let [key, value] of Object.entries(dictionary)) {
+      if (word === key.toUpperCase()) {
+        match.innerHTML = `${key}: ${value}<br>`;
+        match_found = true;
+      }
+    }
+  }
+  if (match_found) {
+    return true
   } else {
-    match.innerHTML = "invalid word";
+    return false
   }
 }
 
-function saveScore(score){
+function checkWord(word, score, matched, wordArray) {
+  if (matched) {
+    wordList.innerHTML += `${word} <br>`;
+    wordArray.push(word)
+    guess.innerHTML = "";
+    word = "";
+    score += 1;
+    matched = false
+  } else {
+    match.innerHTML = "invalid word";
+  }
+  return [word, score, matched, wordArray]
+}
+
+/**
+ * Records the player score on the server
+ * @param {*} score The player game score to be sent to the server
+ */
+async function saveScore(score) {
+  const formData = new FormData();
+  formData.append("score", score);
+  try {
+    const response = await fetch("", {
+      method: "POST",
+      body: formData,
+    });
+  } catch (e) {
+    console.error(e);
+  }
 }
