@@ -6,6 +6,8 @@
 <!-- profile.html content starts here -->
  <h1>Username: {{ user.username }}</h1>
  <h1>Display Name: {{ user.profile.display_name }}</h1>
+ <h1>high_score: {{ user.profile.high_score }}</h1>
+
  <h1>Profile picture:</h1>
 
  {% if "placeholder" in user.profile.profile_picture.url %}

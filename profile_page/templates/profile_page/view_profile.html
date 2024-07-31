@@ -14,5 +14,8 @@
  <img img class="rounded-circle account-img" src ="{{ user_view.profile_picture.url }}">
  {% endif %}
 <br>
+
+ high_score: {{ user_view.profile.high_score }}
+ <br>
  about me: {{ user_view.about_me }}
  {% endblock %}
