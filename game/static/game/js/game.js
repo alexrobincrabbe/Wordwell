@@ -29,7 +29,7 @@ let dice = [
 ]
 
 // Generate the board tile html elements
-for (let i = 0; i < 16; ++i){
+for (let i = 0; i < 16; ++i) {
   board.innerHTML += `<div class="letter"><div class="letterValue"></div></div>`
 }
 
@@ -53,20 +53,20 @@ function startGame(dictionary) {
 
 // run game function
 function runGame(dictionary) {
-  startButton.innerText = "save score"
-  startButton.onclick = function () {
-    saveScore(score)
-  }
   let word = "";
   let matched = false;
   let score = 0;
   let time = 60;
   let wordArray = [];
+  startButton.innerText = "save score"
+  startButton.onclick = function () {
+    saveScore(wordArray)
+  }
   // start the game timer
   clearInterval(runTimer);
   runTimer = setInterval(() => time = countDown(time), 1000);
   // update/guess the word
-  [word, score, matched, wordArray] = guessWord(word, score, matched, dictionary, wordArray)
+  [word, score, matched, wordArray] = guessWord(word, score, matched, dictionary, wordArray);
 }
 
 /**
@@ -99,32 +99,109 @@ function countDown(time) {
 }
 
 function guessWord(word, score, matched, dictionary, wordArray) {
+  let boardMatched = false
+  let highlight =[]
   document.addEventListener('keydown', event => {
     switch (true) {
       // delete a letter
       case (event.key == "Backspace" && word.length > 0):
         word = word.substring(0, word.length - 1);
         matched = checkDictionary(word, dictionary)
+        clearBoard();
+        [boardMatched, highlight] = searchBoard(word);
+        highlightLetters(highlight,matched, boardMatched)
         break;
         // add a letter
       case (event.keyCode >= 65 && event.keyCode <= 90):
         if (word.length < 17) {
           word += event.key.toUpperCase()
         }
-        matched = checkDictionary(word, dictionary)
+        matched = checkDictionary(word, dictionary);
+        [boardMatched, highlight] = searchBoard(word);
+        highlightLetters(highlight, matched, boardMatched)
         break;
         // guess a word
       case (event.key == "Enter"):
-        [word, score, matched, wordArray] = checkWord(word, score, matched, wordArray);
-        console.log(wordArray)
+        [word, matched, wordArray] = checkWord(word, matched, boardMatched, wordArray);
+        clearBoard()
+        guess.innerHTML = "";
+        word = "";
     }
     guess.innerHTML = word
     return [word, score, matched, wordArray]
   })
 }
 
+function searchBoard(word) {
+  let boardMatched = false;
+  let highlight = Array(16).fill(false);
+  if (word.length > 16) return
+  // Mark all characters as not visited
+  let visited = Array.from(Array(4), () => new Array(4).fill(0));
+
+  // Initialize current string
+  let str = "";
+
+  // Consider every character and look for all words
+  // starting with this character
+  for (let i = 0; i < 4; i++)
+    for (let j = 0; j < 4; j++) {
+      searchBoardUtil(boardLetters, visited, i, j, str, word);
+    }
+  return [boardMatched, highlight]
+
+  function searchBoardUtil(boardLetters, visited, i, j, str, word) {
+    // mark current tile as visited
+    visited[i][j] = true;
+    // add the current tile letter to the search string
+    str = str + boardLetters[i][j];
+    // highlight word on board
+    if (str == word.substring(0, str.length)) {
+      highlight[j + (i * 4)]=true
+    }
+    // check if the word matches a valid string on the board
+    if (str == word) {
+      boardMatched = true
+    }
+    // Traverse adjacent cells of boardLetters[i,j]
+    // Check if each cell is on the board, has not been visited
+    // If the current word string is not on the board, then skip
+    for (let row = i - 1; row <= i + 1 && row < 4; row++)
+      for (let col = j - 1; col <= j + 1 && col < 4; col++)
+        if (row >= 0 && col >= 0 && !visited[row][col] && str == word.substring(0, str.length))
+          searchBoardUtil(boardLetters, visited, row, col, str, word);
+    // Erase current character from string and mark visited of current tile as false
+    str = "" + str[str.length - 1];
+    visited[i][j] = false;
+  }
+}
+
+function highlightLetters (highlight, matched, boardMatched){
+  let colour = "yellow"
+  if(matched && boardMatched){
+    colour ="green"
+  }
+  if(!boardMatched){
+    colour = "red"
+  }
+  for (i = 0; i < letters.length; i++) {
+    if (highlight[i]==1)
+      letters[i].style.backgroundColor = colour;
+  }
+}
+
+// clears highlighted letters
+function clearBoard() {
+  for (i = 0; i < letters.length; i++) {
+    letters[i].style.backgroundColor = "white";
+  }
+}
+
 function checkDictionary(word, dictionary) {
   let match_found = false
+  if (word.length < 3){
+    return false
+  }
   if (dictionary) {
     for (let [key, value] of Object.entries(dictionary)) {
       if (word === key.toUpperCase()) {
@@ -140,25 +217,34 @@ function checkDictionary(word, dictionary) {
   }
 }
 
-function checkWord(word, score, matched, wordArray) {
-  if (matched) {
+function checkWord(word, matched, boardMatched, wordArray) {
+  if (matched && boardMatched) {
+  console.log(wordArray)
+  console.log(word)
+    if (!wordArray.includes(word)){
     wordList.innerHTML += `${word} <br>`;
     wordArray.push(word)
-    guess.innerHTML = "";
-    word = "";
-    score += 1;
     matched = false
+  }else{
+    match.innerHTML = "already found";
+  }
+
   } else {
     match.innerHTML = "invalid word";
   }
-  return [word, score, matched, wordArray]
+  return [word, matched, wordArray]
 }
 
 /**
  * Records the player score on the server
  * @param {*} score The player game score to be sent to the server
  */
-async function saveScore(score) {
+async function saveScore(wordArray) {
+  let score = 0
+  for (word of wordArray){
+    score += word.length -2 
+  }
+  console.log(score)
   const formData = new FormData();
   formData.append("score", score);
   try {
