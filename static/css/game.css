@@ -30,3 +30,10 @@
    overflow: hidden;
 }
 
+#save-score-button {
+   display: none;
+}
+
+#play-again-button {
+   display: none;
+}
