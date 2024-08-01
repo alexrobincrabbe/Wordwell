@@ -39,8 +39,26 @@ boardLetters = shuffleBoard(dice);
 // Load the dictionary then ready startGame
 getDictionary().then(dictionary => {
   guess.innerHTML = "dictionary loaded"
-  startGame(dictionary)
+  dictionaries = makeDictionaries(dictionary)
+  startGame(dictionaries)
 })
+
+function makeDictionaries(dictionary) {
+  let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  let dictionaries = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+  for (key in dictionary) {
+    let i = 0;
+    for (letter of alphabet) {
+      if (key[0] == letter) {
+        thisDictionary = dictionaries[i]
+        thisDictionary[key] = 1
+      }
+      i += 1
+    }
+  }
+  return dictionaries
+}
+
 
 // Start game function
 function startGame(dictionary) {
@@ -100,7 +118,7 @@ function countDown(time) {
 
 function guessWord(word, score, matched, dictionary, wordArray) {
   let boardMatched = false
-  let highlight =[]
+  let highlight = []
   document.addEventListener('keydown', event => {
     switch (true) {
       // delete a letter
@@ -109,7 +127,7 @@ function guessWord(word, score, matched, dictionary, wordArray) {
         matched = checkDictionary(word, dictionary)
         clearBoard();
         [boardMatched, highlight] = searchBoard(word);
-        highlightLetters(highlight,matched, boardMatched)
+        highlightLetters(highlight, matched, boardMatched)
         break;
         // add a letter
       case (event.keyCode >= 65 && event.keyCode <= 90):
@@ -157,7 +175,7 @@ function searchBoard(word) {
     str = str + boardLetters[i][j];
     // highlight word on board
     if (str == word.substring(0, str.length)) {
-      highlight[j + (i * 4)]=true
+      highlight[j + (i * 4)] = true
     }
     // check if the word matches a valid string on the board
     if (str == word) {
@@ -176,16 +194,16 @@ function searchBoard(word) {
   }
 }
 
-function highlightLetters (highlight, matched, boardMatched){
+function highlightLetters(highlight, matched, boardMatched) {
   let colour = "yellow"
-  if(matched && boardMatched){
-    colour ="green"
+  if (matched && boardMatched) {
+    colour = "green"
   }
-  if(!boardMatched){
+  if (!boardMatched) {
     colour = "red"
   }
   for (i = 0; i < letters.length; i++) {
-    if (highlight[i]==1)
+    if (highlight[i] == 1)
       letters[i].style.backgroundColor = colour;
   }
 }
@@ -199,35 +217,44 @@ function clearBoard() {
 
 function checkDictionary(word, dictionary) {
   let match_found = false
-  if (word.length < 3){
+  if (word.length < 3) {
     return false
   }
   if (dictionary) {
-    for (let [key, value] of Object.entries(dictionary)) {
-      if (word === key.toUpperCase()) {
-        match.innerHTML = `${key}: ${value}<br>`;
-        match_found = true;
+    let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    let i = 0;
+    console.log(word[0])
+    for (letter of alphabet) {
+      if (word[0] == letter) {
+        for (let [key, value] of Object.entries(dictionary[i])) {
+          if (word === key.toUpperCase()) {
+            match.innerHTML = `${key}: ${value}<br>`;
+            match_found = true;
+          }
+        }
       }
+      i += 1
     }
-  }
-  if (match_found) {
-    return true
-  } else {
-    return false
+    if (match_found) {
+      return true
+    } else {
+      return false
+    }
   }
 }
 
+
 function checkWord(word, matched, boardMatched, wordArray) {
   if (matched && boardMatched) {
-  console.log(wordArray)
-  console.log(word)
-    if (!wordArray.includes(word)){
-    wordList.innerHTML += `${word} <br>`;
-    wordArray.push(word)
-    matched = false
-  }else{
-    match.innerHTML = "already found";
-  }
+    console.log(wordArray)
+    console.log(word)
+    if (!wordArray.includes(word)) {
+      wordList.innerHTML += `${word} <br>`;
+      wordArray.push(word)
+      matched = false
+    } else {
+      match.innerHTML = "already found";
+    }
 
   } else {
     match.innerHTML = "invalid word";
@@ -241,8 +268,8 @@ function checkWord(word, matched, boardMatched, wordArray) {
  */
 async function saveScore(wordArray) {
   let score = 0
-  for (word of wordArray){
-    score += word.length -2 
+  for (word of wordArray) {
+    score += word.length - 2
   }
   console.log(score)
   const formData = new FormData();
