@@ -6,6 +6,7 @@ const startButton = document.getElementById("start-button")
 const board = document.getElementById('board')
 const letters = document.getElementsByClassName('letter')
 const letterValues = document.getElementsByClassName('letterValue')
+const reshuffleButton = document.getElementById("reshuffle-button")
 let boardLetters = []
 let runTimer
 // Defines the dice used to generate the letters on the board
@@ -43,6 +44,7 @@ getDictionary().then(dictionary => {
   startGame(dictionaries)
 })
 
+// Splits the dicionary into 26 dictionaries containing words starting with each letter of the alphabet
 function makeDictionaries(dictionary) {
   let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
   let dictionaries = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
@@ -66,6 +68,9 @@ function startGame(dictionary) {
     startButton.onclick = function () {
       runGame(dictionary)
     }
+    reshuffleButton.onclick = function () {
+      shuffleBoard(dice);
+    }
   }
 }
 
@@ -76,15 +81,18 @@ function runGame(dictionary) {
   let score = 0;
   let time = 60;
   let wordArray = [];
-  startButton.innerText = "save score"
+  reshuffleButton.style.display="none";
+  startButton.style.display="none"
+  /*
   startButton.onclick = function () {
     saveScore(wordArray)
   }
+  */
   // start the game timer
   clearInterval(runTimer);
   runTimer = setInterval(() => time = countDown(time), 1000);
   // update/guess the word
-  [word, score, matched, wordArray] = guessWord(word, score, matched, dictionary, wordArray);
+  [word, matched, wordArray] = guessWord(word, matched, dictionary, wordArray);
 }
 
 /**
@@ -113,10 +121,13 @@ function countDown(time) {
     time -= 1
     timer.innerHTML = `${time}`
     return (time)
+  }else{
+    clearInterval(runTimer)
+
   }
 }
 
-function guessWord(word, score, matched, dictionary, wordArray) {
+function guessWord(word, matched, dictionary, wordArray) {
   let boardMatched = false
   let highlight = []
   document.addEventListener('keydown', event => {
@@ -146,7 +157,7 @@ function guessWord(word, score, matched, dictionary, wordArray) {
         word = "";
     }
     guess.innerHTML = word
-    return [word, score, matched, wordArray]
+    return [word, matched, wordArray]
   })
 }
 
@@ -221,9 +232,9 @@ function checkDictionary(word, dictionary) {
     return false
   }
   if (dictionary) {
-    let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", 
+      "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     let i = 0;
-    console.log(word[0])
     for (letter of alphabet) {
       if (word[0] == letter) {
         for (let [key, value] of Object.entries(dictionary[i])) {
@@ -246,10 +257,9 @@ function checkDictionary(word, dictionary) {
 
 function checkWord(word, matched, boardMatched, wordArray) {
   if (matched && boardMatched) {
-    console.log(wordArray)
-    console.log(word)
     if (!wordArray.includes(word)) {
-      wordList.innerHTML += `${word} <br>`;
+      let wordScore = word.length - 2
+      wordList.innerHTML += `${word} - ${wordScore} points<br>`;
       wordArray.push(word)
       matched = false
     } else {
