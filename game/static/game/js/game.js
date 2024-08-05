@@ -90,7 +90,7 @@ function runGame(dictionary) {
   startButton.style.display = "none";
   console.log("hello")
   saveScoreButton.addEventListener("click", function () {
-    saveScore(wordArray).then(() => {guess.innerHTML="score saved"; saveScoreButton.style.display="none"});
+    saveScore(wordArray).then(() => { guess.innerHTML = "score saved"; saveScoreButton.style.display = "none" });
   })
 
   // update/guess the word
@@ -118,7 +118,7 @@ async function getDictionary() {
   }
 }
 
-function countDown(time,wordArray) {
+function countDown(time, wordArray) {
   if (time > 0) {
     time -= 1
     timer.innerHTML = `${time}`
@@ -131,9 +131,9 @@ function countDown(time,wordArray) {
     for (word of wordArray) {
       score += word.length - 2
     }
-    showScore.innerHTML=score
+    showScore.innerHTML = score
 
-    
+
   }
 }
 
@@ -143,15 +143,14 @@ function playAgain() {
 
 function guessWord(word, matched, dictionary, wordArray) {
   // start the game timer
-  let time = 10;
+  let time = 100;
   clearInterval(runTimer);
-  runTimer = setInterval(() => time = countDown(time,wordArray), 1000);
+  runTimer = setInterval(() => time = countDown(time, wordArray), 1000);
   let boardMatched = false
   let highlight = []
   console.log(time)
   document.addEventListener('keydown', event => {
     if (time > 0) {
-      console.log(time)
       switch (true) {
         // delete a letter
         case (event.key == "Backspace" && word.length > 0):
@@ -161,7 +160,7 @@ function guessWord(word, matched, dictionary, wordArray) {
           [boardMatched, highlight] = searchBoard(word);
           highlightLetters(highlight, matched, boardMatched)
           break;
-          // add a letter
+        // add a letter
         case (event.keyCode >= 65 && event.keyCode <= 90):
           if (word.length < 17) {
             word += event.key.toUpperCase()
@@ -170,7 +169,7 @@ function guessWord(word, matched, dictionary, wordArray) {
           [boardMatched, highlight] = searchBoard(word);
           highlightLetters(highlight, matched, boardMatched)
           break;
-          // guess a word
+        // guess a word
         case (event.key == "Enter"):
           [word, matched, wordArray] = checkWord(word, matched, boardMatched, wordArray);
           clearBoard()
@@ -301,7 +300,7 @@ function checkWord(word, matched, boardMatched, wordArray) {
  */
 async function saveScore(wordArray) {
   let score = 0
-  
+
   for (word of wordArray) {
     score += word.length - 2
   }
@@ -329,7 +328,7 @@ function shuffleBoard(dice) {
   for (i = 0; i < 4; i++)
     for (j = 0; j < 4; j++) {
       boardLetters[i][j] = shuffledDice[i + j * 4][Math.floor(Math.random() * 6)]
-      letterValues[j + i * 4].innerText = boardLetters[i][j]
+      letterValues[j + i * 4].innerText = boardLetters[i][j];
     }
   return boardLetters
 }

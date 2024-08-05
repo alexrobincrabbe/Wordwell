@@ -4,27 +4,29 @@
 {% block content %}
 
 <!-- profile.html content starts here -->
- <h1>Username: {{ user.username }}</h1>
- <h1>Display Name: {{ user.profile.display_name }}</h1>
- <h1>high_score: {{ user.profile.high_score }}</h1>
+<div>
+    {% if "placeholder" in user.profile.profile_picture.url %}
+    <img class="rounded-circle account-img" src="{% static 'images/default.png' %}">
+    {% else %}
+    <img img class="rounded-circle account-img" src="{{ user.profile.profile_picture.url }}">
+    {% endif %}
+    <span id="username" class="ml-5">{{ user.username }}</span>
+</div>
 
- <h1>Profile picture:</h1>
+high_score: {{ user.profile.high_score }}
 
- {% if "placeholder" in user.profile.profile_picture.url %}
- <img class="rounded-circle account-img" src="{% static 'images/default.png' %}">
- {% else %}
- <img img class="rounded-circle account-img" src ="{{ user.profile.profile_picture.url }}">
- {% endif %}
- <form method="POST" enctype="multipart/form-data">
+
+
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <fieldset class="form-group">
+    <fieldset class="form-group" id="profile-form">
         <legend class="border-bottom mb-4">Profile Info</legend>
         {{ u_form|crispy }}
         {{ p_form|crispy }}
     </fieldset>
-    <div class ="form-group">
+    <div class="form-group">
         <button class="btn btn-outline-info" type="submit">Update</button>
     </div>
- </form>
+</form>
 
 {% endblock %}

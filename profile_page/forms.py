@@ -10,6 +10,7 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['email']
 
 class ProfileUpdateForm(forms.ModelForm):
+    about_me = forms.CharField(required=False)
     class Meta:
         model = UserProfile
         fields = ['display_name','profile_picture', 'about_me']

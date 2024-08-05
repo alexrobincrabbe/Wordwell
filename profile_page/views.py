@@ -1,20 +1,24 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from dotenv import load_dotenv
 load_dotenv()
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-from .models import UserProfile
-from game.models import Scores
-from .forms import UserUpdateForm, ProfileUpdateForm
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .forms import UserUpdateForm, ProfileUpdateForm
+from .models import UserProfile
+from game.models import Scores
 
 # Create your views here.
 
+
 @login_required
-def display_user_profile(request):
+def update_user_profile(request):
+    """
+    Update a user's profile page
+    """
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -26,14 +30,11 @@ def display_user_profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
+
     context = {
         'u_form': u_form,
         'p_form': p_form,
     }
-    #user = request.user
-    #profile = user.profile
-    #if request.method == "POST":
-    #    new_picture = request.POST['profile-pic-upload']
     
     return render(
         request,
@@ -42,7 +43,11 @@ def display_user_profile(request):
     )
 
 def view_user_profile(request, profile_view):
+    """
+    View a user's profile page
+    """
     user_profile = get_object_or_404(UserProfile.objects, profile_url=profile_view)
+
     return render(
         request,
         "profile_page/view_profile.html",
