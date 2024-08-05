@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from  .models import UserProfile
-
+from cloudinary.forms import CloudinaryFileField
 
 class UserUpdateForm(forms.ModelForm):
     #email = forms.EmailField()
@@ -11,6 +11,7 @@ class UserUpdateForm(forms.ModelForm):
 
 class ProfileUpdateForm(forms.ModelForm):
     about_me = forms.CharField(required=False)
+    profile_picture = CloudinaryFileField(label="Profile Picture", required =False)
     class Meta:
         model = UserProfile
         fields = ['display_name','profile_picture', 'about_me']

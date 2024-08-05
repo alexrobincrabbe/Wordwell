@@ -1,0 +1,14 @@
+.username{
+    font-size: 200%;
+}
+
+.high-score{
+    font-size: 200%;  
+}
+
+.profile-page{
+    border:solid black;
+    padding-top: 20px;
+    padding-bottom:20px;
+    border-radius:10px;
+}
