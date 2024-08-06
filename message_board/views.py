@@ -11,6 +11,7 @@ class MessageBoard(ListView):
     model = Post
     template_name = 'message_board/board.html'
     context_object_name = 'all_posts_list'
+    paginate_by = 10
 
 def view_post(request,slug):
     post = get_object_or_404(Post.objects, slug=slug)
