@@ -3,12 +3,21 @@
 {% block content %}
 
 
-<h1>Message board homepage</h1>
-<ul>
+<h1>Message Board</h1>
+<div class="container">
+  <table class="message-board">
+    <th>Post Title</th>
+    <th>Author</th>
+    <th>Replies</th>
+    <th>Last Reply</th>
   {% for post in all_posts_list %}
-  <li><a href="{% url 'view_post' post.slug %}">{{ post.title }}</a></li> posted by <a href="{% url 'view_user_profile' post.author.profile.profile_url %}">{{ post.author }}</a>
+  <tr>
+  <td><a href="{% url 'view_post' post.slug %}" class="post-title">{{ post.title }}</a></td>
+  <td><a><a href="{% url 'view_user_profile' post.author.profile.profile_url %}">{{ post.author }}</a></td>
+</tr>
   {% endfor %}
-</ul>
+</table>
+</div>
 <a href="{% url 'new_post' %}">make a new post</a>
 {% endblock %}
 
