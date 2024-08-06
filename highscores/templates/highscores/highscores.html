@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="column">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th> Score</th>
+                </tr>
+                {% for users in user_list %}
+                <tr>
+                    <td><a href="{% url 'view_user_profile' users.profile.profile_url %}">{{ users.profile.display_name }}</a></td>
+                    <td>{{ users.profile.high_score }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

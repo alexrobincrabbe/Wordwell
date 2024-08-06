@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'profile_page.apps.ProfilePageConfig',
     'message_board',
     'game',
+    'highscores',
 ]
 
 SITE_ID = 1
