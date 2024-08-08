@@ -27,6 +27,23 @@ message:{{ post.text }}
         </div>
     </div>
 </div>
+<div class="modal fade" id="reply-delete-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete reply?</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your reply?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a id="reply-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 <br>
 {% endif %}
 <a href="{% url 'new_reply' post.slug %}">reply</a>
@@ -35,7 +52,7 @@ message:{{ post.text }}
 <hr>
 {{ reply.text }}
 {% if user.is_authenticated and reply.author == user %}
-<button class="btn" id="post-btn-delete" reply_id="{{ reply.id }}">Delete</button>
+<button class=" btn reply-btn-delete" slug="{{ post.slug }}" reply-id="{{ reply.id }}">Delete</button>
 <a class="btn btn-edit" href="{% url 'edit_reply' post.slug reply.id %}">Edit</a>
 {% endif %}
 {% endfor %}

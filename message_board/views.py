@@ -142,3 +142,12 @@ def edit_reply(request, slug, comment_id):
         'reply': reply,
         },
     )
+
+def delete_reply(request, slug, reply_id):
+    reply=get_object_or_404(Reply.objects, id=reply_id)
+    if request.user==reply.author:
+        reply.delete()
+        messages.success(request, 'Reply deleted')
+    else:
+        messages.error(request, 'Permission denied')
+    return HttpResponseRedirect(reverse('view_post', args=[slug]))
