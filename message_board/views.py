@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import ListView
-from .models import Post
+from .models import Post,Reply
 from .forms import PostForm, ReplyForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.db.models import Count
+from django.db.models import OuterRef, Subquery
 
 # Create your views here.
 
@@ -12,6 +14,18 @@ class MessageBoard(ListView):
     template_name = 'message_board/board.html'
     context_object_name = 'all_posts_list'
     paginate_by = 10
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add 
+        messages = Reply.objects.filter(original_post=OuterRef("pk")).order_by("-created_on")
+        latest_reply = Subquery(messages.values('created_on')[:1])
+        all_posts_list = Post.objects
+        all_posts_list=all_posts_list.annotate(number_of_replies = Count('replies'))
+        all_posts_list = all_posts_list.annotate(latest_reply = latest_reply)
+        context["all_posts_list"] = all_posts_list.order_by('-latest_reply', '-created_on')
+        return context
+
 
 def view_post(request,slug):
     post = get_object_or_404(Post.objects, slug=slug)

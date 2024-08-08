@@ -3,8 +3,9 @@
 {% block content %}
 
 
-<h1>Message Board</h1>
 <div class="container">
+  <h1>Message Board</h1>
+  <a a href="{% url 'new_post' %}" class="btn btn-primary mb-2">New Post</a>
   <table class="message-board">
     <th>Post Title</th>
     <th>Author</th>
@@ -14,6 +15,10 @@
   <tr>
   <td><a href="{% url 'view_post' post.slug %}" class="post-title">{{ post.title }}</a></td>
   <td><a><a href="{% url 'view_user_profile' post.author.profile.profile_url %}">{{ post.author }}</a></td>
+  <td>{{ post.number_of_replies }}</a></td>
+  <td>{{post.latest_reply }}</a></td>
+
+
 </tr>
   {% endfor %}
 </table>
@@ -30,7 +35,6 @@
 </nav>
 {% endif %}
 </div>
-<a href="{% url 'new_post' %}">make a new post</a>
 
 {% endblock %}
 
