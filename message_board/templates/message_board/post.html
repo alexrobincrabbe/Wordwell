@@ -36,7 +36,7 @@ message:{{ post.text }}
 {{ reply.text }}
 {% if user.is_authenticated and reply.author == user %}
 <button class="btn" id="post-btn-delete" reply_id="{{ reply.id }}">Delete</button>
-<button class="btn btn-edit" reply_id="{{ reply.id }}">Edit</button>
+<a class="btn btn-edit" href="{% url 'edit_reply' post.slug reply.id %}">Edit</a>
 {% endif %}
 {% endfor %}
 {% endblock %}

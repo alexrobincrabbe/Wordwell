@@ -111,5 +111,34 @@ def delete_post(request, slug):
         post.delete()
         messages.success(request, 'Post deleted')
     else:
-        messages.error(request, messages.SUCCESS, 'Permission denied')
+        messages.error(request, 'Permission denied')
     return HttpResponseRedirect('/board')
+
+def edit_reply(request, slug, comment_id):
+    if request.method == 'POST':
+        post= get_object_or_404(Post.objects, slug=slug)
+        reply = get_object_or_404(Reply.objects, id=comment_id)
+        edit_reply_form = ReplyForm(data=request.POST, instance=reply)
+        if edit_reply_form.is_valid:
+            try:
+                edit_reply = edit_reply_form.save(commit=False)
+                edit_reply.author = request.user
+                edit_reply.save()
+                messages.success(request,f'Reply updated')
+                slug=post.slug
+                return HttpResponseRedirect(reverse('view_post', args=[slug]))
+            except ValueError as e: 
+                pass
+    else:
+        post= get_object_or_404(Post.objects, slug=slug)
+        reply = get_object_or_404(Reply.objects, id=comment_id)
+        edit_reply_form = ReplyForm(instance=reply)
+    return render (
+        request,
+        'message_board/edit_reply.html',
+        {
+        'edit_reply_form': edit_reply_form,
+        'post': post,
+        'reply': reply,
+        },
+    )
