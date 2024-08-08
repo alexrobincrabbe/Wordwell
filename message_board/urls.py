@@ -7,4 +7,5 @@ urlpatterns = [
     path('board/<slug:slug>/reply', views.new_reply, name="new_reply"),
     path('board/post/edit/<slug:slug>', views.edit_post, name="edit_post"),
     path('board/<slug:slug>', views.view_post, name="view_post"),
+    path('board/delete_post/<slug:slug>', views.delete_post, name ="delete_post"),
 ]

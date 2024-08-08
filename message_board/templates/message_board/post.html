@@ -9,6 +9,24 @@ title:{{ post.title }}<br>
 message:{{ post.text }}
 {% if user.is_authenticated and post.author == user %}
 <a href="{% url 'edit_post' post.slug %}">edit post</a>
+<button class="btn btn-delete" slug="{{ post.slug }}" id="post-btn-delete">Delete</button>
+<div class="modal fade" id="post-delete-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your post?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a id="post-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 <br>
 {% endif %}
 <a href="{% url 'new_reply' post.slug %}">reply</a>
@@ -16,5 +34,13 @@ message:{{ post.text }}
 {% for reply in post.replies.all %}
 <hr>
 {{ reply.text }}
+{% if user.is_authenticated and reply.author == user %}
+<button class="btn" id="post-btn-delete" reply_id="{{ reply.id }}">Delete</button>
+<button class="btn btn-edit" reply_id="{{ reply.id }}">Edit</button>
+{% endif %}
 {% endfor %}
+{% endblock %}
+
+{% block extras %}
+<script src="{% static 'js/message_board.js' %}"></script>
 {% endblock %}

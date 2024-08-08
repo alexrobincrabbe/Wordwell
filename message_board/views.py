@@ -104,3 +104,12 @@ def new_reply(request, slug):
             'post':post,
         },
     )
+
+def delete_post(request, slug):
+    post=get_object_or_404(Post.objects, slug=slug)
+    if request.user==post.author:
+        post.delete()
+        messages.success(request, 'Post deleted')
+    else:
+        messages.error(request, messages.SUCCESS, 'Permission denied')
+    return HttpResponseRedirect('/board')
