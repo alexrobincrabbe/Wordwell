@@ -14,9 +14,12 @@
     <div class="row">
         <div class="col col-md-4">
             {% if "placeholder" in user_view.profile_picture.url %}
-            <img class="rounded-circle account-img" src="{% static 'images/default.png' %}">
+            <img class="rounded-circle profile-img" src="{% static 'images/default.png' %}">
             {% else %}
-            <img img class="rounded-circle account-img" src="{{ user_view.profile_picture.url }}">
+            <div class =" rounded-circle profile-img">
+                {% load cloudinary %}
+            {% cloudinary user_view.profile_picture  quality='auto' width=200 height=200 crop='fill' gravity="face" radius=100 %}
+            </div>
             {% endif %}
         </div>
         <div class="col" id="about-me">
@@ -31,10 +34,10 @@
                 High Score: {{ user_view.high_score }}
             </div>
             <div>
-                Joined: {{user.date_joined }}
+                Joined: {{user_view.user.date_joined }}
             </div>
             <div>
-                Last Login: {{ user.last_login }}
+                Last Login: {{ user_view.user.last_login }}
             </div>
         </div>
     </div>

@@ -72,12 +72,29 @@
 }
 
 .account-img {
-    width: 200px;
-    height:200px;
-    margin:20px;
+    width: 218px;
+    height:218px;
     border: solid black 10px;
+    overflow:hidden;
 }
 
+.profile-img {
+    width: 218px;
+    height:218px;
+    border: solid black 10px;
+    overflow:hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-img >img {
+    margin-top:-1px;
+    margin-left: -1px;
+  }
+.account-img >img {
+  margin-top:-1px;
+  margin-left: -1px;
+}
 #about-me{
     height: 200px;
     margin:20px;
