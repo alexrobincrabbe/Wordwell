@@ -4,18 +4,44 @@
 {% block content %}
 
 <!-- profile.html content starts here -->
- 
- <h1>Display Name: {{ user_view.display_name }}</h1>
- <h1>Profile picture:</h1>
+<div class="container">
 
- {% if "placeholder" in user_view.profile_picture.url %}
- <img class="rounded-circle account-img" src="{% static 'images/default.png' %}">
- {% else %}
- <img img class="rounded-circle account-img" src ="{{ user_view.profile_picture.url }}">
- {% endif %}
-<br>
+    <div class="row">
+        <span class="display-name">
+            <h1>{{ user_view.display_name }}'s Profile</h1>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col col-md-4">
+            {% if "placeholder" in user_view.profile_picture.url %}
+            <img class="rounded-circle account-img" src="{% static 'images/default.png' %}">
+            {% else %}
+            <img img class="rounded-circle account-img" src="{{ user_view.profile_picture.url }}">
+            {% endif %}
+        </div>
+        <div class="col" id="about-me">
+            <h2>About me:</h2>
+            <p id="about-me-text"> {{ user_view.about_me }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" id="profile-details">
+            <h2>Details:</h2>
+            <div>
+                High Score: {{ user_view.high_score }}
+            </div>
+            <div>
+                Joined: {{user.date_joined }}
+            </div>
+            <div>
+                Last Login: {{ user.last_login }}
+            </div>
+        </div>
+    </div>
 
- high_score: {{ user_view.profile.high_score }}
- <br>
- about me: {{ user_view.about_me }}
- {% endblock %}
+
+
+    <br>
+
+</div>
+{% endblock %}
