@@ -18,6 +18,43 @@
     font-size: 200%;  
 }
 
+#high-score-table {
+    background-color: blanchedalmond;
+    height:80vh;
+    font-size:200%;
+    border-radius:10px;
+    margin-top: 20px;
+}
+
+#high-score-table table {
+    width:100%;
+}
+
+#high-score-table img {
+    margin-top:-10px;
+    margin-left: -2px;
+}
+
+
+#high-score-table table td {
+    border-top: solid black;
+    
+}
+
+#high-score-table table td {
+    padding-bottom:5px;
+    padding-top:5px;
+}
+
+.high-score-img {
+    height:50px;
+    width:50px;
+    overflow: hidden;
+    padding-top:-5px;
+    border: 2px solid black
+}
+
+
 /* Profile Page Styles */
 .profile-page{
     border:solid black;
