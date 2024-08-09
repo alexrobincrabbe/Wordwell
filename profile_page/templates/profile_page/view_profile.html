@@ -4,21 +4,22 @@
 {% block content %}
 
 <!-- profile.html content starts here -->
-<div class="container">
+<div class="container view-user-profile">
 
     <div class="row">
         <span class="display-name">
             <h1>{{ user_view.display_name }}'s Profile</h1>
         </span>
+        <hr id="line">
     </div>
     <div class="row">
-        <div class="col col-md-4">
+        <div class="col col-md-4" id="picture-div">
             {% if "placeholder" in user_view.profile_picture.url %}
             <img class="rounded-circle profile-img" src="{% static 'images/default.png' %}">
             {% else %}
-            <div class =" rounded-circle profile-img">
+            <div class=" rounded-circle profile-img">
                 {% load cloudinary %}
-            {% cloudinary user_view.profile_picture  quality='auto' width=200 height=200 crop='fill' gravity="face" radius=100 %}
+                {% cloudinary user_view.profile_picture quality='auto' width=200 height=200 crop='fill' gravity="face" radius=100 %}
             </div>
             {% endif %}
         </div>
@@ -30,14 +31,16 @@
     <div class="row">
         <div class="col" id="profile-details">
             <h2>Details:</h2>
-            <div>
-                High Score: {{ user_view.high_score }}
-            </div>
-            <div>
-                Joined: {{user_view.user.date_joined }}
-            </div>
-            <div>
-                Last Login: {{ user_view.user.last_login }}
+            <div id="details">
+                <div>
+                    <span class="label">High Score:</span> {{ user_view.high_score }}
+                </div>
+                <div>
+                    <span class="label">Joined: </span>{{user_view.user.date_joined }}
+                </div>
+                <div>
+                    <span class="label">Last Login:</span> {{ user_view.user.last_login }}
+                </div>
             </div>
         </div>
     </div>
