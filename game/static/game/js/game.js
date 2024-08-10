@@ -9,7 +9,15 @@ const letterValues = document.getElementsByClassName('letterValue')
 const reshuffleButton = document.getElementById("reshuffle-button")
 const playAgainButton = document.getElementById("play-again-button");
 const saveScoreButton = document.getElementById("save-score-button");
-const showScore = document.getElementById("score")
+const showScore = document.getElementById("score");
+const threeLetterWords =document.getElementById("three-letter-words");
+const fourLetterWords =document.getElementById("four-letter-words");
+const fiveLetterWords =document.getElementById("five-letter-words");
+const sixLetterWords =document.getElementById("six-letter-words");
+const sevenLetterWords =document.getElementById("seven-letter-words");
+const eightLetterWords =document.getElementById("eight-letter-words");
+
+
 let boardLetters = []
 let runTimer
 // Defines the dice used to generate the letters on the board
@@ -163,7 +171,11 @@ function guessWord(word, matched, dictionary, wordArray) {
         // add a letter
         case (event.keyCode >= 65 && event.keyCode <= 90):
           if (word.length < 17) {
+            if (event.key.toUpperCase()=="Q"){
+              word+="QU"
+            }else{
             word += event.key.toUpperCase()
+            }
           }
           matched = checkDictionary(word, dictionary);
           [boardMatched, highlight] = searchBoard(word);
@@ -204,7 +216,7 @@ function searchBoard(word) {
     // mark current tile as visited
     visited[i][j] = true;
     // add the current tile letter to the search string
-    str = str + boardLetters[i][j];
+    str = str + boardLetters[i][j].toUpperCase();
     // highlight word on board
     if (str == word.substring(0, str.length)) {
       highlight[j + (i * 4)] = true
@@ -243,7 +255,7 @@ function highlightLetters(highlight, matched, boardMatched) {
 // clears highlighted letters
 function clearBoard() {
   for (i = 0; i < letters.length; i++) {
-    letters[i].style.backgroundColor = "white";
+    letters[i].style.backgroundColor = "#1b1835";
   }
 }
 
@@ -281,7 +293,28 @@ function checkWord(word, matched, boardMatched, wordArray) {
   if (matched && boardMatched) {
     if (!wordArray.includes(word)) {
       let wordScore = word.length - 2
-      wordList.innerHTML += `${word} - ${wordScore} points<br>`;
+      switch(true){
+        case(word.length==3):
+          threeLetterWords.innerHTML+=`${word}<br>`;
+          break
+          case(word.length==4):
+          fourLetterWords.innerHTML+=`${word}<br>`;
+          break
+          case(word.length==5):
+          fiveLetterWords.innerHTML+=`${word}<br>`;
+          break
+          case(word.length==6):
+          sixLetterWords.innerHTML+=`${word}<br>`;
+          break
+          case(word.length==7):
+          sevenLetterWords.innerHTML+=`${word}<br>`;
+          break
+          case(word.length>7):
+          eightLetterWords.innerHTML+=`${word}<br>`;
+          break
+        default:
+          break
+      }
       wordArray.push(word)
       matched = false
     } else {

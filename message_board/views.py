@@ -30,7 +30,7 @@ class MessageBoard(ListView):
 def view_post(request,slug):
     post = get_object_or_404(Post.objects, slug=slug)
     return render(request,
-                'message_board/post.html',
+                'message_board/view_post.html',
                 {
                     "post":post,
                 })
@@ -98,7 +98,7 @@ def new_reply(request, slug):
         new_reply = ReplyForm()
     return render (
         request,
-        'message_board/reply.html',
+        'message_board/new_reply.html',
         {
             'new_reply': new_reply,
             'post':post,

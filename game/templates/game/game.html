@@ -3,19 +3,69 @@
 
 {% block content %}
 <div class="container" id="game">
-<div id="board" tabindex="1"></div>
+    <div class="row">
+        <div class="col board-container">
+            <h2>TIME: <span id="timer" class="label"></span></h2>
+            <div id="board" tabindex="1"></div>
+            <h2 class="centered">Guess: </h2>
+            <div class="label" id="guess"><span></span></div>
+            <div class="label" id="match"><span></span></div>
+        </div>
+        <div class="col">
+            <h2>Words Found:</h2>
+            <div id="word-list">
+                <div class="word-list-table">
+                    <div class="word-sublist">
+                        <h3>3 letters</h3>
+                        <div class="word-sublist-scroll">
+                            <div id="three-letter-words"></div>
+                        </div>
+                    </div>
+                    <div class="word-sublist">
+                        <h3>4 letters</h3>
+                        <div class="word-sublist-scroll">
+                        <div id="four-letter-words"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="word-list-table">
+                    <div class="word-sublist">
+                        <h3>5 letters</h3>
+                        <div class="word-sublist-scroll">
+                            <div id="five-letter-words"></div>
+                        </div>
+                    </div class="word-sublist">
+                    <div class="word-sublist">
+                        <h3>6 letters</h3>
+                        <div class="word-sublist-scroll">
+                        <div id="six-letter-words"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="word-list-table">
+                    <div class="word-sublist">
+                        <h3>7 letters</h3>
+                        <div class="word-sublist-scroll">
+                        <div id="seven-letter-words"></div>
+                    </div>
+                    </div>
+                    <div class="word-sublist">
+                        <h3>8+ letters</h3>
+                        <div class="word-sublist-scroll">
+                        <div id="eight-letter-words"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
 
-<br>
-<div><strong>Guess:</strong><span id="guess"></span></div>
-<div><strong></strong><span id="match"></span></div>
-<br>
-<div><strong>Wordlist:</strong><br><span id="word-list"></span></div>
-<div><strong>timer:</strong><br><span id="timer"></span></div>
-<div>score: <span id="score"></span></div>
-<button id="start-button" type="button" class="btn btn-primary">Start</button>
-<button id="reshuffle-button" type="button" class="btn btn-primary">Reshuffle</button>
-<button id="play-again-button" type="button" class="btn btn-primary">Play again</button>
-<button id="save-score-button" type="button" class="btn btn-primary">Save Score</button>
+    <div>score: <span id="score"></span></div>
+    <button id="start-button" type="button" class="btn btn-primary">Start</button>
+    <button id="reshuffle-button" type="button" class="btn btn-primary">Reshuffle</button>
+    <button id="play-again-button" type="button" class="btn btn-primary">Play again</button>
+    <button id="save-score-button" type="button" class="btn btn-primary">Save Score</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
