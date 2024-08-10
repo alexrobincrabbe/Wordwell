@@ -14,7 +14,7 @@
     {% for post in all_posts_list %}
     <tr>
       <td><a href="{% url 'view_post' post.slug %}" class="post-title">{{ post.title }}</a></td>
-      <td><a><a href="{% url 'view_user_profile' post.author.profile.profile_url %}">{{ post.author }}</a></td>
+      <td><a><a href="{% url 'view_profile' post.author.profile.profile_url %}">{{ post.author }}</a></td>
       <td>{{ post.number_of_replies }}</a></td>
       <td>{{ post.latest_reply }}</a></td>
     </tr>

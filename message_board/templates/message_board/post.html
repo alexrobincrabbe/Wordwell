@@ -1,61 +1,75 @@
 {% extends "base.html" %}
 {% load static %}
+
+<!-- View Post html starts here -->
 {% block content %}
+<div class="container">
+    <!-- Original Post -->
+    <h1>Title: <span class="label">{{ post.title }}</span></h1>
+    <h2>Author: <span class="label">{{ post.author }}</span></h2>
+    <h2>body</h2>
+    <p class="post">
+        {{ post.text }}
+    </p>
+    <!-- buttons -->
+    {% if user.is_authenticated and post.author == user %}
+    <a class="btn btn-primary" href="{% url 'edit_post' post.slug %}">Edit</a>
+    <button class="btn btn-primary" slug="{{ post.slug }}" id="post-btn-delete">Delete</button>
+    <a class="btn btn-primary" href="{% url 'new_reply' post.slug %}">Reply</a>
 
-
-<h1>Post</h1>
-author:{{ post.author }}<br>
-title:{{ post.title }}<br>
-message:{{ post.text }}
-{% if user.is_authenticated and post.author == user %}
-<a href="{% url 'edit_post' post.slug %}">edit post</a>
-<button class="btn btn-delete" slug="{{ post.slug }}" id="post-btn-delete">Delete</button>
-<div class="modal fade" id="post-delete-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete your post?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a id="post-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+    <!-- modal -->
+    <div class="modal fade" id="post-delete-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your post?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a id="post-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="reply-delete-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Delete reply?</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete your reply?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a id="reply-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+    {% endif %}
+
+
+    <div class="modal fade" id="reply-delete-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete reply?</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your reply?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a id="reply-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+                </div>
             </div>
         </div>
     </div>
+    <br>
+    <!-- Post Replies-->
+    {% for reply in post.replies.all %}
+    <hr>
+    <h3>{{ reply.author }} wrote:</h3>
+    <p>
+        {{ reply.text }}
+    </p>
+    on: {{ reply.created_on }}
+    {% if user.is_authenticated and reply.author == user %}
+    <a class="btn btn-primary" href="{% url 'edit_reply' post.slug reply.id %}">Edit</a>
+    <button class="btn btn-primary reply-btn-delete" slug="{{ post.slug }}" reply-id="{{ reply.id }}">Delete</button>
+    {% endif %}
+    {% endfor %}
 </div>
-<br>
-{% endif %}
-<a href="{% url 'new_reply' post.slug %}">reply</a>
-
-{% for reply in post.replies.all %}
-<hr>
-{{ reply.text }}
-{% if user.is_authenticated and reply.author == user %}
-<button class=" btn reply-btn-delete" slug="{{ post.slug }}" reply-id="{{ reply.id }}">Delete</button>
-<a class="btn btn-edit" href="{% url 'edit_reply' post.slug reply.id %}">Edit</a>
-{% endif %}
-{% endfor %}
 {% endblock %}
 
 {% block extras %}
