@@ -26,7 +26,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{% url 'view_user_profile' users.profile.profile_url %}" class="high-score-user">{{ users.profile.display_name }}</a>
+                        <a href="{% url 'view_profile' users.profile.profile_url %}" class="high-score-user">{{ users.profile.display_name }}</a>
                     </td>
                     <td>
                         {{ users.profile.high_score }}

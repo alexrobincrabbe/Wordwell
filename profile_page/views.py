@@ -3,10 +3,11 @@ load_dotenv()
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 from .forms import UserUpdateForm, ProfileUpdateForm
 from .models import UserProfile
 from game.models import Scores
@@ -26,7 +27,7 @@ def update_user_profile(request):
             u_form.save()
             p_form.save()
             messages.success(request,f'Your account has been updated')
-            return redirect('profile')
+            return HttpResponseRedirect(reverse('view_profile', args=[request.user]))
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -38,7 +39,7 @@ def update_user_profile(request):
     
     return render(
         request,
-        "profile_page/profile.html",
+        "profile_page/update_profile.html",
         context,
     )
 

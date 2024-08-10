@@ -7,9 +7,17 @@
 <div class="container view-user-profile">
 
     <div class="row">
+        <div class="col">
         <span class="display-name">
             <h1>{{ user_view.display_name }}'s Profile</h1>
         </span>
+    </div>
+    <div class="col">
+        {% if user.is_authenticated and user_view.user == user %}
+        <a class="btn btn-outline-info" href="{% url 'update_profile' %}">Edit</a>
+        {% endif %}
+    </div>
+        
         <hr id="line">
     </div>
     <div class="row">
@@ -44,10 +52,5 @@
             </div>
         </div>
     </div>
-
-
-
-    <br>
-
 </div>
 {% endblock %}
