@@ -12,7 +12,7 @@ body{
 
 #line {
     height:2px;
-    background-color: rgb(197, 127, 127);
+    background-color: #fb2271;
     opacity: 1;
 }
 
@@ -29,6 +29,7 @@ h1, h2 , nav{
  .navbar a{
     color:#1b1835;
  }
+ 
 .navbar-toggler-icon{
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
@@ -36,6 +37,8 @@ h1, h2 , nav{
 .navbar-brand {
     color:#1b1835;
 }
+
+/* Game Board Styles */
 
 /* Message Board Styles */
 
@@ -53,14 +56,22 @@ h1, h2 , nav{
 
 /* High Score Page Styles */
 
+td .high-score-user{
+    text-decoration: none;
+    color:white;
+}
+
+.ranking{
+    color:#fb2271;
+}
 .high-score{
     font-size: 200%;  
 }
 
 #high-score-table {
-    background-color: blanchedalmond;
+    background-color: none;
     height:80vh;
-    font-size:200%;
+    font-size:130%;
     border-radius:10px;
     margin-top: 20px;
 }
@@ -70,13 +81,15 @@ h1, h2 , nav{
 }
 
 #high-score-table img {
-    margin-top:-10px;
     margin-left: -2px;
 }
 
+.high-score-img{
+    display:flex;
+}
 
 #high-score-table table td {
-    border-top: solid black;
+    border-top: solid #febe38;
     
 }
 
@@ -90,14 +103,15 @@ h1, h2 , nav{
     width:50px;
     overflow: hidden;
     padding-top:-5px;
-    border: 2px solid black
+    border: 2px solid rgb(197, 127, 127);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
 }
 
 
 /* Profile Page Styles */
 
 .label{
-    color:rgb(197, 127, 127);
+    color: #fb2271;
 }
 .profile-page{
     border:solid black;
@@ -126,10 +140,11 @@ h1, h2 , nav{
     width: 218px;
     height:218px;
     border: double #febe38 10px;
+    background-color: #1b1835;
     overflow:hidden;
     margin-top: 20px;
     margin-bottom: 20px;
-    box-shadow: rgba(255, 255, 255, 0.402) 0px 0px 100px;
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 100px;
 }
 
 .profile-img >img {
