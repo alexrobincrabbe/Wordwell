@@ -66,6 +66,26 @@ nav {
 }
 
 /* Game Board Styles */
+
+.game-button{
+    border-radius:5px;
+    border:solid white 5px;
+    background-color: #febe38;
+    font-size: 130%;
+    padding:5px;
+}
+
+#score{
+    font-family: "Chango", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(197, 127, 127);
+    font-size:200%;
+}
+
+.game-button:hover{
+    border:solid #fb2271 5px;
+}
 .board-container {
     display: flex;
     justify-content: center;
@@ -98,7 +118,7 @@ nav {
     font-weight: 100;
     color: white;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 100%;
+    font-size: 150%;
     align-items: center;
     background: #1b1835;
     margin: 7Px;
@@ -110,6 +130,10 @@ nav {
     display: flex;
     justify-content: center;
     align-content: center;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
 }
 
 .letter-values {

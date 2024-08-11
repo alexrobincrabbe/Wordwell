@@ -10,6 +10,13 @@
             <h2 class="centered">Guess: </h2>
             <div class="label" id="guess"><span></span></div>
             <div class="label" id="match"><span></span></div>
+            <div><h2>Score: <span class="label"></span><h2></h2></div>
+            <div id="game-buttons">
+                <button id="start-button" type="button" class="game-button">Start</button>
+                <button id="reshuffle-button" type="button" class="game-button">Reshuffle</button>
+                <button id="play-again-button" type="button" class="game-button">Play again</button>
+                <button id="save-score-button" type="button" class="game-button">Save Score</button>
+            </div>
         </div>
         <div class="col">
             <h2>Words Found:</h2>
@@ -24,7 +31,7 @@
                     <div class="word-sublist">
                         <h3>4 letters</h3>
                         <div class="word-sublist-scroll">
-                        <div id="four-letter-words"></div>
+                            <div id="four-letter-words"></div>
                         </div>
                     </div>
                 </div>
@@ -38,7 +45,7 @@
                     <div class="word-sublist">
                         <h3>6 letters</h3>
                         <div class="word-sublist-scroll">
-                        <div id="six-letter-words"></div>
+                            <div id="six-letter-words"></div>
                         </div>
                     </div>
                 </div>
@@ -46,26 +53,19 @@
                     <div class="word-sublist">
                         <h3>7 letters</h3>
                         <div class="word-sublist-scroll">
-                        <div id="seven-letter-words"></div>
-                    </div>
+                            <div id="seven-letter-words"></div>
+                        </div>
                     </div>
                     <div class="word-sublist">
                         <h3>8+ letters</h3>
                         <div class="word-sublist-scroll">
-                        <div id="eight-letter-words"></div>
+                            <div id="eight-letter-words"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <br>
-
-    <div>score: <span id="score"></span></div>
-    <button id="start-button" type="button" class="btn btn-primary">Start</button>
-    <button id="reshuffle-button" type="button" class="btn btn-primary">Reshuffle</button>
-    <button id="play-again-button" type="button" class="btn btn-primary">Play again</button>
-    <button id="save-score-button" type="button" class="btn btn-primary">Save Score</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
