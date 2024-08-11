@@ -3,15 +3,16 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<h1>Post</h1>
+<div class="container">
 <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
-        <legend class="border-bottom mb-4">New Post</legend>
+        <legend class="border-bottom mb-4"><h1>New Post</h1></legend>
         {{ new_post|crispy }}
     </fieldset>
     <div class ="form-group">
-        <button class="btn btn-outline-info" type="submit">Sumbit</button>
+        <button class="yellow-button" type="submit">Sumbit</button>
     </div>
  </form>
+</div>
 {% endblock %}

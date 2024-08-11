@@ -5,17 +5,19 @@
 {% block content %}
 <div class="container">
     <!-- Original Post -->
-    <h1>Title: <span class="label">{{ post.title }}</span></h1>
-    <h2>Author: <span class="label">{{ post.author }}</span></h2>
-    <h2>body</h2>
+    <h1>Title: <span class="info">{{ post.title }}</span></h1>
+    <h2>Author: <span class="info">{{ post.author }}</span></h2>
     <p class="post">
         {{ post.text }}
     </p>
+    on: {{ post.created_on}}
     <!-- buttons -->
     {% if user.is_authenticated and post.author == user %}
     <a class="btn btn-primary" href="{% url 'edit_post' post.slug %}">Edit</a>
     <button class="btn btn-primary" slug="{{ post.slug }}" id="post-btn-delete">Delete</button>
-    <a class="btn btn-primary" href="{% url 'new_reply' post.slug %}">Reply</a>
+    <br>
+    <br>
+    <a class="yellow-button" href="{% url 'new_reply' post.slug %}">Reply</a>
 
     <!-- modal -->
     <div class="modal fade" id="post-delete-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -73,5 +75,5 @@
 {% endblock %}
 
 {% block extras %}
-<script src="{% static 'js/message_board.js' %}"></script>
+<script src="{% static 'js/view_post.js' %}"></script>
 {% endblock %}

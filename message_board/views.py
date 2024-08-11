@@ -19,7 +19,7 @@ class MessageBoard(ListView):
     model = Post
     template_name = 'message_board/board.html'
     context_object_name = 'all_posts_list'
-    paginate_by = 5
+    paginate_by = 10
     def get_queryset(self, *args, **kwargs): 
         messages = Reply.objects.filter(original_post=OuterRef("pk")).order_by("-created_on")
         # Get create date of most recent reply to pot

@@ -11,6 +11,12 @@ body {
     font-style: normal;
 }
 
+.page-link{
+    color: #fb2271;
+    border-radius:5px;
+    background-color: #febe38;
+    margin-top:5px;
+}
 .container {
     margin-top: 20px;
 }
@@ -45,7 +51,7 @@ nav {
     font-family: "Chango", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color: rgb(197, 127, 127);
+    color: #fb2271;
 }
 
 .navbar {
@@ -67,16 +73,16 @@ nav {
 
 /* Game Board Styles */
 
-.game-button{
+.yellow-button{
     border-radius:5px;
     border:solid white 5px;
     background-color: #febe38;
     font-size: 130%;
     padding:5px;
+    color:#1b1835;
 }
 
-
-.game-button:hover{
+.yellow-button:hover{
     border:solid #fb2271 5px;
 }
 .board-container {
@@ -203,10 +209,10 @@ nav {
 /* Message Board Styles */
 
 .post {
-    background-color: white;
-    color: #1b1835;
-    padding: 20px;
-    border-radius: 20px;
+    background-color:#352870;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
     font-size: 150%;
 }
 
@@ -216,6 +222,10 @@ nav {
 
 .username {
     font-size: 200%;
+}
+
+.message-board tr{
+    height:50px;
 }
 
 /* View post styles */
