@@ -249,7 +249,7 @@ function searchBoard(word) {
 }
 
 function highlightLetters(highlight, matched, boardMatched) {
-  let colour = "yellow"
+  let colour = "#febe38"
   if (matched && boardMatched) {
     colour = "green"
   }

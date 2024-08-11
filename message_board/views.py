@@ -6,25 +6,33 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.db.models import Count
 from django.db.models import OuterRef, Subquery
+from django.db.models import Case, When
 
 # Create your views here.
 
 class MessageBoard(ListView):
+    '''
+    Paginated view of all posts
+    annotates number of replies and time of last reply to each post
+    Sorts posts by my reply date, or create date if there are no replies
+    '''
     model = Post
     template_name = 'message_board/board.html'
     context_object_name = 'all_posts_list'
-    paginate_by = 10
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add 
+    paginate_by = 5
+    def get_queryset(self, *args, **kwargs): 
         messages = Reply.objects.filter(original_post=OuterRef("pk")).order_by("-created_on")
+        # Get create date of most recent reply to pot
         latest_reply = Subquery(messages.values('created_on')[:1])
+        posts=Post.objects.filter(id=OuterRef('id'))
+        # Get create date of post as subquery
+        no_reply = Subquery(posts.values('created_on'))
         all_posts_list = Post.objects
         all_posts_list=all_posts_list.annotate(number_of_replies = Count('replies'))
-        all_posts_list = all_posts_list.annotate(latest_reply = latest_reply)
-        context["all_posts_list"] = all_posts_list.order_by('-latest_reply', '-created_on')
-        return context
+        # Sort posts by latest reply, or date of post if there are no replies
+        all_posts_list = all_posts_list.annotate(latest_reply = Case(When(number_of_replies=0, then = no_reply),When(number_of_replies__gte=1, then = latest_reply)))
+        queryset = all_posts_list.order_by('-latest_reply', '-created_on')
+        return queryset
 
 
 def view_post(request,slug):
@@ -44,7 +52,7 @@ def new_post(request):
                 post.author = request.user
                 post.save()
                 messages.success(request,f'New post created')
-                return HttpResponseRedirect(reverse('view_post', args=[post.slug]))
+                return HttpResponseRedirect(reverse('message_board'))
             except ValueError as e: 
                 pass
     else:
