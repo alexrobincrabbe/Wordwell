@@ -50,7 +50,8 @@ boardLetters = shuffleBoard(dice);
 
 // Load the dictionary then ready startGame
 getDictionary().then(dictionary => {
-  guess.innerHTML = "dictionary loaded"
+  guess.innerHTML = "Click Start to Begin"
+  guess.style.backgroundColor="green"
   dictionaries = makeDictionaries(dictionary)
   startGame(dictionaries)
 })
@@ -90,6 +91,8 @@ function startGame(dictionary) {
 
 // run game function
 function runGame(dictionary) {
+  guess.innerHTML="Start Typing!";
+  guess.style.backgroundColor="white";
   let word = "";
   let matched = false;
   let score = 0;
@@ -98,7 +101,10 @@ function runGame(dictionary) {
   startButton.style.display = "none";
   console.log("hello")
   saveScoreButton.addEventListener("click", function () {
-    saveScore(wordArray).then(() => { guess.innerHTML = "score saved"; saveScoreButton.style.display = "none" });
+    saveScore(wordArray).then(() => { 
+      guess.innerHTML = "score saved";
+      guess.style.backgroundColor="green";
+      saveScoreButton.style.display = "none" });
   })
 
   // update/guess the word
@@ -112,6 +118,7 @@ function runGame(dictionary) {
  */
 async function getDictionary() {
   guess.innerHTML = "loading dictionary..."
+  guess.style.backgroundColor="#febe38"
   const dictionaryUrl = "dictionary"
 
   try {
@@ -163,6 +170,7 @@ function guessWord(word, matched, dictionary, wordArray) {
       switch (true) {
         // delete a letter
         case (event.key == "Backspace" && word.length > 0):
+          match.innerHTML = "";
           word = word.substring(0, word.length - 1);
           matched = checkDictionary(word, dictionary)
           clearBoard();
@@ -171,6 +179,7 @@ function guessWord(word, matched, dictionary, wordArray) {
           break;
         // add a letter
         case (event.keyCode >= 65 && event.keyCode <= 90):
+          match.innerHTML = "";
           if (word.length < 17) {
             if (event.key.toUpperCase()=="Q"){
               word+="QU"
@@ -273,8 +282,7 @@ function checkDictionary(word, dictionary) {
     for (letter of alphabet) {
       if (word[0] == letter) {
         for (let [key, value] of Object.entries(dictionary[i])) {
-          if (word === key.toUpperCase()) {
-            match.innerHTML = `${key}: ${value}<br>`;
+          if (word === key.toUpperCase()) {;
             match_found = true;
           }
         }
@@ -319,13 +327,17 @@ function checkWord(word, matched, boardMatched, wordArray, runningScore) {
       }
       wordArray.push(word)
       showScore.innerHTML=runningScore;
+      match.innerHTML=`${word}: ${wordScore} pts`
+      match.style.color="green";
       matched = false
     } else {
       match.innerHTML = "already found";
+      match.style.color="#febe38";
     }
 
   } else {
     match.innerHTML = "invalid word";
+    match.style.color ="red";
   }
   return [word, matched, wordArray, runningScore]
 }
