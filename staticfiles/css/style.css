@@ -1,14 +1,448 @@
+@import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chango&family=McLaren&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chango&family=McLaren&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    background-color: #1b1835;
+    color: white;
+    min-height: 100vh;
+    font-family: "McLaren", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.page-link{
+    color: #fb2271;
+    border-radius:5px;
+    background-color: #febe38;
+    margin-top:5px;
+}
+.container {
+    margin-top: 20px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.modal-dialog {
+    color: #1b1835;
+}
+
+#line {
+    height: 2px;
+    background-color: #fb2271;
+    opacity: 1;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.label,
+th {
+    color: #fb2271;
+}
+
+h1,
+h2,
+nav {
+    font-family: "Chango", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #fb2271;
+}
+
+.navbar {
+    background-color: #febe38;
+    color: #1b1835;
+}
+
+.navbar a {
+    color: #1b1835;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-brand {
+    color: #1b1835;
+}
+
+/* Game Board Styles */
+
+.yellow-button{
+    border-radius:5px;
+    border:solid white 5px;
+    background-color: #febe38;
+    font-size: 130%;
+    padding:5px;
+    color:#1b1835;
+}
+
+.yellow-button:hover{
+    border:solid #fb2271 5px;
+}
+.board-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    background-color: #352870;
+    border-radius: 40px;
+    padding: 25px;
+    position: relative;
+    z-index: 1;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: solid white;
+}
+
+#game h2 {
+    color: #fb2271;
+}
+
+#score-container{
+    font-family: "Chango", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #352870;
+    color: #febe38;
+    font-size: 200%;
+    
+    margin: 5px;
+    padding: 0px 5px;
+    width: 260px;
+    border-radius: 10px;;
+}
+
+.info{
+    color:white;
+}
+
+.letter {
+    font-style: normal;
+    font-weight: 100;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150%;
+    align-items: center;
+    background: #1b1835;
+    margin: 7Px;
+    text-align: center;
+    border-radius: 15px;
+    border: 1px solid white;
+    border-style: groove;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.letter-values {
+    
+    display: flex;
+    justify-content: center;
+}
+
+#save-score-button {
+    display: none;
+}
+
+#play-again-button {
+    display: none;
+}
+
+#guess {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    color: #1b1835;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 150%;
+}
+
+.word-list-table {
+    width: 100%;
+    height: 170px;
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.word-sublist {
+    width: 50%;
+    height: 100%;
+    background-color: #febe38;
+    margin: 0px 10px;
+    border-radius: 10px;
+    color: #1b1835;
+    overflow: hidden;
+
+}
+
+.word-sublist-scroll {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+    max-height: 75%;
+    color: #fb2271;
+}
+
+/* Message Board Styles */
+
+.post {
+    background-color:#352870;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 150%;
+}
+
+.message-board {
+    width: 100%;
+}
+
+.username {
+    font-size: 200%;
+}
+
+.message-board tr{
+    height:50px;
+}
+
+/* View post styles */
+
+
+/* High Score Page Styles */
+
+td .high-score-user {
+    text-decoration: none;
+    color: white;
+}
+
+.ranking {
+    color: #fb2271;
+}
+
+.high-score {
+    font-size: 200%;
+}
+
+#high-score-table {
+    background-color: none;
+    height: 80vh;
+    font-size: 130%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#high-score-table table {
+    width: 100%;
+}
+
+#high-score-table img {
+    margin-left: -2px;
+}
+
+.high-score-img {
+    display: flex;
+}
+
+#high-score-table table td {
+    border-top: solid #febe38;
+
+}
+
+#high-score-table table td {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.high-score-img {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    padding-top: -5px;
+    border: 2px solid rgb(197, 127, 127);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+}
+
+
+/* Profile Page Styles */
+
+.profile-page {
+    border: solid black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.display-name {
+    text-align: center;
+    background-color: #1b1835;
+    border-radius: 10px;
+    margin-top: 15px;
+    color: rgb(197, 127, 127);
+}
+
 .account-img {
-    width: 100px;
-    height:100px
+    width: 218px;
+    height: 218px;
+    border: solid black 10px;
+    overflow: hidden;
 }
 
-/* Message Board Stles */
-
-.message-board{
-    width:100%;
+.profile-img {
+    width: 218px;
+    height: 218px;
+    border: double #febe38 10px;
+    background-color: #1b1835;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 100px;
 }
 
-.message-board th {
-    background-color: rgb(0, 255, 242);
+.profile-img>img {
+    margin-top: -1px;
+    margin-left: -1px;
+}
+
+.account-img>img {
+    margin-top: -1px;
+    margin-left: -1px;
+}
+
+#about-me {
+    height: 200px;
+    margin: 20px;
+    border-radius: 10px;
+    color: rgb(197, 127, 127);
+    text-align: center;
+}
+
+.view-user-profile h2 {
+    color: rgb(197, 127, 127)
+}
+
+#about-me-text {
+    background-color: none;
+    height: 150px;
+    border-radius: 10px;
+    color: white;
+}
+
+#profile-details {
+    border: double #febe38 7px;
+    border-radius: 20px;
+    height: 160px;
+    background-color: #1b1835;
+    margin: 0px 10px;
+    box-shadow: rgba(255, 255, 255, 0.282) 0px 0px 100px;
+
+}
+
+#picture-div {
+    display: flex;
+    justify-content: center;
+}
+
+#profile-details>div {
+    height: 40px;
+    align-content: center;
+
+}
+
+@media screen and (min-width:768px) {
+    .display-name {
+        text-align: left;
+    }
+
+    #profile-details {
+        display: flex;
+        align-content: space-between;
+        flex-direction: column;
+        margin-top: 100px;
+    }
+
+    #profile-details h2 {
+        margin-bottom: 30px;
+    }
+
+    #details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #about-me {
+        text-align: left;
+    }
+
+    /* Game Styles */
+    #board {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-rows: repeat(4, minmax(0, 1fr));
+        border-radius: 40px;
+        padding: 25px;
+        position: relative;
+        z-index: 1;
+        position: relative;
+        width: 450px;
+        height: 450px;
+    }
+
+    .letter {
+        font-style: normal;
+        font-weight: 100;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 300%;
+        font-weight: bold;
+        align-items: center;
+        margin: 7Px;
+        text-align: center;
+        border-radius: 15px;
+        border-style: groove;
+        overflow: hidden;
+        font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    #guess {
+        background-color: white;
+        color: #1b1835;
+        width: 400px;
+        height: 50px;
+        border-radius: 10px;
+        font-size: 200%;
+    }
+
+}
+
+@media screen and (min-width:992px) {
+    #details {
+        font-size: 130%;
+    }
 }

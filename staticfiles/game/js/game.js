@@ -9,7 +9,15 @@ const letterValues = document.getElementsByClassName('letterValue')
 const reshuffleButton = document.getElementById("reshuffle-button")
 const playAgainButton = document.getElementById("play-again-button");
 const saveScoreButton = document.getElementById("save-score-button");
-const showScore = document.getElementById("score")
+const showScore = document.getElementById("score");
+const threeLetterWords =document.getElementById("three-letter-words");
+const fourLetterWords =document.getElementById("four-letter-words");
+const fiveLetterWords =document.getElementById("five-letter-words");
+const sixLetterWords =document.getElementById("six-letter-words");
+const sevenLetterWords =document.getElementById("seven-letter-words");
+const eightLetterWords =document.getElementById("eight-letter-words");
+
+
 let boardLetters = []
 let runTimer
 // Defines the dice used to generate the letters on the board
@@ -42,7 +50,8 @@ boardLetters = shuffleBoard(dice);
 
 // Load the dictionary then ready startGame
 getDictionary().then(dictionary => {
-  guess.innerHTML = "dictionary loaded"
+  guess.innerHTML = "Click Start to Begin"
+  guess.style.backgroundColor="green"
   dictionaries = makeDictionaries(dictionary)
   startGame(dictionaries)
 })
@@ -82,6 +91,8 @@ function startGame(dictionary) {
 
 // run game function
 function runGame(dictionary) {
+  guess.innerHTML="Start Typing!";
+  guess.style.backgroundColor="white";
   let word = "";
   let matched = false;
   let score = 0;
@@ -90,7 +101,10 @@ function runGame(dictionary) {
   startButton.style.display = "none";
   console.log("hello")
   saveScoreButton.addEventListener("click", function () {
-    saveScore(wordArray).then(() => { guess.innerHTML = "score saved"; saveScoreButton.style.display = "none" });
+    saveScore(wordArray).then(() => { 
+      guess.innerHTML = "score saved";
+      guess.style.backgroundColor="green";
+      saveScoreButton.style.display = "none" });
   })
 
   // update/guess the word
@@ -104,6 +118,7 @@ function runGame(dictionary) {
  */
 async function getDictionary() {
   guess.innerHTML = "loading dictionary..."
+  guess.style.backgroundColor="#febe38"
   const dictionaryUrl = "dictionary"
 
   try {
@@ -144,6 +159,7 @@ function playAgain() {
 function guessWord(word, matched, dictionary, wordArray) {
   // start the game timer
   let time = 100;
+  let runningScore=0;
   clearInterval(runTimer);
   runTimer = setInterval(() => time = countDown(time, wordArray), 1000);
   let boardMatched = false
@@ -154,6 +170,7 @@ function guessWord(word, matched, dictionary, wordArray) {
       switch (true) {
         // delete a letter
         case (event.key == "Backspace" && word.length > 0):
+          match.innerHTML = "";
           word = word.substring(0, word.length - 1);
           matched = checkDictionary(word, dictionary)
           clearBoard();
@@ -162,8 +179,13 @@ function guessWord(word, matched, dictionary, wordArray) {
           break;
         // add a letter
         case (event.keyCode >= 65 && event.keyCode <= 90):
+          match.innerHTML = "";
           if (word.length < 17) {
+            if (event.key.toUpperCase()=="Q"){
+              word+="QU"
+            }else{
             word += event.key.toUpperCase()
+            }
           }
           matched = checkDictionary(word, dictionary);
           [boardMatched, highlight] = searchBoard(word);
@@ -171,7 +193,7 @@ function guessWord(word, matched, dictionary, wordArray) {
           break;
         // guess a word
         case (event.key == "Enter"):
-          [word, matched, wordArray] = checkWord(word, matched, boardMatched, wordArray);
+          [word, matched, wordArray, runningScore] = checkWord(word, matched, boardMatched, wordArray, runningScore);
           clearBoard()
           guess.innerHTML = "";
           word = "";
@@ -204,7 +226,7 @@ function searchBoard(word) {
     // mark current tile as visited
     visited[i][j] = true;
     // add the current tile letter to the search string
-    str = str + boardLetters[i][j];
+    str = str + boardLetters[i][j].toUpperCase();
     // highlight word on board
     if (str == word.substring(0, str.length)) {
       highlight[j + (i * 4)] = true
@@ -227,7 +249,7 @@ function searchBoard(word) {
 }
 
 function highlightLetters(highlight, matched, boardMatched) {
-  let colour = "yellow"
+  let colour = "#febe38"
   if (matched && boardMatched) {
     colour = "green"
   }
@@ -243,7 +265,7 @@ function highlightLetters(highlight, matched, boardMatched) {
 // clears highlighted letters
 function clearBoard() {
   for (i = 0; i < letters.length; i++) {
-    letters[i].style.backgroundColor = "white";
+    letters[i].style.backgroundColor = "#1b1835";
   }
 }
 
@@ -260,8 +282,7 @@ function checkDictionary(word, dictionary) {
     for (letter of alphabet) {
       if (word[0] == letter) {
         for (let [key, value] of Object.entries(dictionary[i])) {
-          if (word === key.toUpperCase()) {
-            match.innerHTML = `${key}: ${value}<br>`;
+          if (word === key.toUpperCase()) {;
             match_found = true;
           }
         }
@@ -277,21 +298,48 @@ function checkDictionary(word, dictionary) {
 }
 
 
-function checkWord(word, matched, boardMatched, wordArray) {
+function checkWord(word, matched, boardMatched, wordArray, runningScore) {
   if (matched && boardMatched) {
     if (!wordArray.includes(word)) {
-      let wordScore = word.length - 2
-      wordList.innerHTML += `${word} - ${wordScore} points<br>`;
+      let wordScore = word.length - 2;
+      runningScore += wordScore;
+      switch(true){
+        case(word.length==3):
+          threeLetterWords.innerHTML+=`${word}<br>`;
+          break
+          case(word.length==4):
+          fourLetterWords.innerHTML+=`${word}<br>`;
+          break
+          case(word.length==5):
+          fiveLetterWords.innerHTML+=`${word}<br>`;
+          break
+          case(word.length==6):
+          sixLetterWords.innerHTML+=`${word}<br>`;
+          break
+          case(word.length==7):
+          sevenLetterWords.innerHTML+=`${word}<br>`;
+          break
+          case(word.length>7):
+          eightLetterWords.innerHTML+=`${word}<br>`;
+          break
+        default:
+          break
+      }
       wordArray.push(word)
+      showScore.innerHTML=runningScore;
+      match.innerHTML=`${word}: ${wordScore} pts`
+      match.style.color="green";
       matched = false
     } else {
       match.innerHTML = "already found";
+      match.style.color="#febe38";
     }
 
   } else {
     match.innerHTML = "invalid word";
+    match.style.color ="red";
   }
-  return [word, matched, wordArray]
+  return [word, matched, wordArray, runningScore]
 }
 
 /**
