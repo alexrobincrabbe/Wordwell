@@ -152,6 +152,7 @@ function playAgain() {
 function guessWord(word, matched, dictionary, wordArray) {
   // start the game timer
   let time = 100;
+  let runningScore=0;
   clearInterval(runTimer);
   runTimer = setInterval(() => time = countDown(time, wordArray), 1000);
   let boardMatched = false
@@ -183,7 +184,7 @@ function guessWord(word, matched, dictionary, wordArray) {
           break;
         // guess a word
         case (event.key == "Enter"):
-          [word, matched, wordArray] = checkWord(word, matched, boardMatched, wordArray);
+          [word, matched, wordArray, runningScore] = checkWord(word, matched, boardMatched, wordArray, runningScore);
           clearBoard()
           guess.innerHTML = "";
           word = "";
@@ -289,10 +290,11 @@ function checkDictionary(word, dictionary) {
 }
 
 
-function checkWord(word, matched, boardMatched, wordArray) {
+function checkWord(word, matched, boardMatched, wordArray, runningScore) {
   if (matched && boardMatched) {
     if (!wordArray.includes(word)) {
-      let wordScore = word.length - 2
+      let wordScore = word.length - 2;
+      runningScore += wordScore;
       switch(true){
         case(word.length==3):
           threeLetterWords.innerHTML+=`${word}<br>`;
@@ -316,6 +318,7 @@ function checkWord(word, matched, boardMatched, wordArray) {
           break
       }
       wordArray.push(word)
+      showScore.innerHTML=runningScore;
       matched = false
     } else {
       match.innerHTML = "already found";
@@ -324,7 +327,7 @@ function checkWord(word, matched, boardMatched, wordArray) {
   } else {
     match.innerHTML = "invalid word";
   }
-  return [word, matched, wordArray]
+  return [word, matched, wordArray, runningScore]
 }
 
 /**
