@@ -15,7 +15,9 @@
                 <button id="start-button" type="button" class="yellow-button">Start</button>
                 <button id="reshuffle-button" type="button" class="yellow-button">Reshuffle</button>
                 <button id="play-again-button" type="button" class="yellow-button">Play again</button>
+                {% if user.is_authenticated %}
                 <button id="save-score-button" type="button" class="yellow-button">Save Score</button>
+                {% endif %}
             </div>
         </div>
         <div class="col">
