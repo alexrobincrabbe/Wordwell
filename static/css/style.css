@@ -343,11 +343,9 @@ td .high-score-user {
 
 /* Profile Page Styles */
 
-.profile-page {
-    border: solid black;
+.update-profile-page {
     padding-top: 20px;
     padding-bottom: 20px;
-    border-radius: 10px;
     margin-top: 20px;
 }
 
@@ -388,7 +386,6 @@ td .high-score-user {
 }
 
 #about-me {
-    height: 200px;
     margin: 20px;
     border-radius: 10px;
     color: rgb(197, 127, 127);
@@ -401,9 +398,11 @@ td .high-score-user {
 
 #about-me-text {
     background-color: none;
-    height: 150px;
+    min-height: 150px;
     border-radius: 10px;
     color: white;
+    overflow-wrap:break-word;
+    max-width: 500px;
 }
 
 #profile-details {
@@ -429,7 +428,9 @@ td .high-score-user {
 
 @media screen and (min-width:768px) {
 
-   
+    #about-me-text {
+        max-width: 500px;
+    }
     .display-name {
         text-align: left;
     }
@@ -507,5 +508,8 @@ td .high-score-user {
     }
     #details {
         font-size: 130%;
+    }
+    #about-me-text {
+        max-width: 600px;
     }
 }
