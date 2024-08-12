@@ -7,9 +7,11 @@
 
 <div class="container">
 <h1>replying to:</h1>
-author:{{ post.author }}<br>
-title:{{ post.title }}<br>
-message:{{ post.text }}
+<h2>Title: <span class="info">{{ post.title }}</span></h2>
+    <h2>Author: <span class="info">{{ post.author }}</span></h2>
+    <p class="post">
+        {{ post.text }}
+    </p>
 <hr>
 <form method="POST">
     {% csrf_token %}
@@ -18,7 +20,7 @@ message:{{ post.text }}
         {{ new_reply|crispy }}
     </fieldset>
     <div class ="form-group">
-        <button class="btn btn-outline-info" type="submit">Sumbit</button>
+        <button class="yellow-button" type="submit">Sumbit</button>
     </div>
  </form>
 </div>
