@@ -51,7 +51,7 @@ boardLetters = shuffleBoard(dice);
 // Load the dictionary then ready startGame
 getDictionary().then(dictionary => {
   guess.innerHTML = "Click Start to Begin"
-  guess.style.backgroundColor="green"
+  guess.style.backgroundColor="rgb(81, 164, 81)"
   dictionaries = makeDictionaries(dictionary)
   startGame(dictionaries)
 })
@@ -103,7 +103,7 @@ function runGame(dictionary) {
   saveScoreButton.addEventListener("click", function () {
     saveScore(wordArray).then(() => { 
       guess.innerHTML = "score saved";
-      guess.style.backgroundColor="green";
+      guess.style.backgroundColor="rgb(81, 164, 81)";
       saveScoreButton.style.display = "none" });
   })
 
@@ -251,7 +251,7 @@ function searchBoard(word) {
 function highlightLetters(highlight, matched, boardMatched) {
   let colour = "#febe38"
   if (matched && boardMatched) {
-    colour = "green"
+    colour = "rgb(81, 164, 81)"
   }
   if (!boardMatched) {
     colour = "red"
@@ -328,7 +328,7 @@ function checkWord(word, matched, boardMatched, wordArray, runningScore) {
       wordArray.push(word)
       showScore.innerHTML=runningScore;
       match.innerHTML=`${word}: ${wordScore} pts`
-      match.style.color="green";
+      match.style.color="rgb(81, 164, 81)";
       matched = false
     } else {
       match.innerHTML = "already found";

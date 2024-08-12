@@ -11,6 +11,14 @@ body {
     font-style: normal;
 }
 
+.django-messages{
+    width:100%;
+    color:white;
+    background-color: rgb(81, 164, 81);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
 .extended-table{
     display:none;
