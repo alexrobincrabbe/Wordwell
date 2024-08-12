@@ -17,13 +17,13 @@
     <th>Post Title</th>
     <th>Author</th>
     <th>Replies</th>
-    <th>Last Reply</th>
+    <th class="extended-table">Last Reply</th>
     {% for post in all_posts_list %}
     <tr>
       <td><a href="{% url 'view_post' post.slug %}" class="post-title">{{ post.title }}</a></td>
       <td><a><a href="{% url 'view_profile' post.author.profile.profile_url %}">{{ post.author }}</a></td>
-      <td>{{ post.number_of_replies }}</a></td>
-      <td>{{ post.latest_reply }}</a></td>
+      <td class="right-table" >{{ post.number_of_replies }}</td>
+      <td class="extended-table" >{{ post.latest_reply }}</td>
     </tr>
     {% endfor %}
   </table>

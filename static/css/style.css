@@ -11,6 +11,15 @@ body {
     font-style: normal;
 }
 
+
+.extended-table{
+    display:none;
+}
+
+.right-table{
+    text-align: center;
+}
+
 .text-link{
     color: #febe38;
     font-weight: bold;
@@ -378,6 +387,8 @@ td .high-score-user {
 }
 
 @media screen and (min-width:768px) {
+
+   
     .display-name {
         text-align: left;
     }
@@ -447,6 +458,12 @@ td .high-score-user {
 }
 
 @media screen and (min-width:992px) {
+    .extended-table{
+        display:revert;
+    }
+    .right-table{
+        text-align: center;
+    }
     #details {
         font-size: 130%;
     }
