@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.db.models import Count
 from django.db.models import OuterRef, Subquery
 from django.db.models import Case, When
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -43,6 +44,7 @@ def view_post(request,slug):
                     "post":post,
                 })
 
+@login_required
 def new_post(request):
     if request.method == 'POST':
         new_post= PostForm(data=request.POST)
@@ -65,6 +67,7 @@ def new_post(request):
         },
     )
 
+@login_required
 def edit_post(request, slug):
     if request.method == 'POST':
         post= get_object_or_404(Post.objects, slug=slug)
@@ -91,6 +94,7 @@ def edit_post(request, slug):
         },
     )
 
+@login_required
 def new_reply(request, slug):
     post = get_object_or_404(Post.objects, slug=slug)
     if request.method == 'POST':
@@ -113,6 +117,7 @@ def new_reply(request, slug):
         },
     )
 
+@login_required
 def delete_post(request, slug):
     post=get_object_or_404(Post.objects, slug=slug)
     if request.user==post.author:
@@ -122,6 +127,7 @@ def delete_post(request, slug):
         messages.error(request, 'Permission denied')
     return HttpResponseRedirect('/board')
 
+@login_required
 def edit_reply(request, slug, comment_id):
     if request.method == 'POST':
         post= get_object_or_404(Post.objects, slug=slug)
@@ -151,6 +157,7 @@ def edit_reply(request, slug, comment_id):
         },
     )
 
+@login_required
 def delete_reply(request, slug, reply_id):
     reply=get_object_or_404(Reply.objects, id=reply_id)
     if request.user==reply.author:

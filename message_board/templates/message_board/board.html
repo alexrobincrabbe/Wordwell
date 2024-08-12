@@ -6,7 +6,11 @@
 <div class="container">
   <h1>Message Board</h1>
   <br>
-  <a a href="{% url 'new_post' %}" class="yellow-button">New Post</a>
+  {% if user.is_authenticated %}
+  <a href="{% url 'new_post' %}" class="yellow-button">New Post</a>
+  {% else %}
+  <a href="{% url 'account_login' %}" class="text-link" >Login</a> to make a post
+  {% endif %}
   <br>
   <br>
   <table class="message-board">

@@ -11,6 +11,11 @@ body {
     font-style: normal;
 }
 
+.text-link{
+    color: #febe38;
+    font-weight: bold;
+    text-decoration: underline;
+}
 .page-link{
     color: #fb2271;
     border-radius:5px;
