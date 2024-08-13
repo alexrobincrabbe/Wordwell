@@ -148,6 +148,30 @@ nav {
     color: #1b1835;
 }
 
+/* home page styles */
+.instructions{
+    font-size: 130%;
+}
+
+.example{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.scoring {
+    /*background-image: linear-gradient(to top right , #febe38 ,  1%, #352870, 90%,#fb2271);*/
+    background-color: #352870;
+    color: #febe38;
+    border-radius: 10px;
+    font-weight:  bold;
+    padding: 10px 0px 10px 40px;
+    border: solid white 5px;
+}
+
+.scoring li::marker{
+    color:#fb2271;
+}
+
 /* Game Board Styles */
 
 .yellow-button{
