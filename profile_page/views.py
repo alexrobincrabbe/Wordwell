@@ -45,11 +45,11 @@ def update_user_profile(request):
         context,
     )
 
-def view_user_profile(request, profile_view):
+def view_user_profile(request, target_profile):
     """
     View a user's profile page
     """
-    user_profile = get_object_or_404(UserProfile.objects, profile_url=profile_view)
+    user_profile = get_object_or_404(UserProfile.objects, profile_url=target_profile)
 
     return render(
         request,
