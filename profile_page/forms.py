@@ -4,7 +4,6 @@ from  .models import UserProfile
 from cloudinary.forms import CloudinaryFileField
 
 class UserUpdateForm(forms.ModelForm):
-    #email = forms.EmailField()
     class Meta:
         model = User
         fields = ['email']
