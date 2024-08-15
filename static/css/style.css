@@ -175,16 +175,19 @@ nav {
 /* Game Board Styles */
 
 .yellow-button{
-    border-radius:5px;
-    border:solid white 5px;
+    border-radius:10px;
+    border:solid #fb2271 5px;
     background-color: #febe38;
     font-size: 130%;
-    padding:5px;
-    color:#1b1835;
+    padding:10px 5px;
+    font-family: "Chango", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #d61e62;
 }
 
 .yellow-button:hover{
-    border:solid #fb2271 5px;
+    background-color: #b38522;
 }
 .board-container {
     display: flex;
