@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
-from .models import Post
+from .models import Post, Reply
 import random
 
 class TestHighscoreViews(TestCase):
@@ -29,11 +29,19 @@ class TestHighscoreViews(TestCase):
         self.posts =[]
         i=0
         for user in self.users:
-            self.posts.append(Post(author=user, title=f'title-{i}', text="dummy", slug=f"title{i}"))
+            self.posts.append(Post(author=user, title=f'title-{i}', text="dummy"))
             self.posts[i].save()
             i+=1
-
-    def test_page_contains_usernames_and_tiles(self):
+        
+        #create replies to first post
+        self.replies = []
+        i=0
+        for user in self.users:
+            self.replies.append(Reply(author=user, original_post=self.posts[0],text=f"reply-text{i}"))
+            self.replies[i].save()
+            i+=1
+ 
+    def test_page_message_board(self):
         '''
         Tests that all usernames and post titles in the database are displayed in the returned html
         
@@ -49,5 +57,26 @@ class TestHighscoreViews(TestCase):
             )
             self.assertIn(
                 bytes(self.posts[i].title, encoding='utf-8'), response.content
+            )
+            i+=1
+        
+    def test_post_view(self):
+        response = self.client.get(reverse('view_post', args=['title-0']))
+        self.assertEqual(response.status_code, 200)
+
+        # Check post fields are displayed
+        self.assertIn(b'myUsername0', response.content)
+        self.assertIn(b'title-0', response.content)
+        self.assertIn(b'dummy', response.content)
+
+
+        # Check that all replies are displayed on the page
+        i=0
+        for reply in self.replies:
+            self.assertIn(
+                bytes(reply.author.username, encoding='utf-8'), response.content
+            )
+            self.assertIn(
+                bytes(reply.text, encoding='utf-8'), response.content
             )
             i+=1
