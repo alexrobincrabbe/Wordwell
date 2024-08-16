@@ -4,18 +4,18 @@ from django.shortcuts import reverse
 from profile_page.models import UserProfile
 import random
 
-class TestProfilePageViews(TestCase):
+class TestHighscoreViews(TestCase):
     '''
     Tests that:
-    page returns status of 200 and success message when profile is updated
-    page does not display success message if the form is not valid on submission
-    View profile page contains all of the correct profile information
+    page returns status of 200 when high score page is displayed
+    Checks all usernames and highscores are returned in the html
+    Checks that the correct ordered context is returned from the view
     
     '''
     
     def setUp(self):
         """
-        Create a user and complete profile for user
+        Create users and complete profiles for users
         """
         #create users
         self.users =[]

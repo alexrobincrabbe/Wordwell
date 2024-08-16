@@ -6,6 +6,9 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class UserProfile (models.Model):
+    '''
+    Model to create a user profile to extend the user model
+    '''
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     profile_picture = CloudinaryField ('image', default = 'placeholder')
     about_me = models.CharField(null=True, max_length=500)
@@ -13,9 +16,12 @@ class UserProfile (models.Model):
     display_name = models.CharField(max_length=20, unique=True)
     high_score = models.IntegerField(default=0)
     profile_url=models.SlugField(unique=True)
+    
+    # automatically create a url for the profile page
     def save(self, *args, **kwargs):
         self.profile_url = text.slugify(self.user.username)
         super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.user.username}'s Profile"
 

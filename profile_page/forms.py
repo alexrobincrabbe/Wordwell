@@ -9,6 +9,7 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['email']
 
 class ProfileUpdateForm(forms.ModelForm):
+    
     about_me = forms.CharField(required=False, max_length=500, widget=forms.Textarea(attrs={"rows":"3"}))
     profile_picture = CloudinaryFileField(label="Profile Picture", required =False)
     class Meta:
