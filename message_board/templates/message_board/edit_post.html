@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="container">
 <h1>Post</h1>
 {% if user.is_authenticated and post.author == user %}
 <form method="POST">
@@ -18,5 +19,5 @@
 {% else %}
 you do not have permission to view this page
 {% endif %}
-
+</div>
 {% endblock %}

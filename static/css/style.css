@@ -66,10 +66,19 @@ body {
     color:rgba(255, 255, 255, 0.676);
 
 }
-.django-messages{
+.django-messages-success{
     width:100%;
     color:white;
     background-color: rgb(81, 164, 81);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.django-messages-error{
+    width:100%;
+    color:white;
+    background-color:rgb(116, 52, 52);
     justify-content: center;
     align-items: center;
     text-align: center;

@@ -72,7 +72,7 @@
         <div class="row">
             <div >
                 {% for message in messages %}
-                <div class="django-messages alert alert-dismissible fade show" id="message" role="alert">
+                <div class="django-messages-{{ message.tags }} alert alert-dismissible fade show" id="message" role="alert">
                     {{ message | safe }}
                     <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
                 </div>

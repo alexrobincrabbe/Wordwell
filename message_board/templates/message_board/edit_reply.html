@@ -6,6 +6,7 @@
 {% block content %}
 
 {% if user.is_authenticated and reply.author == user %}
+<div class="container">
 <h1>replying to:</h1>
 author:{{ post.author }}<br>
 title:{{ post.title }}<br>
@@ -24,4 +25,5 @@ message:{{ post.text }}
 {% else %}
 you do not have permission to view this page
 {% endif %}
+</div>
 {% endblock %}

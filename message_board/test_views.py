@@ -193,3 +193,5 @@ class TestMessageBoardViews(TestCase):
         for post_data in invalid_post_data:
             post_response = self.client.post(reverse('edit_post',args=['title-1']), post_data)
             self.assertEqual(post_response.status_code, 200)
+
+    
