@@ -32,6 +32,10 @@ class TestProfilePageViews(TestCase):
         self.profile[0].save()
 
     def test_update_profile_with_display_name_success(self):
+        '''
+        check that the view returns a status of 200
+        check that the view shows the success message if the form is valid
+        '''
         #user must be logged in to update profile
         self.client.login(
             username="myUsername", password ="myPassword")
@@ -48,6 +52,10 @@ class TestProfilePageViews(TestCase):
         )
 
     def test_update_profile_with_valid_email(self):
+        '''
+        check that the view returns a status of 200
+        check that the view shows the success message if the form is valid
+        '''
         #user must be logged in to update profile
         self.client.login(
             username="myUsername", password ="myPassword")
@@ -64,6 +72,10 @@ class TestProfilePageViews(TestCase):
         )
 
     def test_update_profile_without_display_name(self):
+        '''
+        check that the view returns a status of 200
+        check that the view does not show the success message if the form is not valid
+        '''
         #user must be logged in to update profile
         self.client.login(
             username="myUsername", password ="myPassword")
@@ -80,6 +92,10 @@ class TestProfilePageViews(TestCase):
         )
 
     def test_update_profile_with_invalid_email(self):
+        '''
+        check that the view returns a status of 200
+        check that the view does not show the success message if the form is not valid
+        '''
         #user must be logged in to update profile
         self.client.login(
             username="myUsername", password ="myPassword")

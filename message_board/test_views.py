@@ -80,3 +80,53 @@ class TestHighscoreViews(TestCase):
                 bytes(reply.text, encoding='utf-8'), response.content
             )
             i+=1
+
+    def test_new_post_view_is_valid(self):
+        '''
+        Check that the response is redirected(status 302)
+        Check that the redirect returns a response status of 200
+        Check that the success message is displayed if the form is valid
+        '''
+
+        self.client.login(
+            username="myUsername1", password ="myPassword1")
+        post_data = {
+            'title':'thisTitle',
+            'text':'thisText',
+        }
+        response = self.client.post(reverse('new_post'), post_data)
+        redirect_response = self.client.post(reverse('new_post'), post_data, follow=True)
+        
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(redirect_response.status_code, 200)
+        self.assertIn(
+            b'New post created', redirect_response.content, msg="Form was valid but success message was not displayed"
+        )
+
+    def test_new_post_view_is_invalid(self):
+        '''
+        Check that the response is not redirected and returns a status of 200
+        if mandatory fields are not complete
+    
+        '''
+
+        self.client.login(
+            username="myUsername1", password ="myPassword1")
+        
+        # Without Title
+        post_data = {
+            'title':'',
+            'text':'thisText',
+        }
+
+        response = self.client.post(reverse('new_post'), post_data)        
+        self.assertEqual(response.status_code, 200)
+
+        # Without text
+        post_data = {
+            'title':'thisTitle',
+            'text':'',
+        }
+
+        response = self.client.post(reverse('new_post'), post_data)        
+        self.assertEqual(response.status_code, 200)
