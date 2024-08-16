@@ -100,12 +100,15 @@ def new_reply(request, slug):
     if request.method == 'POST':
         new_reply= ReplyForm(data=request.POST)
         if new_reply.is_valid:
-                reply= new_reply.save(commit=False)
-                reply.author = request.user
-                reply.original_post = post
-                reply.save()
-                messages.success(request,f'Reply created')
-                return HttpResponseRedirect(reverse('view_post', args=[slug]))
+                try:
+                    reply= new_reply.save(commit=False)
+                    reply.author = request.user
+                    reply.original_post = post
+                    reply.save()
+                    messages.success(request,f'Reply created')
+                    return HttpResponseRedirect(reverse('view_post', args=[slug]))
+                except ValueError as e:
+                    pass
     else:
         new_reply = ReplyForm()
     return render (
@@ -125,7 +128,7 @@ def delete_post(request, slug):
         messages.success(request, 'Post deleted')
     else:
         messages.error(request, 'Permission denied')
-    return HttpResponseRedirect('/board')
+    return HttpResponseRedirect(reverse('message_board'))
 
 @login_required
 def edit_reply(request, slug, comment_id):

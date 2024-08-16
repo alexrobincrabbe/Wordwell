@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from django.shortcuts import reverse
+from django.shortcuts import reverse, get_object_or_404
 from .models import Post, Reply
 
 class TestMessageBoardViews(TestCase):
@@ -105,7 +105,7 @@ class TestMessageBoardViews(TestCase):
             b'New post created', redirect_response.content, msg="Form was valid but success message was not displayed"
         )
 
-    def test_new_post_view_is_invalid(self):
+    def test_new_post_view_is_not_valid(self):
         '''
         Check that the response is not redirected and returns a status of 200
         if mandatory fields are not complete
@@ -194,4 +194,64 @@ class TestMessageBoardViews(TestCase):
             post_response = self.client.post(reverse('edit_post',args=['title-1']), post_data)
             self.assertEqual(post_response.status_code, 200)
 
+    def test_delete_post (self):
+        '''
+        Check that if the user is the author of the post:
+            success message is shown
+            post is deleted from the database
+        '''
+        self.client.login(
+        username="myUsername1", password ="myPassword1")
+        response_redirect =  self.client.get(reverse('delete_post', args=["title-1"]), follow=True)
+        self.assertEqual(response_redirect.status_code, 200)
+        self.assertIn(b'Post deleted', response_redirect.content)
+        # Check poast has been deleted
+        self.assertEqual( Post.objects.filter(slug="title-1").exists(), False)
     
+    def test_delete_post_not_authorized (self):
+        '''
+        Check that if the user is not the author of the post:
+            permission denied message is shown
+            post has not been deleted
+        '''
+        self.client.login(
+        username="myUsername2", password ="myPassword2")
+        response_redirect =  self.client.get(reverse('delete_post', args=["title-1"]), follow=True)
+        self.assertEqual(response_redirect.status_code, 200)
+        self.assertIn(b'Permission denied', response_redirect.content)
+        # Check poast was not deleted
+        self.assertEqual( Post.objects.filter(slug="title-1").exists(), True)
+
+    def test_new_reply_view_is_valid(self):
+        '''
+        Check that the response is redirected(status 302)
+        Check that the redirect returns a response status of 200
+        Check that the success message is displayed if the form is valid
+        '''
+
+        self.client.login(
+            username="myUsername1", password ="myPassword1")
+        post_data = {
+            'text':'thisReplyText',
+        }
+        response = self.client.post(reverse('new_reply', args=['title-3']), post_data)
+        redirect_response = self.client.post(reverse('new_reply',args=['title-3']), post_data, follow=True)
+        
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(redirect_response.status_code, 200)
+        self.assertIn(
+            b'Reply created', redirect_response.content, msg="Form was valid but success message was not displayed"
+        )
+    
+    def test_new_reply_view_is_not_valid(self):
+        '''
+        Check that the response is not redirected and returns a status of 200
+        if mandatory fields are not complete
+        '''
+        self.client.login(
+            username="myUsername1", password ="myPassword1")
+        post_data = {
+            'text':'',
+        }
+        response = self.client.post(reverse('new_reply', args=['title-3']), post_data)        
+        self.assertEqual(response.status_code, 200)
