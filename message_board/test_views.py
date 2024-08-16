@@ -255,3 +255,53 @@ class TestMessageBoardViews(TestCase):
         }
         response = self.client.post(reverse('new_reply', args=['title-3']), post_data)        
         self.assertEqual(response.status_code, 200)
+
+    def test_edit_reply_view(self):
+        '''
+        check that the edit reply page returns a status of 200 for a get request
+        check that the content is hidden if the user is not the author of the reply
+        check that the form is prepoluated with the reply content
+        '''
+        self.client.login(
+        username="myUsername4", password ="myPassword4")
+        # get reply that is authored by logged in user
+        get_response=self.client.get(reverse('edit_reply', args=['title-0',self.replies[4].id]))
+        self.assertEqual(get_response.status_code, 200)
+        self.assertNotIn(b'you do not have permission to view this page', get_response.content)
+        # Form is prepoluated with the post fields
+        self.assertIn(bytes(self.replies[4].text, encoding='utf-8'), get_response.content)
+        # page content is not shown if the logged in user is not the reply author
+        get_response_forbidden=self.client.get(reverse('edit_reply', args=['title-0', self.replies[5].id]))
+        self.assertEqual(get_response_forbidden.status_code, 200)
+        self.assertIn(b'you do not have permission to view this page', get_response_forbidden.content)
+    
+    def test_edit_reply_form_is_valid(self):
+        '''
+        check that the page redirects and a success message is shown when the form is valid
+        '''
+        self.client.login(
+        username="myUsername6", password ="myPassword6")
+        # Check that the page is redirected, and shows the success message when the form is valid
+        post_data = {
+            'text':'thisText',
+        }
+        post_response = self.client.post(reverse('edit_reply',args=['title-0',self.replies[6].id]), post_data)
+        post_response_redirect = self.client.post(reverse('edit_reply',args=['title-0',self.replies[6].id]), post_data, follow=True)
+        self.assertEqual(post_response.status_code, 302)
+        self.assertEqual(post_response_redirect.status_code, 200)
+        self.assertIn(b'Reply updated',post_response_redirect.content)
+
+    def test_edit_reply_form_is_not_valid(self):
+        '''
+        check that the page does not redirect if the form is not valid
+        '''
+        self.client.login(
+        username="myUsername6", password ="myPassword6")
+        # Check that the page is redirected, and shows the success message when the form is valid
+        post_data = {
+            'text':'',
+        }
+        post_response = self.client.post(reverse('edit_reply',args=['title-0',self.replies[6].id]), post_data)
+        self.assertEqual(post_response.status_code, 200)
+    
+       
