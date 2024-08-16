@@ -6,7 +6,6 @@ from .models import Post, Reply
 class TestMessageBoardViews(TestCase):
     '''
     Tests all message board views
-    
     '''
     
     def setUp(self):
@@ -303,5 +302,33 @@ class TestMessageBoardViews(TestCase):
         }
         post_response = self.client.post(reverse('edit_reply',args=['title-0',self.replies[6].id]), post_data)
         self.assertEqual(post_response.status_code, 200)
+
+    def test_delete_reply (self):
+        '''
+        Check that if the user is the author of the reply:
+            success message is shown
+            reply is deleted from the database
+        '''
+        self.client.login(
+        username="myUsername8", password ="myPassword8")
+        response_redirect =  self.client.get(reverse('delete_reply', args=["title-0", self.replies[8].id]), follow=True)
+        self.assertEqual(response_redirect.status_code, 200)
+        self.assertIn(b'Reply deleted', response_redirect.content)
+        # Check poast has been deleted
+        self.assertEqual( Reply.objects.filter(id=self.replies[8].id).exists(), False)
+
+    def test_delete_rely_not_authorized (self):
+        '''
+        Check that if the user is not the author of the reply:
+            permission denied message is shown
+            reply has not been deleted
+        '''
+        self.client.login(
+        username="myUsername9", password ="myPassword9")
+        response_redirect =  self.client.get(reverse('delete_reply', args=["title-0",self.replies[1].id]), follow=True)
+        self.assertEqual(response_redirect.status_code, 200)
+        self.assertIn(b'Permission denied', response_redirect.content)
+        # Check reply was not deleted
+        self.assertEqual( Reply.objects.filter(id=self.replies[9].id).exists(), True)
     
        
