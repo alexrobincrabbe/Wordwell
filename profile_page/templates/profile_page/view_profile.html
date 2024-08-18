@@ -8,22 +8,21 @@
 
     <div class="row">
         <div class="col">
-        <span class="display-name">
-            <h1>{{ user_view.display_name }}'s Profile</h1>
-        </span>
-    </div>
-    <div class="col">
-        {% if user.is_authenticated and user_view.user == user %}
-        <a class="edit-button" href="{% url 'update_profile' %}">Edit</a>
-        {% endif %}
-    </div>
-        
+            <h1 id="display-name">{{ user_view.display_name }}'s Profile</h1>
+        </div>
+        <div class="col">
+            {% if user.is_authenticated and user_view.user == user %}
+            <a class="edit-button" href="{% url 'update_profile' %}">Edit</a>
+            {% endif %}
+        </div>
+
         <hr id="line">
     </div>
     <div class="row">
         <div class="col-md-4" id="picture-div">
             {% if "placeholder" in user_view.profile_picture.url %}
-            <img class="rounded-circle profile-img" src="{% static 'images/default.png' %}" alt="profile placeholder image">
+            <img class="rounded-circle profile-img" src="{% static 'images/default.png' %}"
+                alt="profile placeholder image">
             {% else %}
             <div class=" rounded-circle profile-img">
                 {% load cloudinary %}
