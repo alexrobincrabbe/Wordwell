@@ -24,7 +24,7 @@ a {
 
 .label,
 th {
-    color: #fb2271;
+    color: #febe38;
 }
 
 h1,
@@ -85,7 +85,7 @@ nav {
 
 .edit-button {
     border-radius: 5px;
-    background-color: rgb(81, 164, 81);
+    background-color: rgb(65, 129, 65);
     color: white;
     padding: 2px 10px;
     font-size: 120%;
@@ -93,7 +93,7 @@ nav {
 }
 
 .edit-button:hover {
-    background-color: rgb(52, 120, 52);
+    background-color: rgb(34, 80, 34);
     color: rgba(255, 255, 255, 0.676);
 }
 
@@ -121,7 +121,7 @@ nav {
     font-family: "Chango", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color: #d61e62;
+    color: #9c1849;
 }
 
 .yellow-button:hover {
@@ -363,6 +363,11 @@ button.btn-close{
 td .high-score-user {
     text-decoration: none;
     color: white;
+}
+
+td .high-score-user:hover {
+    text-decoration: underline;
+    color: #b38522;
 }
 
 .ranking {

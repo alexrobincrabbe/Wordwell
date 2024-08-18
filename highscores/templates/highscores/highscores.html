@@ -17,11 +17,11 @@
                     <td class="ranking label"></td>
                     <td>
                         {% if "placeholder" in users.profile.profile_picture.url %}
-                        <img class="rounded-circle high-score-img" src="{% static 'images/default.png' %}">
+                        <img class="rounded-circle high-score-img" src="{% static 'images/default.png' %}" alt="placeholder profile image">
                         {% else %}
-                        <div class="rounded-circle high-score-img">
+                        <div class="rounded-circle high-score-img" alt="profile image">
                             {% load cloudinary %}
-                            {% cloudinary users.profile.profile_picture quality='auto' width=50 height=50 crop='fill' gravity="face" radius=100 %}
+                            {% cloudinary users.profile.profile_picture quality='auto' width=50 height=50 crop='fill' gravity="face" radius=100 title="profile picture"%}
                         </div>
                         {% endif %}
                     </td>

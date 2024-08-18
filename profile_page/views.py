@@ -1,16 +1,11 @@
 from dotenv import load_dotenv
 load_dotenv()
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from .forms import UserUpdateForm, ProfileUpdateForm
 from .models import UserProfile
-from game.models import Scores
 
 # Create your views here.
 
@@ -27,9 +22,21 @@ def update_user_profile(request):
             try:
                 u_form.save()
                 p_form.save()
-                messages.success(request,f'Your account has been updated')
+                messages.success(request,f'Your account has been updated')        
             except ValueError as e: 
-                pass
+                context = {
+                    'u_form': u_form,
+                    'p_form': p_form,
+                }
+                return render(
+                    request,
+                    "profile_page/update_profile.html",
+                    context,
+                )
+            user=request.user
+            return HttpResponseRedirect(
+                    reverse('view_profile', args=[user.profile.profile_url])
+            )
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -38,7 +45,6 @@ def update_user_profile(request):
         'u_form': u_form,
         'p_form': p_form,
     }
-    
     return render(
         request,
         "profile_page/update_profile.html",

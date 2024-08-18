@@ -2,6 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% load cloudinary %}
 
 <!-- profile.html content starts here -->
 <div class="container update-profile-page">
@@ -11,22 +12,24 @@
         </div>
         <div class="col">
             {% if "placeholder" in user.profile.profile_picture.url %}
-            <img class="rounded-circle account-img" src="{% static 'images/default.png' %}">
+            <img class="rounded-circle account-img" src="{% static 'images/default.png' %}"
+                alt="placeholder profile picture">
             {% else %}
             <div img class="rounded-circle account-img">
-            {% load cloudinary %}
-            {% cloudinary user.profile.profile_picture  quality='auto' width=200 height=200 crop='fill' gravity="face" radius=100 %}
-            {% endif %}
+                {% cloudinary user.profile.profile_picture quality='auto' width=200 height=200 crop='fill' gravity="face" radius=100 title="profile picture" %}
             </div>
+            {% endif %}
         </div>
         <div class="col high-score">
             high score: {{ user.profile.high_score }}
         </div>
     </div>
-    <form method="POST"  enctype="multipart/form-data" id="profile-page-form">
+    <form method="POST" enctype="multipart/form-data" id="profile-page-form">
         {% csrf_token %}
         <fieldset class="form-group" id="profile-form">
-            <legend class="border-bottom mb-4"><h2>Profile Info</h2></legend>
+            <legend class="border-bottom mb-4">
+                <h2>Profile Info</h2>
+            </legend>
             {{ u_form|crispy }}
             {{ p_form|crispy }}
         </fieldset>
@@ -35,4 +38,5 @@
         </div>
     </form>
 </div>
+<script src="{% static 'js/update_profile.js' %}"></script>
 {% endblock %}
