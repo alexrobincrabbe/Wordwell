@@ -292,6 +292,14 @@ nav {
 
 /* Message Board Styles */
 
+.modal-content{
+    background-color: #febe38;
+    color:#d61e62;
+}
+
+button.btn-close{
+    color:#d61e62;
+}
 .page-link {
     color: #fb2271;
     border-radius: 5px;

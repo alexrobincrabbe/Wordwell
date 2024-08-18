@@ -6,7 +6,7 @@
 <div class="container">
     <!-- Original Post -->
     <h1>Title: <span class="info">{{ post.title }}</span></h1>
-    <h2>Author: <span class="info">{{ post.author }}</span></h2>
+    <h2>Author: <span class="info">{{ post.author.profile.display_name }}</span></h2>
     <p class="post">
         {{ post.text }}
     </p>
@@ -35,14 +35,12 @@
                     Are you sure you want to delete your post?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a id="post-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+                    <button type="button" class="edit-button" data-dismiss="modal">Cancel</button>
+                    <a id="post-delete-confirm" href="#" class="delete-button">Delete</a>
                 </div>
             </div>
         </div>
     </div>
-    
-
     <!-- modal -->
     <div class="modal fade" id="reply-delete-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -55,8 +53,8 @@
                     Are you sure you want to delete your reply?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a id="reply-delete-confirm" href="#" class="btn btn-danger">Delete</a>
+                    <button type="button" class="edit-button" data-dismiss="modal">Cancel</button>
+                    <a id="reply-delete-confirm" href="#" class="delete-button">Delete</a>
                 </div>
             </div>
         </div>
@@ -72,7 +70,7 @@
     on: {{ reply.created_on }}
     {% if user.is_authenticated and reply.author == user %}
     <a class="edit-button" href="{% url 'edit_reply' post.slug reply.id %}">Edit</a>
-    <button class="delete-button" slug="{{ post.slug }}" reply-id="{{ reply.id }}">Delete</button>
+    <button class="delete-button reply-btn-delete" slug="{{ post.slug }}" reply-id="{{ reply.id }}">Delete</button>
     {% endif %}
     {% endfor %}
 </div>
