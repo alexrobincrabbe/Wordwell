@@ -1,4 +1,7 @@
-const rankings = document.getElementsByClassName("ranking")
+// Adds the ranking positions to the high scores list
+/* jshint esversion: 11 */
+
+const rankings = document.getElementsByClassName("ranking");
 let rank = 0;
 for (let ranking of rankings){
     rank=rank+1;

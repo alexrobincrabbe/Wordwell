@@ -420,12 +420,12 @@ td .high-score-user:hover {
     margin-top: 20px;
 }
 
-.display-name {
+#display-name {
     text-align: center;
     background-color: #1b1835;
     border-radius: 10px;
     margin-top: 15px;
-    color: rgb(197, 127, 127);
+    color:#fb2271;
 }
 
 .account-img {
@@ -510,7 +510,7 @@ td .high-score-user:hover {
         max-width: 500px;
     }
 
-    .display-name {
+    #display-name {
         text-align: left;
     }
 

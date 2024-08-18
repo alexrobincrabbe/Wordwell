@@ -1,16 +1,23 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+"""
+Game app views
+"""
 import json
 import os
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from profile_page.models import UserProfile
 from wordwell.settings import BASE_DIR
 from .models import Scores
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-from profile_page.models import UserProfile
 
 # Create your views here.
 @csrf_exempt
 def game(request):
+    """
+    View to:
+    - Display the game page
+    - Save the score to the database
+    """
     if request.method == 'POST':
         score = request.POST['score']
         score = int(score)
@@ -28,8 +35,12 @@ def game(request):
     )
 
 def dictionary(request):
+    """
+    Upload the dictionary to the dictionary url, so that is can
+    be retreived at the front end by the fetch api
+    """
     dictionary_path="game/static/game/dictionary.json"
     file_path = os.path.join(BASE_DIR, dictionary_path)
-    f = open(file_path)  
-    dictionary = json.load(f)
-    return JsonResponse(dictionary)
+    with open(file_path, 'r', encoding="utf-8") as f:
+        json_dictionary = json.load(f)
+    return JsonResponse(json_dictionary)
