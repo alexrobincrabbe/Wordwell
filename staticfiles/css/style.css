@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Chango&family=McLaren&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Chango&family=McLaren&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
+/* General Styles */
+
 body {
     background-color: #1b1835;
     color: white;
@@ -11,105 +13,8 @@ body {
     font-style: normal;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 15px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(197, 127, 127); 
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #fb2271; 
-}
-
-.edit-button{
-    border-radius:5px;
-    background-color: rgb(81, 164, 81);
-    color:white;
-    padding:2px 10px;
-    font-size: 120%;
-    border: double white;
-}
-
-.edit-button:hover{
-    background-color: rgb(52, 120, 52);
-    color:rgba(255, 255, 255, 0.676);
-}
-
-.edit-button:active{
-    background-color: rgb(140, 195, 140);
-    color:rgb(255, 255, 255);
-}
-
-.delete-button{
-    border-radius:5px;
-    background-color: rgb(163, 80, 80);
-    color:white;
-    padding:2px 10px;
-    font-size: 120%;
-    border: double white;
-}
-
-.delete-button:hover{
-    background-color: rgb(116, 52, 52);
-    color:rgba(255, 255, 255, 0.676);
-
-}
-.django-messages{
-    width:100%;
-    color:white;
-    background-color: rgb(81, 164, 81);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.extended-table{
-    display:none;
-}
-
-.right-table{
-    text-align: center;
-}
-
-.text-link{
-    color: #febe38;
-    font-weight: bold;
-    text-decoration: underline;
-}
-.page-link{
-    color: #fb2271;
-    border-radius:5px;
-    background-color: #febe38;
-    margin-top:5px;
-}
 .container {
     margin-top: 20px;
-}
-
-.centered {
-    text-align: center;
-}
-
-.modal-dialog {
-    color: #1b1835;
-}
-
-#line {
-    height: 2px;
-    background-color: #fb2271;
-    opacity: 1;
 }
 
 a {
@@ -119,7 +24,7 @@ a {
 
 .label,
 th {
-    color: #fb2271;
+    color: #febe38;
 }
 
 h1,
@@ -130,6 +35,14 @@ nav {
     font-style: normal;
     color: #fb2271;
 }
+
+.text-link {
+    color: #febe38;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*Navbar Styles */
 
 .navbar {
     background-color: #febe38;
@@ -148,50 +61,129 @@ nav {
     color: #1b1835;
 }
 
+/* Scrollbar styles */
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(197, 127, 127);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #fb2271;
+}
+
+/* Button Styles */
+
+.edit-button {
+    border-radius: 5px;
+    background-color: rgb(65, 129, 65);
+    color: white;
+    padding: 2px 10px;
+    font-size: 120%;
+    border: double white;
+}
+
+.edit-button:hover {
+    background-color: rgb(34, 80, 34);
+    color: rgba(255, 255, 255, 0.676);
+}
+
+.delete-button {
+    border-radius: 5px;
+    background-color: rgb(163, 80, 80);
+    color: white;
+    padding: 2px 10px;
+    font-size: 120%;
+    border: double white;
+}
+
+.delete-button:hover {
+    background-color: rgb(116, 52, 52);
+    color: rgba(255, 255, 255, 0.676);
+
+}
+
+.yellow-button {
+    border-radius: 10px;
+    border: solid #fb2271 5px;
+    background-color: #febe38;
+    padding: 10px 5px;
+    font-size: 130%;
+    font-family: "Chango", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #9c1849;
+}
+
+.yellow-button:hover {
+    background-color: #b38522;
+}
+
+/* Django Messages */
+
+.django-messages-success {
+    width: 100%;
+    color: white;
+    background-color: rgb(81, 164, 81);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.django-messages-error {
+    width: 100%;
+    color: white;
+    background-color: rgb(116, 52, 52);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 /* home page styles */
-.instructions{
+
+.instructions {
     font-size: 130%;
 }
 
-.example{
+.example {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
+}
+
+.example img {
+    width:100vw;
+    height:auto;
 }
 .scoring {
-    /*background-image: linear-gradient(to top right , #febe38 ,  1%, #352870, 90%,#fb2271);*/
     background-color: #352870;
     color: #febe38;
     border-radius: 10px;
-    font-weight:  bold;
+    font-weight: bold;
     padding: 10px 0px 10px 40px;
     border: solid white 5px;
 }
 
-.scoring li::marker{
-    color:#fb2271;
+.scoring li::marker {
+    color: #fb2271;
 }
 
-/* Game Board Styles */
+/* Game Styles */
 
-.yellow-button{
-    border-radius:5px;
-    border:solid white 5px;
-    background-color: #febe38;
-    font-size: 130%;
-    padding:5px;
-    color:#1b1835;
-}
-
-.yellow-button:hover{
-    border:solid #fb2271 5px;
-}
 .board-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 #board {
@@ -200,10 +192,9 @@ nav {
     grid-template-rows: repeat(4, minmax(0, 1fr));
     background-color: #352870;
     border-radius: 40px;
-    padding: 25px;
+    padding: 20px;
     position: relative;
     z-index: 1;
-    position: relative;
     width: 300px;
     height: 300px;
     border: solid white;
@@ -213,49 +204,44 @@ nav {
     color: #fb2271;
 }
 
-#score-container{
+#score-container {
     font-family: "Chango", sans-serif;
     font-weight: 400;
     font-style: normal;
     background-color: #352870;
     color: #febe38;
     font-size: 200%;
-    
     margin: 5px;
     padding: 0px 5px;
     width: 260px;
-    border-radius: 10px;;
+    border-radius: 10px;
+    ;
 }
 
-.info{
-    color:white;
+.info {
+    color: white;
 }
 
 .letter {
-    font-style: normal;
-    font-weight: 100;
+    display: flex;
     color: white;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Rubik", sans-serif;
+    font-weight: normal;
+    font-style: normal;
     font-size: 150%;
     align-items: center;
-    background: #1b1835;
-    margin: 7Px;
+    justify-content: center;
+    align-content: center;
     text-align: center;
+    background: #1b1835;
+    margin: 3Px;
     border-radius: 15px;
     border: 1px solid white;
     border-style: groove;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    font-family: "Rubik", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: normal;
-    font-style: normal;
 }
 
 .letter-values {
-    
     display: flex;
     justify-content: center;
 }
@@ -278,6 +264,12 @@ nav {
     border-radius: 10px;
     text-align: center;
     font-size: 150%;
+}
+
+#word-list{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .word-list-table {
@@ -309,8 +301,31 @@ nav {
 
 /* Message Board Styles */
 
+.modal-content{
+    background-color: #febe38;
+    color:#d61e62;
+}
+
+button.btn-close{
+    color:#d61e62;
+}
+.page-link {
+    color: #fb2271;
+    border-radius: 5px;
+    background-color: #febe38;
+    margin-top: 5px;
+}
+
+.extended-table {
+    display: none;
+}
+
+.right-table {
+    text-align: center;
+}
+
 .post {
-    background-color:#352870;
+    background-color: #352870;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -325,18 +340,34 @@ nav {
     font-size: 200%;
 }
 
-.message-board tr{
-    height:50px;
+.message-board tr {
+    height: 50px;
 }
 
-/* View post styles */
-
+.modal-dialog {
+    color: #1b1835;
+}
 
 /* High Score Page Styles */
+
+.centered {
+    text-align: center;
+}
+
+#line {
+    height: 2px;
+    background-color: #fb2271;
+    opacity: 1;
+}
 
 td .high-score-user {
     text-decoration: none;
     color: white;
+}
+
+td .high-score-user:hover {
+    text-decoration: underline;
+    color: #b38522;
 }
 
 .ranking {
@@ -348,7 +379,6 @@ td .high-score-user {
 }
 
 #high-score-table {
-    background-color: none;
     height: 80vh;
     font-size: 130%;
     border-radius: 10px;
@@ -363,10 +393,6 @@ td .high-score-user {
     margin-left: -2px;
 }
 
-.high-score-img {
-    display: flex;
-}
-
 #high-score-table table td {
     border-top: solid #febe38;
 
@@ -378,14 +404,13 @@ td .high-score-user {
 }
 
 .high-score-img {
+    display: flex;
     height: 50px;
     width: 50px;
     overflow: hidden;
-    padding-top: -5px;
     border: 2px solid rgb(197, 127, 127);
     box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
 }
-
 
 /* Profile Page Styles */
 
@@ -443,11 +468,10 @@ td .high-score-user {
 }
 
 #about-me-text {
-    background-color: none;
     min-height: 150px;
     border-radius: 10px;
     color: white;
-    overflow-wrap:break-word;
+    overflow-wrap: break-word;
     max-width: 500px;
 }
 
@@ -458,7 +482,6 @@ td .high-score-user {
     background-color: #1b1835;
     margin: 0px 10px;
     box-shadow: rgba(255, 255, 255, 0.282) 0px 0px 100px;
-
 }
 
 #picture-div {
@@ -474,9 +497,19 @@ td .high-score-user {
 
 @media screen and (min-width:768px) {
 
+    /* Home Page Styles */
+
+    .example img {
+        width:auto;
+        height:auto;
+    }
+
+    /* Profile Page Styles */
+
     #about-me-text {
         max-width: 500px;
     }
+
     .display-name {
         text-align: left;
     }
@@ -503,15 +536,8 @@ td .high-score-user {
     }
 
     /* Game Styles */
+
     #board {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        grid-template-rows: repeat(4, minmax(0, 1fr));
-        border-radius: 40px;
-        padding: 25px;
-        position: relative;
-        z-index: 1;
-        position: relative;
         width: 450px;
         height: 450px;
     }
@@ -519,19 +545,18 @@ td .high-score-user {
     .letter {
         font-style: normal;
         font-weight: 100;
-        font-family: 'Times New Roman', Times, serif;
         font-size: 300%;
         font-weight: bold;
         align-items: center;
+        padding:25px;
         margin: 7Px;
         text-align: center;
         border-radius: 15px;
         border-style: groove;
         overflow: hidden;
         font-family: "Rubik", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: normal;
-    font-style: normal;
+        font-weight: normal;
+        font-style: normal;
     }
 
     #guess {
@@ -546,15 +571,23 @@ td .high-score-user {
 }
 
 @media screen and (min-width:992px) {
-    .extended-table{
-        display:revert;
+
+    /* Message Board Styles */
+
+    .extended-table {
+        display: revert;
     }
-    .right-table{
+
+    .right-table {
         text-align: center;
     }
+
+    /* Profile Page Styles */
+    
     #details {
         font-size: 130%;
     }
+
     #about-me-text {
         max-width: 600px;
     }

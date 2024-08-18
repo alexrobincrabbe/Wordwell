@@ -5,7 +5,6 @@ const postDeleteButton = document.getElementById("post-btn-delete");
 const postDeleteConfirm = document.getElementById("post-delete-confirm");
 const replyDeleteButtons = document.getElementsByClassName("reply-btn-delete");
 const replyDeleteConfirm = document.getElementById("reply-delete-confirm");
-console.log(replyDeleteButtons)
 
 postDeleteButton.addEventListener("click", (e) => {
     let slug=e.target.getAttribute("slug");
