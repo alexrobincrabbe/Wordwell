@@ -4,42 +4,45 @@
 <!-- index.html content starts here -->
 <div class="container instructions">
     <div class="row">
-<h1> Welcome to Wordwell</h1>
-<br><br><br>
-<p>
-Wordwell is a fun and stimulating game for word game enthusiasts. 
+        <h1> Welcome to Wordwell</h1>
+        <br><br><br>
+        <p>
+            Wordwell is a fun and stimulating game for word game enthusiasts.
 
-Come join us and share your thoughts on our friendly <a class="text-link" href="{% url 'message_board' %}">message board</a> - everyone is welcome!
-</p>
-</div>
-<div class="row">
-<div class="col">
-<h2>How to play Wordwell</h2>
-<br>
-<p>
-Connect the letters on the board vertically, horizontally and diagonally to create as many words as possible before the timer runs out!
-<br> Can you find them all?
-Use each tile just once per word. <br><br>
-Scoring is based on the length of words. 
-<br>A word must be at least 3 letters to be valid.
-<br>
-Word length is scored as follows:
-<ul class="scoring">
-
-<li>3 letters - 1 point</li>
-<li>4 letters - 2 points</li>
-<li>5 letters - 3 points</li>
-<li>6 letters - 4 points</li>
-<li>7 letters - 5 points</li>
-<li>8+ letters - 6 points</li>
-</ul>
-</p>
-</div>
-<div class="col example">
-<img src="{% static 'images/example.png' %}" alt="example image of a word on the board">
-</div>
-</div>
-
+            Come join us and share your thoughts on our friendly <a class="text-link"
+                href="{% url 'message_board' %}">message board</a> - everyone is welcome!
+        </p>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>How to play Wordwell</h2>
+            <br>
+            <p>
+                Connect the letters on the board vertically, horizontally and diagonally to create as many words as
+                possible before the timer runs out!
+                <br> Can you find them all?
+                Use each tile just once per word. <br>
+                Note: you will need a keyboard to play. <br>
+                <a href="{% url 'account_login' %}" class="text-link">Login</a> to save your score! <br>
+                <br><br>
+                Scoring is based on the length of words.
+                <br>A word must be at least 3 letters to be valid.
+                <br>
+                Word length is scored as follows:
+            </p>
+            <ul class="scoring">
+                <li>3 letters - 1 point</li>
+                <li>4 letters - 2 points</li>
+                <li>5 letters - 3 points</li>
+                <li>6 letters - 4 points</li>
+                <li>7 letters - 5 points</li>
+                <li>8+ letters - 6 points</li>
+            </ul>
+        </div>
+        <div class="col example">
+            <img src="{% static 'images/example.png' %}" alt="example image of a word on the board">
+        </div>
+    </div>
 </div>
 <!-- index.html content ends here -->
 {% endblock %}
