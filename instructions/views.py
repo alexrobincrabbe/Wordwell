@@ -1,6 +1,10 @@
+"""
+Instructions app views:
+- context: none
+- template: index.htm, displays the welcome page with game instructions
+"""
 from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
+
 
 def instructions(request):
     '''
@@ -8,4 +12,4 @@ def instructions(request):
     '''
     context = {
     }
-    return render(request, 'instructions/index.html',context)
+    return render(request, 'instructions/index.html', context)

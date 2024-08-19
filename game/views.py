@@ -10,7 +10,7 @@ from profile_page.models import UserProfile
 from wordwell.settings import BASE_DIR
 from .models import Scores
 
-# Create your views here.
+
 @csrf_exempt
 def game(request):
     """
@@ -34,13 +34,14 @@ def game(request):
         "game/game.html",
     )
 
+
 def dictionary(request):
     """
     Upload the dictionary to the dictionary url, so that is can
     be retreived at the front end by the fetch api
     """
-    dictionary_path="game/static/game/dictionary.json"
+    dictionary_path = "game/static/game/dictionary.json"
     file_path = os.path.join(BASE_DIR, dictionary_path)
-    with open(file_path, 'r', encoding="utf-8") as f:
-        json_dictionary = json.load(f)
+    with open(file_path, 'r', encoding="utf-8") as dictionary_file:
+        json_dictionary = json.load(dictionary_file)
     return JsonResponse(json_dictionary)

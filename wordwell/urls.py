@@ -24,5 +24,5 @@ urlpatterns = [
     path('', include('profile_page.urls'), name="profile-urls"),
     path('', include('message_board.urls'), name="board-urls"),
     path('', include('game.urls'), name="game-urls"),
-    path('', include('highscores.urls'),name="highscores-urls"),
+    path('', include('highscores.urls'), name="highscores-urls"),
 ]

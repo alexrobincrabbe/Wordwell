@@ -1,7 +1,12 @@
-from . import views
-from django.urls import path
+"""
+Game app urls
+"""
 
-urlpatterns=[
+from django.urls import path
+from . import views
+
+
+urlpatterns = [
     path('game/', views.game, name="game"),
     path('game/dictionary', views.dictionary, name="dictionary"),
 ]

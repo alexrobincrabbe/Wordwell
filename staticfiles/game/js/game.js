@@ -187,6 +187,7 @@ async function getDictionary() {
   }
 }
 
+// Count down the game timer
 function countDown(time, wordArray) {
   if (time > 0) {
     time -= 1;
@@ -206,10 +207,20 @@ function countDown(time, wordArray) {
   }
 }
 
+// Reload the page to play again
 function playAgain() {
   location.reload();
 }
 
+/**
+ * Adds event listeners to update the current words being guessed
+ * Checks if words is on the board and in the dictionary
+ * Adds words to the list of correctly guessed words
+ * @param {string} word current word being typed by the player
+ * @param {boolean} matched returns a result of true if the word is on that board and in the dictionary
+ * @param {object} dictionary SOWOPODS list of words
+ * @param {array} wordArray Tracks which words have already been guessed
+ */
 function guessWord(word, matched, dictionary, wordArray) {
   // start the game timer
   let time = 100;
@@ -263,6 +274,12 @@ function guessWord(word, matched, dictionary, wordArray) {
   });
 }
 
+/**
+ * Searches the board to find if the current word is on the board
+ * @param {string} word The current word being typed by the player
+ * @returns True if the word is found on the board
+ * @returns An array of which letters on the board should be highlighted
+ */
 function searchBoard(word) {
   let boardMatched = false;
   let highlight = Array(16).fill(false);
@@ -312,6 +329,12 @@ function searchBoard(word) {
   }
 }
 
+/**
+ * highlights letters on the board in the highlight array
+ * @param {array} highlight
+ * @param {boolean} matched
+ * @param {boolean} boardMatched
+ */
 function highlightLetters(highlight, matched, boardMatched) {
   let colour = "#febe38";
   if (matched && boardMatched) {
@@ -332,6 +355,12 @@ function clearBoard() {
   }
 }
 
+/**
+ * Checks if the current word is a valid word in the dictionary
+ * @param {string} word
+ * @param {object} dictionary
+ * @returns True if the word is found in the dictionary
+ */
 function checkDictionary(word, dictionary) {
   let match_found = false;
   if (word.length < 3) {
@@ -368,8 +397,9 @@ function checkDictionary(word, dictionary) {
     ];
     let i = 0;
     for (let letter of alphabet) {
+      // check the first letter of the word to determine which sub-dictionary to search
       if (word[0] == letter) {
-        for (let key of Object.entries(dictionary[i])) {
+        for (let [key] of Object.entries(dictionary[i])) {
           if (word === key.toUpperCase()) {
             match_found = true;
           }
@@ -385,6 +415,17 @@ function checkDictionary(word, dictionary) {
   }
 }
 
+/**
+ * checks if words is matched and has already been found
+ * updates word lists and current score
+ * updates wordarray
+ * @param {string} word
+ * @param {boolean} matched
+ * @param {boolean} boardMatched
+ * @param {array} wordArray
+ * @param {int} runningScore
+ * @returns updated word array and score, clears word and matched values
+ */
 function checkWord(word, matched, boardMatched, wordArray, runningScore) {
   if (matched && boardMatched) {
     if (!wordArray.includes(word)) {
