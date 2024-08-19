@@ -332,6 +332,11 @@ button.btn-close{
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 150%;
+    overflow-wrap: break-word;
+}
+
+.reply{
+    overflow-wrap: break-word;
 }
 
 .message-board {

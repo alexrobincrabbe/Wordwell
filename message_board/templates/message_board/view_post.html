@@ -64,7 +64,7 @@
     {% for reply in post.replies.all %}
     <hr>
     <h3>{{ reply.author }} wrote:</h3>
-    <p>
+    <p class="reply">
         {{ reply.text }}
     </p>
     on: {{ reply.created_on }}
