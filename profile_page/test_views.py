@@ -37,7 +37,7 @@ class TestProfilePageViews(TestCase):
 
     def test_update_profile_with_display_name_success(self):
         '''
-        check that the view returns a status of 200
+        check that the view redirects and returns a status of 302
         check that the view shows the success message if the form is valid
         '''
         # user must be logged in to update profile
@@ -50,7 +50,9 @@ class TestProfilePageViews(TestCase):
             'about_me': '',
         }
         response = self.client.post(reverse('update_profile'), post_data)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
+        response = self.client.post(reverse('update_profile'),
+                                    post_data, follow=True)
         self.assertIn(
             b'Your account has been updated', response.content,
             msg="Form was valid but success message was not displayed"
@@ -58,7 +60,7 @@ class TestProfilePageViews(TestCase):
 
     def test_update_profile_with_valid_email(self):
         '''
-        check that the view returns a status of 200
+        check that the view redirects and returns a status of 302
         check that the view shows the success message if the form is valid
         '''
         # user must be logged in to update profile
@@ -71,7 +73,9 @@ class TestProfilePageViews(TestCase):
             'about_me': '',
         }
         response = self.client.post(reverse('update_profile'), post_data)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
+        response = self.client.post(reverse('update_profile'),
+                                    post_data, follow=True)
         self.assertIn(
             b'Your account has been updated', response.content,
             msg="Form was valid but success message was not displayed"
