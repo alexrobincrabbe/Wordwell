@@ -23,8 +23,11 @@
                 <br> Can you find them all?
                 Use each tile just once per word. <br>
                 Note: you will need a keyboard to play. <br>
+                {% if not user.is_authenticated %}
                 <a href="{% url 'account_login' %}" class="text-link">Login</a> to save your score! <br>
-                <br><br>
+                <br>
+                {% endif %}
+                <br>
                 Scoring is based on the length of words.
                 <br>A word must be at least 3 letters to be valid.
                 <br>
