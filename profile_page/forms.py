@@ -30,6 +30,7 @@ class ProfileUpdateForm(forms.ModelForm):
     profile_picture = CloudinaryFileField(
         label="Profile Picture", required=False
         )
+    display_name = forms.CharField(max_length=10)
 
     class Meta:
         '''

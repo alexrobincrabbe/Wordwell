@@ -19,4 +19,8 @@
   <button class="yellow-button" type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>
 </div>
+<!-- script to restrict the length of username field -->
+<script>
+document.getElementById('id_username').setAttribute('maxlength',10)
+</script>
 {% endblock content %}
