@@ -162,7 +162,7 @@ function runGame(dictionary) {
     });
   }
   // update/guess the word
-  [word, matched, wordArray] = guessWord(word, matched, dictionary, wordArray);
+  guessWord(word, matched, dictionary, wordArray);
 }
 
 /**
@@ -269,7 +269,6 @@ function guessWord(word, matched, dictionary, wordArray) {
           word = "";
       }
       guess.innerHTML = word;
-      return [word, matched, wordArray];
     }
   });
 }
