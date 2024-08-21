@@ -36,7 +36,7 @@
     </details>
 </details>
 
-2. <a href="#erd">ERD</a>
+2. <a href="#database">Database</a>
 
 
 3.  <details open>
@@ -221,6 +221,19 @@
 
 ![Rubik Font](readme_files/images/Rubik.png)
 
+## Icons
+
+Favicon:
+
+![Favicon](static/images/favicon.ico)
+
+## Colours
+
+![colour palette](readme_files/images/colour_palette.png)
+
+# Database 
+
+![Entity Relationship Diagram](readme_files/images/ERD.png)
 
 
 
