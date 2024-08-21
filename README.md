@@ -205,10 +205,21 @@
 
 ![wiresframes](readme_files/wireframes/wireframes.png)
 
+## Fonts
 
 
 
+[Chango](https://fonts.google.com/specimen/Chango)
 
+![Chango Font](readme_files/images/chango.png)
+
+[Mclaren](https://fonts.google.com/specimen/McLaren)
+
+![Mclaren Font](readme_files/images/Mclaren.png)
+
+[Rubik](https://fonts.google.com/specimen/Rubik)
+
+![Rubik Font](readme_files/images/Rubik.png)
 
 
 
