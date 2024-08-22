@@ -46,7 +46,7 @@ class TestProfilePageViews(TestCase):
         # email is blank and display name is completed
         post_data = {
             'email': '',
-            'display_name': 'myDisplayName',
+            'display_name': 'Name',
             'about_me': '',
         }
         response = self.client.post(reverse('update_profile'), post_data)
@@ -69,7 +69,7 @@ class TestProfilePageViews(TestCase):
         # email is valid and display name is completed
         post_data = {
             'email': 'jack@email.com',
-            'display_name': 'myDisplayName',
+            'display_name': 'Name',
             'about_me': '',
         }
         response = self.client.post(reverse('update_profile'), post_data)
