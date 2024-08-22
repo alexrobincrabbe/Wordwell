@@ -368,6 +368,11 @@ button.btn-close{
     opacity: 1;
 }
 
+#high-score-table td,
+#high-score-table th {
+    font-size: 70%;
+}
+
 td .high-score-user {
     text-decoration: none;
     color: white;
@@ -575,6 +580,13 @@ td .high-score-user:hover {
         border-radius: 10px;
         font-size: 200%;
     }
+
+    /* High score page styes */
+
+    #high-score-table td,
+    #high-score-table th {
+    font-size: 100%;
+}
 
 }
 
