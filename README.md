@@ -1,6 +1,7 @@
 
+[Wordwell](https://wordwellgame-bdb245abd266.herokuapp.com/) is a platform for a word game, which is played on a 4 x 4 board of letters. Registered users can save their score. The site includes a message board for users to share information or ask questions. Each registered user has a profile page, which they can update with information about themselves. The profile also shows their high score. The site includes a highscore list which ranks the highscores of all users. 
 
- [Wordwell](https://wordwellgame-bdb245abd266.herokuapp.com/)  was made as a project to showcase the full-stack skills of the website developer. The Django framework was used for the back-end. The front end was made with custon HTML, CSS and JavaScript and the bootstrap library.
+Wordwell was made as a project to showcase the full-stack skills of the website developer. The Django framework was used for the back-end. The front end was made with custon HTML, CSS and JavaScript and the bootstrap library.
 
 
 ![responsive images](readme_files/images/resposive.png)
@@ -218,7 +219,7 @@ The business goals of wordwell are:
 - As a site user I can read the game instructions and overview of the website so that I know what the site is for and how to use it
 
 
-#### Not implemented
+### Not implemented
 
 - As a touch screen user, I can swipe letters on the board so that I can guess words
 
@@ -298,9 +299,9 @@ The Navbar contains links to all pages. On the mobile view it is collapsed and c
 The letters on the game board are highlighted as the player types a word. All possible word paths are highlighted. If the player types a word that is not on the board, the letters are highlighted red. If the player types a word that is on the board and is found in the dictionary, the letters are highlighted green. Otherwise they are highlighted yellow.
 
 <div align="center">
-<img src="readme_files/images/board_yellow.png" height=300px>
-<img src="readme_files/images/board_green.png" height=300px>
-<img src="readme_files/images/board_red.png" height=300px>
+<img src="readme_files/images/board_yellow.png" height=250px>
+<img src="readme_files/images/board_green.png" height=250px>
+<img src="readme_files/images/board_red.png" height=250px>
 </div>
 
 #### Guess Word Box
@@ -363,8 +364,8 @@ The edit profile button directs the user to the edit profile form
 #### Update Profile Form
 
 <div align="center">
-<img src="readme_files/images/update_profile_desktop.png" height=300px>
-<img src="readme_files/images/update_profile_mob.png" height=300px>
+<img src="readme_files/images/update_profile_desktop.png" height=200px>
+<img src="readme_files/images/update_profile_mob.png" height=200px>
 </div>
 
 The update profile button updates the user profile on the database (if the form is valid) and redirects the user to their profile page
@@ -381,8 +382,8 @@ The main message board shows a paginated list of all posts, with 10 posts per pa
 The posts are sorted with the posts with the newest replies displayed at the top. A user can click on the title to view a post, or a username to see that user's profile.
 
 <div align="center">
-<img src="readme_files/images/message_board_desktop.png" height=300px>
-<img src="readme_files/images/message_board_mob.png" height=300px>
+<img src="readme_files/images/message_board_desktop.png" height=250px>
+<img src="readme_files/images/message_board_mob.png" height=250px>
 
 </div>
 
@@ -409,12 +410,12 @@ The view post page shows the title, author and text of the post at the tope of t
 - The forms only validate if the title is unique
 
 <div align="center">
-<img src="readme_files/images/new_post_form_desktop.png" height=250px>
+<img src="readme_files/images/new_post_form_desktop.png" height=200px>
 <img src="readme_files/images/new_post_form_mob.png" height=250px>
 </div>
 
 <div align="center">
-<img src="readme_files/images/edit_post_form_desktop.png" height=250px>
+<img src="readme_files/images/edit_post_form_desktop.png" height=200px>
 <img src="readme_files/images/edit_post_form_mob.png" height=250px>
 </div>
 
@@ -432,13 +433,13 @@ The view post page shows the title, author and text of the post at the tope of t
 - The forms only validate if the text has been completed
 
 <div align="center">
-<img src="readme_files/images/new_reply_form_desktop.png" height=300px>
-<img src="readme_files/images/new_reply_form_mob.png" height=300px>
+<img src="readme_files/images/new_reply_form_desktop.png" height=2500px>
+<img src="readme_files/images/new_reply_form_mob.png" height=250px>
 </div>
 
 <div align="center">
-<img src="readme_files/images/edit_reply_form_desktop.png" height=300px>
-<img src="readme_files/images/edit_reply_form_mob.png" height=300px>
+<img src="readme_files/images/edit_reply_form_desktop.png" height=250px>
+<img src="readme_files/images/edit_reply_form_mob.png" height=250px>
 </div>
 
 
@@ -572,7 +573,7 @@ see [TESTING.md](TESTING.md)
 
 # Deployment
 
-Note: in order to deploy the game, you will need a copy of the creds.json file, which is not included in the github repository for security reasons.
+Note: in order to deploy, you will need a database hosting service, and a cloudinary account. The URLs need to be added to the env.py file.
 
 ## local deployment
 
@@ -694,7 +695,7 @@ Note: in order to deploy the game, you will need a copy of the creds.json file, 
 
 # Credits
 
-- I used the SOWOPODS dictionary, converted to JSON format for the game dictionary to check the validity of words.
+- I used the [SOWOPODS](https://scrabble123.co.uk/sowpods-dictionary/scrabble-word) dictionary, converted to JSON format for the game dictionary to check the validity of words.
 
 - Thanks to my mentory Rory Patrick for all of his help on this project and the projects leading up to this one
 
