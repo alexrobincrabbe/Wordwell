@@ -257,8 +257,8 @@
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
 | New Post button | The new post form page is opened | works as expected |  |
-| login link | Should be hidden if the user is logged in | link is hidden as expected | <img width="200px" src="readme_files/images/test_message_board_link.png"> |
-| list of posts | A paginated list of posts is shown, with 10 posts per page. The title, author and number of replies are shown. The posts are ordered by the time of the most recent reply, or if there are no reply, the create date of the post is used. The newest are shown at the top of the page. When a user clicks on the title, they are taken the the view post page. | Works as expected | |
+| login link | Should be hidden if the user is logged in | link is hidden as expected |  |
+| list of posts | A paginated list of posts is shown, with 10 posts per page. The title, author and number of replies are shown. The posts are ordered by the time of the most recent reply, or if there are no reply, the create date of the post is used. The newest are shown at the top of the page. When a user clicks on the title, they are taken the the view post page. | Works as expected | <img width="200px" src="readme_files/images/message_board_mob.png"> |
 
 ### New Post
 

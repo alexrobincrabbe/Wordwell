@@ -1,7 +1,7 @@
 
-[Wordwell](https://wordwellgame-bdb245abd266.herokuapp.com/) is a platform for a word game, which is played on a 4 x 4 board of letters. Registered users can save their score. The site includes a message board for users to share information or ask questions. Each registered user has a profile page, which they can update with information about themselves. The profile also shows their high score. The site includes a highscore list which ranks the highscores of all users. 
+[Wordwell](https://wordwellgame-bdb245abd266.herokuapp.com/) is a platform for a word game, played on a 4 x 4 board of letters. Registered users can save their score. The site includes a message board for users to share information or ask questions. Each registered user has a profile page, which they can update with information about themselves. The profile also shows their high score. The site includes a highscore list which ranks the highscores of all users. 
 
-Wordwell was made as a project to showcase the full-stack skills of the website developer. The Django framework was used for the back-end. The front end was made with custon HTML, CSS and JavaScript and the bootstrap library.
+Wordwell was made as a project to showcase the full-stack skills of the website developer. The Django framework was used for the back-end. The front-end was made with custom HTML, CSS and JavaScript and the bootstrap library.
 
 
 ![responsive images](readme_files/images/resposive.png)
@@ -146,10 +146,10 @@ Wordwell was made as a project to showcase the full-stack skills of the website 
 
 ## Visitor Goals
 
-The target audience for Worwell are
+The target audience for Worwell is:
 
 - People who enjoy word games
-- People who want to make social connections with other people of similar interests
+- People who want to make social connections with those who share similar interests
 
 User goals are:
 
@@ -170,7 +170,7 @@ Wordwell fills these needs by:
 
 ## Business Goals
 
-The business goals of wordwell are:
+The business goals of Wordwell are:
 
 - Provide a game to engage visitors of the website
 - Provide a platform for visitors to interact with other players
@@ -180,11 +180,11 @@ The business goals of wordwell are:
 
 ### Implemented 
 
-- As a user I can view all posts that have been created on the site that I can see posts made by other users, and posts I have created myself
+- As a user I can view all posts that have been created on the site so that I can see posts made by other users, and posts I have created myself
 
 - As a user I can create new posts so that I can ask questions or share information with other users on the site
 
-- As a uiser I can view the content of posts made by other users so than I can interact with other users on the site
+- As a user I can view the content of posts made by other users so that I can interact with other users on the site
 
 - As a user I can reply to posts in order to interact with other users on the site, and add relevant information
 
@@ -198,9 +198,9 @@ The business goals of wordwell are:
 
 - As a player I can guess words so that I can score points in the game
 
-- As a player, I can guess valid dictionary words on the game board to score points
+- As a player I can guess valid dictionary words on the game board to score points
 
-- As a player, I can start a game timer so that I can guess as many words as possible before the timer runs out
+- As a player I can start a game timer so that I can guess as many words as possible before the timer runs out
 
 - As a player I can save my score so that I can compare my high score with other users, and beat my own high score
 
@@ -242,17 +242,17 @@ The business goals of wordwell are:
 
 ![Chango Font](readme_files/images/chango.png)
 
-[Mclaren](https://fonts.google.com/specimen/McLaren) Was used for the main text of the site. It was chosen to be less stylized and easier to read than the Chango font.
+[Mclaren](https://fonts.google.com/specimen/McLaren) was used for the main text of the site. It was chosen to be less stylised and easier to read than the Chango font.
 
 ![Mclaren Font](readme_files/images/Mclaren.png)
 
-[Rubik](https://fonts.google.com/specimen/Rubik) was used for the game board. It was chosen no be very clean and easily readable.
+[Rubik](https://fonts.google.com/specimen/Rubik) was used for the game board. It was chosen to be very clean and easily readable.
 
 ![Rubik Font](readme_files/images/Rubik.png)
 
 ## Icons
 
-The favicon was made by taking a screen shoot of the W in the Wordwell logo.
+The favicon was made by taking a screen shot of the W in the Wordwell logo.
 
 ![Favicon](static/images/favicon.ico)
 
@@ -260,17 +260,17 @@ The favicon was made by taking a screen shoot of the W in the Wordwell logo.
 
 ![colour palette](readme_files/images/colour_palette.png)
 
-- #358270, #FEBE38, #FB2271 were the primary colours used for the site. 
+- #358270, #FEBE38, #FB2271 were the primary colours used for the site
 - #358270 was the primary background colour, chosen to add colour but also be dark enough to contrast with the texts
-- #FEBE38 was used for the navbar, buttons, and word boxes
-- #FB2271 was used for headings, to make them stand add and add vibrance to the colour scheme
+- #FEBE38 was used for the navbar, buttons and word boxes
+- #FB2271 was used for headings, to make them stand out and add vibrance to the colour scheme
 - #1B1835 was used as a secondary background colour, to contrast slightly with the main background colour
 - #418141 and #A35050 were used for the edit and delete buttons
 - #C57F7f was used as a secondary heading colour for the profile pages
 
 # Database Models
 
-- The UserProfile model was created to extend the in-built user model of the django allauth package. The user field is a one to there is a one to one relationship with the User Model. The profile object is created automatically when a new user is created, using Django signals. In the admin panel it is found under the user tab.
+- The UserProfile model was created to extend the in-built user model of the Django-allauth package. The user field has a one to one relationship with the User Model. The profile object is created automatically when a new user is created, using Django signals. In the admin panel it is found under the user tab.
 - The Scores model is used to store all player scores in the database. It is related to the UserProfile model in a many to one relationship. The high score field of the UserProfile model is updated when a new score is created. 
 - The Post model has a many to one relationship with the User Model.
 - The reply model has a many to one relationship with both the Post Model and the User Model
@@ -306,7 +306,7 @@ The letters on the game board are highlighted as the player types a word. All po
 
 #### Guess Word Box
 
-The guess word box displays a message to indicate the dictionary is loading when the page is first loaded. When the dictionary is loaded and the game is ready to start, a message prompts the play the start the game. When the game has started, a message to start typing is shown. As the player types, the letters are displaying in the box. When the player presses enter, the word is cleared.
+The guess word box displays a message to indicate the dictionary is loading when the page is first loaded. When the dictionary is loaded and the game is ready to start, a message prompts the player to start the game. When the game has started, a message to start typing is shown. As the player types, the letters are displaying in the box. When the player presses enter, the word is cleared.
 
 <div align="center">
 <img src="readme_files/images/guess_word_loading.png" height=40px>
@@ -334,8 +334,8 @@ The timer starts counting down from 100 when the player starts a game.
 
 #### Game Buttons
 
-- The start button starts the game timer and allows the player to begin guessing words. It is hidden once the game is started.
-- The reshuffle button reshuffles the letters on the board. It is hidden once the game is started.
+- The start button starts the game timer and allows the player to begin guessing words. It is hidden once the game has started.
+- The reshuffle button reshuffles the letters on the board. It is hidden once the game has started.
 - At the end of the game the restart button is visible. It reloads the page.
 - The save score button appears at the end of the game if the user is logged in. It saves the players score to the database. If it is the players high score, the high score on their profile will be updated.
 
@@ -350,9 +350,9 @@ The timer starts counting down from 100 when the player starts a game.
 
 #### View Profile
 
-The player profile page shows the players high score, when they joined, and their last login date. 
+The player profile page shows the players' high score, when they joined and their last login date. 
 
-It also shows their profile picture, display name, and about me text, all of which can be edited by the user. The profiles of other users can be viewed by clicking on their names on the highscore board or the message boards.
+It also shows their profile picture, display name and About Me text, all of which can be edited by the user. The profiles of other users can be viewed by clicking on their names on the highscore board or the message boards.
 
 <div align="center">
 <img src="readme_files/images/view_profile_desktop.png" height=300px>
@@ -368,7 +368,7 @@ The edit profile button directs the user to the edit profile form
 <img src="readme_files/images/update_profile_mob.png" height=200px>
 </div>
 
-The update profile button updates the user profile on the database (if the form is valid) and redirects the user to their profile page
+The update profile button updates the user profile on the database (if the form is valid) and redirects the user to their profile page.
 
 <div align="center">
 <img src="readme_files/images/update_button_desktop.png" height=50px>
@@ -378,7 +378,7 @@ The update profile button updates the user profile on the database (if the form 
 
 #### Post List
 
-The main message board shows a paginated list of all posts, with 10 posts per page. The title, author, and number of replies is shown. On desktop, the date of the most recent reply (or the date of the post if there are no replies) is also shown.
+The main message board shows a paginated list of all posts, with 10 posts per page. The title, author and number of replies is shown. On desktop, the date of the most recent reply (or the date of the post if there are no replies) is also shown.
 The posts are sorted with the posts with the newest replies displayed at the top. A user can click on the title to view a post, or a username to see that user's profile.
 
 <div align="center">
@@ -395,7 +395,7 @@ The posts are sorted with the posts with the newest replies displayed at the top
 
 #### View Post
 
-The view post page shows the title, author and text of the post at the tope of the page. All replies are shown beneath, with the oldest shown at the top. The author, text and date of each reply is shown. If the user is the author of the post, the edit and delete buttons are shown next to the post. If the user is the author of a reply, the edit and delete buttons are shown next to the reply.
+The view post page shows the title, author and text of the post at the top of the page. All replies are shown beneath, with the oldest shown at the top. The author, text and date of each reply is shown. If the user is the author of the post, the edit and delete buttons are shown next to the post. If the user is the author of a reply, the edit and delete buttons are shown next to the reply.
 
 <div align="center">
 <img src="readme_files/images/view_post_desktop.png" height=300px>
@@ -419,8 +419,8 @@ The view post page shows the title, author and text of the post at the tope of t
 <img src="readme_files/images/edit_post_form_mob.png" height=250px>
 </div>
 
-- The submit button on the new post form creates the post object in the database, and redirects the user to the message board post list.
-- The submit button on the edit post form updates the existing object the database, and redirects the user to the view post page.
+- The submit button on the new post form creates the post object in the database and redirects the user to the message board post list
+- The submit button on the edit post form updates the existing object in the database and redirects the user to the view post page
 
 <div align="center">
 <img src="readme_files/images/post_update.png" height=50px>
@@ -443,8 +443,8 @@ The view post page shows the title, author and text of the post at the tope of t
 </div>
 
 
-- The submit button on the new reply form creates the reply object in the database, and redirects the user to the view post page.
-- The update button on the new reply form update the existing reply object in the database, and redirects the user to the view post page.
+- The submit button on the new reply form creates the reply object in the database and redirects the user to the view post page
+- The update button on the new reply form updates the existing reply object in the database and redirects the user to the view post page
 
 <div align="center">
 <img src="readme_files/images/repy_submit.png" height=50px>
@@ -453,7 +453,7 @@ The view post page shows the title, author and text of the post at the tope of t
 
 ### Delete Modals
 
-- The delete modals display a confirmation dialogue, to confirm is the user wants to delte a post/message
+- The delete modals display a confirmation dialogue, to confirm if the user wants to delete a post/message
 - The cancel button closes the modal
 - The delete button deletes the post/reply from the database
 - The post delete button redirects the user to the post list
@@ -488,7 +488,7 @@ The login page uses the standard Django-allauth template, with minor changes. Th
 
 #### Register Page
 
-The register page use the standard Django-allauth template.
+The register page uses the standard Django-allauth template.
 
 <div align="center">
 <img src="readme_files/images/signup_desktop.png" height=200px>
@@ -516,17 +516,17 @@ The Logout page uses the standard Djanto-alluth template.
     * Game mechanics
     * Manipulating DOM content
 - Python
-    * Backend
+    * Back-end
 
 ## Libraries/Frameworks
 
 - [Google Fonts](https://fonts.google.com)
     * Font Styles
-- [Boostrap](https://getbootstrap.com/)
+- [Bootstrap](https://getbootstrap.com/)
     * Responsivity
     * Modals
 - [Django](https://www.djangoproject.com/)
-    * Backend Framework
+    * Back-end Framework
 
 # Database
 
@@ -567,13 +567,13 @@ see [TESTING.md](TESTING.md)
 
 # Future Improvements
 
-- Touch screen word guessing. The game requires a keyboard to play. In order to make the game more accessable on touch screens, I would like to implement swiping on the game board to guess words. However this proved to be technically challenging, due to the fact that swipe events are bound to the object they were initiated in. Due to time contraints, this idea was abandonded inside the scope of this project.
+- Touch screen word guessing. The game requires a keyboard to play. In order to make the game more accessible on touch screens, I would like to implement swiping on the game board to guess words. However this proved to be technically challenging, due to the fact that swipe events are bound to the object they were initiated in. Due to time contraints, this idea was abandonded inside the scope of this project.
 
-- A feature I would like to add is to allow players to play against each other in a game. However this would likely add a lot of complexity to the implementation and I currently don't have the knowledge of how to implement this. So I did not attempt to implement it for this project
+- A feature I would like to add is to allow players to play against each other in a game. However this would likely add a lot of complexity to the implementation and I currently don't have the knowledge to implement this so I did not attempt to implement it for this project
 
 # Deployment
 
-Note: in order to deploy, you will need a database hosting service, and a cloudinary account. The URLs need to be added to the env.py file.
+Note: in order to deploy, you will need a database hosting service and a Cloudinary account. The URLs need to be added to the env.py file.
 
 ## local deployment
 
@@ -681,7 +681,7 @@ Note: in order to deploy, you will need a database hosting service, and a cloudi
 
 5. Click on Reveal Config Vars
 
-6. Click one ADD, enter CLOUDINARY_URL, and enter the URL of your cloudinary account for the variable value
+6. Click one ADD, enter CLOUDINARY_URL, and enter the URL of your Cloudinary account for the variable value
 
 7. Click on ADD, enter DATABASE_URL and enter the URL of your DATABASE
 
@@ -695,9 +695,9 @@ Note: in order to deploy, you will need a database hosting service, and a cloudi
 
 # Credits
 
-- I used the [SOWOPODS](https://scrabble123.co.uk/sowpods-dictionary/scrabble-word) dictionary, converted to JSON format for the game dictionary to check the validity of words.
+- I used the [SOWPODS](https://scrabble123.co.uk/sowpods-dictionary/scrabble-word) dictionary, converted to JSON format for the game dictionary to check the validity of words
 
-- Thanks to my mentory Rory Patrick for all of his help on this project and the projects leading up to this one
+- Thanks to my mentor Rory Patrick for all of his help on this project and the projects leading up to this one
 
 - Thanks to Leda for correcting my numerous typos and filling up the message boards with nonsense
 
