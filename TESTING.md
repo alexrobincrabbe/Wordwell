@@ -199,16 +199,16 @@
 | Home link | Opens the home page | Works as expected | |
 | Game link | Opens the game page | Works as expected | |
 | Message Board link | Opens the Message Board page | Works as expected | |
-| Profile Link | Opens the Profile page of the logged in user | Works as expected | |
-| Logout Link | Takes the user to the logout page | Works as expected | |
-| Login LInk | is hidden | Link is hidden as expected | <img width="200px" src="readme_files/images/test_navbar_logout.png"> |
+| Profile link | Opens the Profile page of the logged in user | Works as expected | |
+| Logout link | Takes the user to the logout page | Works as expected | |
+| Login lInk | is hidden | Link is hidden as expected | <img width="200px" src="readme_files/images/test_navbar_logout.png"> |
 
 ### Home Page
 
 | Feature | Expectation | Result | Screenshots | 
 | --- | --- | --- | --- |
 | Message board link | Opens the Message Board page | Works as expected | |
-| Login Link | Should be hidden when a user is already logged in | Link hidden as expected | <img width="200px" src="readme_files/images/test_home_page_link.png"> |
+| Login link | Should be hidden when a user is already logged in | Link hidden as expected | <img width="200px" src="readme_files/images/test_home_page_link.png"> |
 
 ### Game Page
 
@@ -309,8 +309,8 @@
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Profile Link | Link is hidden |Link is hidden as expected | <img width="200px" src="readme_files/images/test_nabvar_guest.png"> |
-| Logout Link | Link is hidden | Link is hidden as expecte | <img width="200px" src="readme_files/images/test_nabvar_guest.png"> |
+| Profile link | Link is hidden |Link is hidden as expected | <img width="200px" src="readme_files/images/test_nabvar_guest.png"> |
+| Logout link | Link is hidden | Link is hidden as expected | <img width="200px" src="readme_files/images/test_nabvar_guest.png"> |
 | Login link| User is directed to the login page| Works as expected | |
 
 ### Login Page
@@ -318,14 +318,14 @@
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
 | Sign in form | validates if the username and password are valid | Works as expected |
-| Sign in button | the user is redirected to the home page, logged in, and a confirmation message is shown |  Works as expected | <img width="200px" src="readme_files/images/test_login.png">  |
+| Sign in button | The user is redirected to the home page, logged in and a confirmation message is shown |  Works as expected | <img width="200px" src="readme_files/images/test_login.png">  |
 | Sign up link | When clicked, the user is directed to the sign up page | Link works as expected | Works as expected |
 
 ### Sign Up Page
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Sign up form | Validates if the username is unique, password is valid and passwords match, email is valid(if given) | Works as expected |
+| Sign up form | Validates if the username is unique, password is valid and passwords match and email is valid (if given) | Works as expected |
 | Sign up button | When clicked, the user is directed to the home page, the user is logged in and a confirmation message is shown | Link works as expected | <img width="200px" src="readme_files/images/text_new_user.png">  |
 
 ### Home page
@@ -344,8 +344,8 @@
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Login Link | The login link is shown, and the user is directed to the login page when it is clicked | Works as expected | <img width="200px" src="readme_files/images/test_login_message_board.png"> |
-| New post Button | The button should be hidden | The button is hidden as expected | |
+| Login link | The login link is shown, and the user is directed to the login page when it is clicked | Works as expected | <img width="200px" src="readme_files/images/test_login_message_board.png"> |
+| New post button | The button should be hidden | The button is hidden as expected | |
 
 ### View Post
 
@@ -361,7 +361,7 @@ I wrote automated tests for all views and forms.
 ## Game App Tests
 
 - Checks that the page loads correctly
-- Checks that the score post data is saved to the databse
+- Checks that the score post data is saved to the database
 
 <div align="left">
 <img src="readme_files/images/automated_test_game.png" height=150px>
@@ -399,24 +399,24 @@ I wrote automated tests for all views and forms.
 
 ### Views
 
-- Setup creates 10 users, a post for each user, and a reply for each user to the first post
+- Setup creates 10 users, a post for each user and a reply for each user to the first post
 - Test that all titles and usernames are displayed on the post list
-- Checks that all fields, and all replies are displayed on the view post page
-- Checks that when a new post is submitted, the repsonse is redirected and a success message is shown
+- Checks that all fields and all replies are displayed on the view post page
+- Checks that when a new post is submitted, the response is redirected and a success message is shown
 - Checks that the respose is not redirected if the new post form is not valid
-- Checks that the edit post view returns a response status of 200, that the form is prepopulated with the correct database content and that the content is hidden is the user is not the author of the post
+- Checks that the edit post view returns a response status of 200, that the form is prepopulated with the correct database content and that the content is hidden if the user is not the author of the post
 - Checks that the edit post form redirects correctly if the form is valid
 - Checks that the edit post form does not redirect if the form is not valid
 - Also checks that the edit post form does not validate is the title is a duplicate (this has to be checked on the back end)
-- Checks that the delete post view returns a success message, and the post is deleted from the databse, if the user is the author of a post
-- Checks that the view returns a "permission denied" message if the user is not the author of a post, and that the post has not been deleted from the database
-- Checks that the new reply view redirects, and that a success message is shown if the reply form is valid
+- Checks that the delete post view returns a success message and the post is deleted from the database, if the user is the author of a post
+- Checks that the view returns a "permission denied" message if the user is not the author of a post and that the post has not been deleted from the database
+- Checks that the new reply view redirects and that a success message is shown if the reply form is valid
 - Checks that the new reply view does not redirect if the new reply form is not valid
--  Checks that the edit reply form is prepopulated with the correct database content, and the content is hidden if the user is not the author of the reply
+-  Checks that the edit reply form is prepopulated with the correct database content and the content is hidden if the user is not the author of the reply
 - Checks that the edit reply view redirects when mandatory fields are complete
 - Checks that the edit reply view does not redirect when a mandatory field is not complete
-- Checks that the delete reply view redirects, shows a success message, and deletes the reply from the database, if the user is the author of the reply
-- Checks that the delete reply view shows a permission denied message, and the reply if not deleted from the database, if the user is not the author of the reply
+- Checks that the delete reply view redirects, shows a success message and deletes the reply from the database, if the user is the author of the reply
+- Checks that the delete reply view shows a permission denied message and the reply is not deleted from the database, if the user is not the author of the reply
 
 <div align="left">
 <img src="readme_files/images/automated_test_message_board_views.png" height=150px>
@@ -440,7 +440,7 @@ I wrote automated tests for all views and forms.
 - Setup creates a user and a user profile
 - Checks that the update view redirects and shows a success message if the update profile form is valid
 - Checks that the update view does not redirect and does not show a success message if the update profile form is not valid
-- Checks that the profile page exists, and that all of the correct profile information is displayed on the profile page
+- Checks that the profile page exists and that all of the correct profile information is displayed on the profile page
 
 <div align="left">
 <img src="readme_files/images/automated_test_profile_page_views.png" height=150px>
@@ -448,7 +448,7 @@ I wrote automated tests for all views and forms.
 
 # Responsivity
 
-All pages have been tested and are repsonsive accross all screen sizes.
+All pages have been tested and are responsive across all screen sizes.
 
 <div align="left">
 <img src="readme_files/images/resposive.png" height=300px>
@@ -460,13 +460,13 @@ All pages have been tested and are repsonsive accross all screen sizes.
 
 # Browsers/Devices
 
-The site was tested accross Chrome, Mozilla Firefox, Opera, Microsoft Edge. It was tested on desktop, an android device and ipad. The only issue found was that some profile pictures appear to load slowly in Mozilla Firefox.
+The site was tested across Chrome, Mozilla Firefox, Opera, Safari and Microsoft Edge. It was tested on desktop, an android device and iPad. The only issue found was that some profile pictures appear to load slowly in Mozilla Firefox.
 
 # Bugs
 
 ## Fixed Bugs
 
-- The currently field of the profile page form appeared blank when using crispy forms. I fixed this by accessing the DOM with JavaScript to insert the content
+- The 'currently' field of the profile page form appeared blank when using crispy forms. I fixed this by accessing the DOM with JavaScript to insert the content
 - The login form allows long usernames to be entered, although the length of the username field is restricted, resulting in an error when a new user is created. I fixed this by using JavaScript to change the attribute of the username field to restrict the length of input
 
 ## Unfixed Bugs
