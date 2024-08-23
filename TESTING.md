@@ -13,7 +13,7 @@
     </li>
 
      <li>
-        <a href="javascript">JavaScript</a>
+        <a href="#javascript">JavaScript</a>
     </li>
 
      <li>
@@ -38,7 +38,37 @@
         <a href="#guest-user">Guest User</a>
     </ul>
 
-3.  <summary><a href="#automated-testing">Automated testing</a></summary>
+3.  <details open>
+    <summary><a href="#automated-testing">Automated testing</a></summary>
+
+    <ul>
+
+    <li>
+    <summary><a href="#game-app-tests">Game App Tests</a></summary>
+
+    </li>
+
+    <li>
+    <summary><a href="#highscores-app-tests">Highscores App Tests</a></summary>
+    
+    </li>
+
+    <li>
+    <summary><a href="#instructions-app-tests">Instuctions App Tests</a></summary>
+    
+    </li>
+
+    <li>
+    <summary><a href="#message-board-app-tests">Message Board App Tests</a></summary>
+    
+    </li>
+
+     <li>
+    <summary><a href="#profile-page-app-tests">Profile Page App Tests</a></summary>
+    
+    </li>
+
+    </ul>
 
 4. <summary><a href="#responsivity">Responsivity</a></summary>
 
@@ -328,7 +358,7 @@
 
 I wrote automated tests for all views and forms.
 
-## Game app
+## Game App Tests
 
 - The test checks that the page loads correctly
 - that the score post data is saved to the databse.
@@ -338,7 +368,7 @@ I wrote automated tests for all views and forms.
 </div>
 
 
-## Highscores app
+## Highscores App Tests
 
 - The test checks that the page loads correcty
 - That all usernames and high scores are displayed on the page
@@ -348,7 +378,7 @@ I wrote automated tests for all views and forms.
 <img src="readme_files/images/automated_test_highscores.png" height=150px>
 </div>
 
-## Instructions
+## Instructions App Tests
 
 - The test checks that the page loads correctly
 
@@ -356,7 +386,7 @@ I wrote automated tests for all views and forms.
 <img src="readme_files/images/automated_test_instructions.png" height=150px>
 </div>
 
-## Message Board App
+## Message Board App Tests
 
 ## Forms
 
@@ -392,7 +422,7 @@ I wrote automated tests for all views and forms.
 <img src="readme_files/images/automated_test_message_board_views.png" height=150px>
 </div>
 
-## Profile Page app
+## Profile Page APP Tests
 
 ### Forms
 
