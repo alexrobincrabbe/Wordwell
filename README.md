@@ -1,5 +1,5 @@
 
-[Wordwell](https://wordwellgame-bdb245abd266.herokuapp.com/) is a platform for a word game, played on a 4 x 4 board of letters. Registered users can save their score. The site includes a message board for users to share information or ask questions. Each registered user has a profile page, which they can update with information about themselves. The profile also shows their high score. The site includes a highscore list which ranks the highscores of all users. 
+[Wordwell](https://wordwellgame-bdb245abd266.herokuapp.com/) is a platform for a word game, played on a 4 x 4 board of letters. Registered users can save their score. The site includes a message board for users to share information or ask questions. Each registered user has a profile page which they can update with information about themselves. The profile also shows their high score. The site includes a highscore list which ranks the highscores of all users. 
 
 Wordwell was made as a project to showcase the full-stack skills of the website developer. The Django framework was used for the back-end. The front-end was made with custom HTML, CSS and JavaScript and the bootstrap library.
 
@@ -146,7 +146,7 @@ Wordwell was made as a project to showcase the full-stack skills of the website 
 
 ## Visitor Goals
 
-The target audience for Worwell is:
+The target audience for Wordwell is:
 
 - People who enjoy word games
 - People who want to make social connections with those who share similar interests
@@ -223,11 +223,11 @@ The business goals of Wordwell are:
 
 - As a touch screen user, I can swipe letters on the board so that I can guess words
 
-- As a player I can see my longest word so that I can try to beat my record.
+- As a player I can see my longest word so that I can try to beat my record
 
-- As a player I can see all of my scores, and those of other players so that I can compare my best scores with other players
+- As a player I can see all of my scores and those of other players so that I can compare my best scores with other players
 
-- As user, I can view all posts made by users so that I can see a user's post history.
+- As a user, I can view all posts made by users so that I can see a user's post history
 
 
 # Visual Design
@@ -306,7 +306,7 @@ The letters on the game board are highlighted as the player types a word. All po
 
 #### Guess Word Box
 
-The guess word box displays a message to indicate the dictionary is loading when the page is first loaded. When the dictionary is loaded and the game is ready to start, a message prompts the player to start the game. When the game has started, a message to start typing is shown. As the player types, the letters are displaying in the box. When the player presses enter, the word is cleared.
+The guess word box displays a message to indicate the dictionary is loading when the page is first loaded. When the dictionary is loaded and the game is ready to start, a message prompts the player to start the game. When the game has started, a message to start typing is shown. As the player types, the letters are displayed in the box. When the player presses enter, the current word is cleared.
 
 <div align="center">
 <img src="readme_files/images/guess_word_loading.png" height=40px>
@@ -317,7 +317,7 @@ The guess word box displays a message to indicate the dictionary is loading when
 
 #### Word lists
 
-When the player correctly guesses a word, they are added to the word lists, depending on the length of the words.
+When the player correctly guesses a word, it is added to the word lists, depending on the length of the word.
 
 <div align="center">
 <img src="readme_files/images/word_lists_desktop.png" height=300px>
