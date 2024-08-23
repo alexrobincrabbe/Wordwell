@@ -433,7 +433,7 @@ The view post page shows the title, author and text of the post at the tope of t
 - The forms only validate if the text has been completed
 
 <div align="center">
-<img src="readme_files/images/new_reply_form_desktop.png" height=2500px>
+<img src="readme_files/images/new_reply_form_desktop.png" height=250px>
 <img src="readme_files/images/new_reply_form_mob.png" height=250px>
 </div>
 
