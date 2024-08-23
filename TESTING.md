@@ -40,6 +40,11 @@
 
 3.  <summary><a href="#automated-testing">Automated testing</a></summary>
 
+4. <summary><a href="#responsivity">Responsivity</a></summary>
+
+5. <summary><a href="#browsers">Browsers</a></summary>
+
+6. <summary><a href="#bugs">Bugs</a></summary>
 
 # Validation
 
@@ -193,35 +198,35 @@
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Details | Shows the high score, join and last login dates | Works as expected | |
-| Profile Picture | Displays a place holder if no image is uploaded. Displays profile picture if one has been uploaded | Works as expected | |
-| About me | Displays the about me text if it has been completed, or none if it is blank |  Works as expected | |
-| Edit Button |  If the user is the owner of the profile, opens the form page to edit the profile. Otherwise is hidden | Works as expected | |
+| Details | Shows the high score, join and last login dates | Works as expected | <img width="200px" src="readme_files/images/test_details.png"> |
+| Profile Picture | Displays a place holder if no image is uploaded. Displays profile picture if one has been uploaded | Works as expected |<img width="200px" src="readme_files/images/test_prof_pic.png"> <img width="200px" src="readme_files/images/test_prof_pic_placeholder.png"> |
+| About me | Displays the about me text if it has been completed, or none if it is blank |  Works as expected | <img width="200px" src="readme_files/images/test_about_me.png"> |
+| Edit Button |  If the user is the owner of the profile, opens the form page to edit the profile. Otherwise is hidden | Works as expected |  |
 
 ### Edit Profile Page
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
 | Form | submits only if: The display name has been completed, is unique, and a the email is valid(if given) | Works as expected | |
-| Update button | When the button is clicked, if the form is valid, the user is redirected to their profile page, the profile is updated, and a confirmation message is shown | Works as expected | |
+| Update button | When the button is clicked, if the form is valid, the user is redirected to their profile page, the profile is updated, and a confirmation message is shown | Works as expected | <img width="200px" src="readme_files/images/test_update_profile.png"> |
 
 ### High score page
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| List of high scores | Shows all registered users, ordered by highscore. Display name and profile picture are shown for each user. The display name linke to the profile of the user | Works as expected | |
+| List of high scores | Shows all registered users, ordered by highscore. Display name and profile picture are shown for each user. The display name linke to the profile of the user | Works as expected | <img width="200px" src="readme_files/images/test_high_scores.png"> |
 
 ### Logout Page
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Confirmation button | The user is logged out, redirected to the homepage, and a confirmation message is shown |  | |
+| Confirmation button | The user is logged out, redirected to the homepage, and a confirmation message is shown | works as expected | <img width="200px" src="readme_files/images/test_logout.png"> |
 
 ### Message Board
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| New Post button | The new post form page is opened |  | |
+| New Post button | The new post form page is opened | works as expected |  |
 | login link | Should be hidden if the user is logged in | link is hidden as expected | <img width="200px" src="readme_files/images/test_message_board_link.png"> |
 | list of posts | A paginated list of posts is shown, with 10 posts per page. The title, author and number of replies are shown. The posts are ordered by the time of the most recent reply, or if there are no reply, the create date of the post is used. The newest are shown at the top of the page. When a user clicks on the title, they are taken the the view post page. | Works as expected | |
 
@@ -230,43 +235,43 @@
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
 | Form | The form validates if all fields are completed, and the title is unique | Works as expected | |
-| submit button | The user is redirected to the message board, a confirmation message is shown, the post appears at the top of the list of posts | Works as expected | |
+| submit button | The user is redirected to the message board, a confirmation message is shown, the post appears at the top of the list of posts | Works as expected | <img width="200px" src="readme_files/images/test_new_post.png"> |
 
 ### View Post
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Post | The title, author and body of the post are shown at the top of the page | Works as expected  | |
-| replies | All replies are shown beneath the post, which the oldest at the top. The name, text and creation date of each post are shown| Works as expected | |
+| Post | The title, author and body of the post are shown at the top of the page | Works as expected  | <img width="200px" src="readme_files/images/test_view_post.png"> |
+| replies | All replies are shown beneath the post, which the oldest at the top. The name, text and creation date of each post are shown| Works as expected | <img width="200px" src="readme_files/images/test_view_replies.png"> |
 | Reply button | When clicked, the user is directed to the new reply page | Works as expected | |
-| edit post button | if the user is the author of the post, the button is displayed. When clicked the user is directed to the edit post form page | Works as expected | |
+| edit post button | if the user is the author of the post, the button is displayed. When clicked the user is directed to the edit post form page | Works as expected | <img width="200px" src="readme_files/images/test_update_post.png"> |
 | delete post button | if the user is the author of the post, the button is displayed. When clicked, the delete post modal is shown | Works as expected | |
 | Reply button | When clicked, the user is directed to the new reply page | Works as expected | |
 | edit reply button | if the user is the author of the reply, the button is displayed. When clicked the user is directed to the edit reply form page | Works as expected | |
 | delete reply button | if the user is the author of the reply, the button is displayed. When clicked, the delete reply modal is shown | Works as expected | |
-| Delete Post modal | a modal appears prompting the user to delete their post. If delete button is clicked, the user is redirected to the message board page, a confirmation message is shown, and the post is deleted | Works as expected | |
-| Delete Reply Modal | a modal appears prompting the user to delete their reply. If delete button is clicked, the user is redirected to the view post page, a confirmation message is shown, and the reply is deleted | Works as expected | |
+| Delete Post modal | a modal appears prompting the user to delete their post. If delete button is clicked, the user is redirected to the message board page, a confirmation message is shown, and the post is deleted | Works as expected | <img width="200px" src="readme_files/images/delete_post_modal_desktop.png"> |
+| Delete Reply Modal | a modal appears prompting the user to delete their reply. If delete button is clicked, the user is redirected to the view post page, a confirmation message is shown, and the reply is deleted | Works as expected | <img width="200px" src="readme_files/images/delete_reply_model_desktop.png"> |
 
 ### Edit Post
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
 | Form | The title and text are prepopulated with the post content. The form validates when all fields are complete, and the title is unique | Works as expected | |
-| Submit button | The user is redirected to the view post page, a confirmation message is show, the post is updated | Works as expected | |
+| Submit button | The user is redirected to the view post page, a confirmation message is show, the post is updated | Works as expected | <img width="200px" src="readme_files/images/test_update_post.png"> |
 
 ### New reply
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Post | The title, author and body of the post are shown at the top of the page| Works as expected | |
+| Post | The title, author and body of the post are shown at the top of the page| Works as expected | <img width="200px" src="readme_files/images/test_new_reply_head.png"> |
 | form | The form validates if the text is completed | Works as expected | |
-| Submit Button | The user is redirected to the view post page, a confirmation message is shown, the reply is shown | Works as expected | |
+| Submit Button | The user is redirected to the view post page, a confirmation message is shown, the reply is shown | Works as expected | <img width="200px" src="readme_files/images/test_new_reply.png"> |
 
-### Eidt reply
+### Edit reply
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
 | Post | The title, author and body of the post are shown at the top of the page | Works as expected | |
 | form | The form is prepopulated with the reply text. The form validates if the text is completed |  Works as expected | |
-| Submit Button | The user is redirected to the view post page, a confirmation message is shown, the reply is updated |  Works as expected | |
+| Submit Button | The user is redirected to the view post page, a confirmation message is shown, the reply is updated |  Works as expected | <img width="200px" src="readme_files/images/test_update_reply.png">  |
 
 ## Guest user
 
@@ -274,8 +279,8 @@
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Profile Link | Link is hidden |Link is hidden as expected | |
-| Logout Link | Link is hidden | Link is hidden as expecte |  |
+| Profile Link | Link is hidden |Link is hidden as expected | <img width="200px" src="readme_files/images/test_nabvar_guest.png"> |
+| Logout Link | Link is hidden | Link is hidden as expecte | <img width="200px" src="readme_files/images/test_nabvar_guest.png"> |
 | Login link| User is directed to the login page| works as expected | |
 
 ### Login Page
@@ -283,7 +288,7 @@
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
 | Sign in form | validates if the username and password are valid | Works as expected |
-| Sign in button | the user is redirected to the home page, logged in, and a confirmation message is shown |Link is hidden as expected |  Works as expected |
+| Sign in button | the user is redirected to the home page, logged in, and a confirmation message is shown |  Works as expected | <img width="200px" src="readme_files/images/test_login.png">  |
 | Sign up link | When clicked, the user is directed to the sign up page | Link works as expected | Works as expected |
 
 ### Sign Up Page
@@ -297,26 +302,26 @@
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Login link | The link is show, and the user is directed to the login page when it is clicked | Link works as expected | Works as expected |
+| Login link | The link is show, and the user is directed to the login page when it is clicked | Link works as expected | <img width="200px" src="readme_files/images/test_login_homepage.png"> |
 
 ### Game Page
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Save score button | The button remains hidden when the timer runs down | Button is hidden as expected | Works as expected |
+| Save score button | The button remains hidden when the timer runs down | Button is hidden as expected |  |
 
 ### Message board
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Login Link | The login link is shown, and the user is directed to the login page when it is clicked | Works as expected | |
+| Login Link | The login link is shown, and the user is directed to the login page when it is clicked | Works as expected | <img width="200px" src="readme_files/images/test_login_message_board.png"> |
 | New post Button | The button should be hidden | The button is hidden as expected | |
 
 ### View Post
 
 | Feature | Expectation | Result | Screenshot | 
 | --- | --- | --- | --- |
-| Login Link | The login link is shown, and the user is directed to the login page when it is clicked | Works as expected | |
+| Login Link | The login link is shown, and the user is directed to the login page when it is clicked | Works as expected | <img width="200px" src="readme_files/images/test_login_message_board.png"> |
 | Reply Button | The button should be hidden | The button is hidden as expected | |
 
 # Automated Testing
@@ -411,8 +416,24 @@ I wrote automated tests for all views and forms.
 <img src="readme_files/images/automated_test_profile_page_views.png" height=150px>
 </div>
 
+# Responsivity
 
+All pages have been tested and are repsonsive accross all screen sizes.
 
+# Browsers
+
+The site was tested accross Chrome, Mozilla Firefox, Opera, Microsoft Edge. The only issue found was that some profile pictures appear to load slowly on Mozilla Firefox.
+
+# Bugs
+
+## Fixed Bugs
+
+- The currently field of the profile page form appeared blank when using crispy forms. I fixed this by accessing the DOM with javascript to insert the content.
+- The login form allows long usernames to be entered, although the length of the username field is restricted, resulting in an error when a new user is created. I fixed this by using javascript to change the attribute of the username field to restrict the length of input.
+
+## Unfixed Bugs
+
+There are no unfixed bugs that I am aware of
 
 
 
